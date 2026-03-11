@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>CHONNECT — by KACHOO</title>
-    <!-- Google Fonts: Outfit (menggantikan Inter) -->
+    <!-- Google Fonts: Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (sama seperti referensi) -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ROOT VARIABLES - persis seperti referensi */
+        /* ROOT VARIABLES */
         :root {
             --primary-black: #000000;
             --primary-white: #FFFFFF;
@@ -30,7 +30,7 @@
         }
 
         body {
-            font-family: 'Outfit', sans-serif; /* Berubah dari Inter ke Outfit */
+            font-family: 'Outfit', sans-serif;
             background-color: var(--primary-white);
             color: var(--primary-black);
             line-height: 1.6;
@@ -45,7 +45,7 @@
             padding: 0 24px;
         }
 
-        /* HEADER - persis struktur referensi, tapi tanpa teks, logo diperbesar */
+        /* HEADER */
         header {
             background-color: var(--primary-white);
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -65,7 +65,7 @@
             align-items: center;
         }
 
-        /* Logo container - tanpa teks, hanya logo yang diperbesar */
+        /* Logo container - hanya logo diperbesar */
         .logo-container {
             display: flex;
             align-items: center;
@@ -73,18 +73,18 @@
         }
 
         .logo-img {
-            height: 52px; /* diperbesar dari 40px */
+            height: 52px; /* diperbesar */
             width: auto;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
         }
 
-        /* Desktop Navigation - mengikuti struktur referensi dengan menu CHONNECT */
+        /* Desktop Navigation - tanpa menu list, ganti dengan dua link */
         .desktop-nav {
             display: flex;
-            gap: 4px;
-            background: var(--accent-gray);
-            padding: 4px;
-            border-radius: var(--border-radius);
+            gap: 8px;
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
         }
 
         @media (max-width: 768px) {
@@ -95,7 +95,7 @@
 
         .nav-button {
             padding: 12px 24px;
-            background: transparent;
+            background: var(--accent-gray);
             border: none;
             border-radius: 8px;
             font-family: 'Outfit', sans-serif;
@@ -112,14 +112,8 @@
 
         .nav-button:hover {
             color: var(--primary-black);
-            background: rgba(0, 0, 0, 0.05);
+            background: rgba(0, 0, 0, 0.1);
             transform: translateY(-2px);
-        }
-
-        .nav-button.active {
-            color: var(--primary-black);
-            background: var(--primary-white);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         /* Mobile Menu Button */
@@ -145,7 +139,7 @@
             background: rgba(0, 0, 0, 0.05);
         }
 
-        /* Mobile Menu - persis struktur */
+        /* Mobile Menu - dua link utama */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -220,7 +214,7 @@
             transform: translateX(4px);
         }
 
-        /* HERO SECTION - diadaptasi untuk CHONNECT */
+        /* HERO SECTION - tanpa badge, subtitle baru */
         .hero {
             padding: 140px 0 80px;
             background: linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%);
@@ -269,35 +263,19 @@
             }
         }
 
+        /* Hero tag (badge) dihilangkan - tidak ditampilkan */
         .hero-tag {
-            display: inline-block;
-            padding: 8px 16px;
-            background: var(--accent-gray);
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-gray);
-            margin-bottom: 24px;
-            letter-spacing: 0.5px;
-            animation: fadeIn 0.8s ease-out 0.2s both;
+            display: none;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -1px;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, #000000 0%, #333333 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s ease-out 0.4s both;
+        /* Judul diganti dengan logo CHONNECT (logochonnect2.png) */
+        .hero-logo {
+            max-width: 500px;
+            width: 90%;
+            height: auto;
+            margin: 0 auto 24px;
+            display: block;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.05));
         }
 
         .hero-subtitle {
@@ -306,10 +284,10 @@
             max-width: 600px;
             margin: 0 auto 40px;
             line-height: 1.7;
-            animation: fadeInUp 1s ease-out 0.6s both;
+            animation: fadeInUp 1s ease-out 0.2s both;
         }
 
-        /* SPLASH SCREEN - gradasi putih seperti diminta */
+        /* SPLASH SCREEN */
         .splash {
             position: fixed;
             top: 0;
@@ -345,7 +323,7 @@
             100% { transform: scale(1.02); opacity: 1; }
         }
 
-        /* KATEGORI BUTTON - grid seperti di platform section */
+        /* KATEGORI BUTTON SECTION - judul CATEGORIES, tombol muncul setelah klik */
         .category-section {
             padding: 40px 0 20px;
             background: var(--primary-white);
@@ -367,11 +345,42 @@
             font-size: clamp(0.9rem, 3vw, 1.1rem);
         }
 
+        /* Tombol "Tampilkan Kategori" - baru, disembunyikan setelah diklik */
+        .toggle-category-btn {
+            display: block;
+            margin: 0 auto 30px;
+            padding: 16px 40px;
+            background: var(--primary-black);
+            color: var(--primary-white);
+            border: none;
+            border-radius: 40px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+        }
+
+        .toggle-category-btn:hover {
+            transform: scale(1.05);
+            background: #222;
+        }
+
+        .toggle-category-btn i {
+            margin-right: 8px;
+        }
+
+        /* Grid kategori - awalnya disembunyikan */
         .category-grid {
-            display: grid;
+            display: none;
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
             margin-top: 20px;
+        }
+
+        .category-grid.visible {
+            display: grid;
         }
 
         @media (min-width: 600px) {
@@ -420,7 +429,7 @@
             border-color: rgba(0, 0, 0, 0.2);
         }
 
-        /* LIST USER SECTION - mengikuti style feature section */
+        /* LIST USER SECTION */
         .list-section {
             padding: 40px 0 60px;
             background: var(--accent-gray);
@@ -458,7 +467,7 @@
             }
         }
 
-        /* CARD USER - persis style feature card */
+        /* CARD USER */
         .user-item {
             background: var(--primary-white);
             border: 1px solid rgba(0, 0, 0, 0.08);
@@ -543,7 +552,7 @@
             border: 1px dashed rgba(0,0,0,0.1);
         }
 
-        /* FOOTER - DUPLIKAT PERSIS DARI REFERENSI */
+        /* FOOTER - tanpa Categories */
         footer {
             background: var(--primary-black);
             color: var(--primary-white);
@@ -635,14 +644,13 @@
             transform: translateY(-4px);
         }
 
-        /* X Logo Icon - Improved for Mobile */
+        /* X Logo Icon */
         .x-logo {
             font-family: 'Outfit', sans-serif;
             font-weight: 900;
             font-size: 18px;
         }
 
-        /* Mobile-specific X Logo styling */
         @media (max-width: 768px) {
             .footer-section .x-logo {
                 font-size: 16px;
@@ -672,7 +680,7 @@
             font-size: 14px;
         }
 
-        /* Responsive Design tambahan */
+        /* Responsive Design */
         @media (max-width: 480px) {
             .container {
                 padding: 0 16px;
@@ -695,27 +703,23 @@
     </style>
 </head>
 <body>
-    <!-- SPLASH dengan logo CHONNECT untuk awal (logochonnect1.png) -->
+    <!-- SPLASH dengan logo CHONNECT (logochonnect1.png) -->
     <div id="splash" class="splash">
         <img src="logochonnect1.png" alt="CHONNECT logo" class="splash-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2270%22%20fill%3D%22%23333%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ECHONNECT%3C%2Ftext%3E%3C%2Fsvg%3E');">
     </div>
 
-    <!-- HEADER - persis struktur referensi, tanpa teks, logo lebih besar (logochonnect2.png) -->
+    <!-- HEADER - logo lebih besar (logochonnect1.png), dua link navigasi -->
     <header>
         <div class="container header-content">
             <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <img src="logochonnect2.png" alt="CHONNECT Logo" class="logo-img">
-                <!-- TIDAK ADA TEKS "CHONNECT" DI SINI, hanya logo -->
+                <img src="logochonnect1.png" alt="CHONNECT Logo" class="logo-img">
+                <!-- Hanya logo, tanpa teks -->
             </div>
             
-            <!-- Desktop Navigation Menu (menu untuk CHONNECT) -->
+            <!-- Desktop Navigation - dua link: Website Kachoo dan CHOBANK -->
             <nav class="desktop-nav">
-                <a href="#" class="nav-button active" onclick="switchCategory('entertainment'); return false;">ENTERTAINMENT</a>
-                <a href="#" class="nav-button" onclick="switchCategory('institusi'); return false;">INSTITUSI</a>
-                <a href="#" class="nav-button" onclick="switchCategory('media'); return false;">MEDIA</a>
-                <a href="#" class="nav-button" onclick="switchCategory('bisnis'); return false;">BISNIS</a>
-                <a href="#" class="nav-button" onclick="switchCategory('keluarga'); return false;">KELUARGA</a>
-                <a href="#" class="nav-button" onclick="switchCategory('lainnya'); return false;">LAINNYA</a>
+                <a href="https://thekachoo.github.io/Home/" class="nav-button" target="_blank" rel="noopener">Website Kachoo</a>
+                <a href="https://thekachoo.github.io/CHOBANK/" class="nav-button" target="_blank" rel="noopener">CHOBANK</a>
             </nav>
             
             <!-- Mobile Menu Button -->
@@ -725,7 +729,7 @@
         </div>
     </header>
 
-    <!-- Mobile Menu - dengan kategori yang sama -->
+    <!-- Mobile Menu - dua link utama -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-menu-close" id="mobileMenuClose">
@@ -733,62 +737,45 @@
         </button>
         <ul class="mobile-menu-list">
             <li class="mobile-menu-item">
-                <a href="#" class="mobile-menu-link" onclick="switchCategory('entertainment'); closeMobileMenu(); return false;">
-                    <i class="fas fa-film" style="margin-right: 12px;"></i>
-                    ENTERTAINMENT
+                <a href="https://thekachoo.github.io/Home/" class="mobile-menu-link" target="_blank" rel="noopener">
+                    <i class="fas fa-globe"></i>
+                    Website Kachoo
                 </a>
             </li>
             <li class="mobile-menu-item">
-                <a href="#" class="mobile-menu-link" onclick="switchCategory('institusi'); closeMobileMenu(); return false;">
-                    <i class="fas fa-building" style="margin-right: 12px;"></i>
-                    INSTITUSI & ORGANISASI
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="#" class="mobile-menu-link" onclick="switchCategory('media'); closeMobileMenu(); return false;">
-                    <i class="fas fa-newspaper" style="margin-right: 12px;"></i>
-                    MEDIA & KOMUNIKASI
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="#" class="mobile-menu-link" onclick="switchCategory('bisnis'); closeMobileMenu(); return false;">
-                    <i class="fas fa-briefcase" style="margin-right: 12px;"></i>
-                    BISNIS & USAHA
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="#" class="mobile-menu-link" onclick="switchCategory('keluarga'); closeMobileMenu(); return false;">
-                    <i class="fas fa-heart" style="margin-right: 12px;"></i>
-                    KELUARGA
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="#" class="mobile-menu-link" onclick="switchCategory('lainnya'); closeMobileMenu(); return false;">
-                    <i class="fas fa-ellipsis-h" style="margin-right: 12px;"></i>
-                    LAINNYA
+                <a href="https://thekachoo.github.io/CHOBANK/" class="mobile-menu-link" target="_blank" rel="noopener">
+                    <i class="fas fa-landmark"></i>
+                    CHOBANK
                 </a>
             </li>
         </ul>
     </div>
 
-    <!-- HERO SECTION - khusus CHONNECT -->
+    <!-- HERO SECTION - logo dari logochonnect2.png, subtitle baru -->
     <section class="hero">
         <div class="container hero-content">
-            <div class="hero-tag">Roleplay Database</div>
-            <h1>CHONNECT</h1>
+            <!-- Logo CHONNECT (logochonnect2.png) sebagai pengganti teks -->
+            <img src="logochonnect2.png" alt="CHONNECT" class="hero-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22200%22%20viewBox%3D%220%200%20800%20200%22%3E%3Crect%20width%3D%22800%22%20height%3D%22200%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22120%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2270%22%20fill%3D%22%23333%22%20text-anchor%3D%22middle%22%3ECHONNECT%3C%2Ftext%3E%3C%2Fsvg%3E');">
+            <!-- Subtitle baru -->
             <p class="hero-subtitle">
-                This feature serves as a database that collects official roleplay base accounts to make collaboration between roleplayers easier.
+                Terhubung lebih mudah bersama Chonnect. Dengan sistem direktori yang memudahkan terhubungnya berbagai kontak untuk keperluan relasi
             </p>
         </div>
     </section>
 
-    <!-- KATEGORI BUTTON SECTION (grid tombol) - mengikuti style platform section -->
+    <!-- KATEGORI BUTTON SECTION - judul CATEGORIES, subtitle baru, tombol toggle -->
     <section class="category-section">
         <div class="container">
-            <h2 class="section-title">EXPLORE CATEGORIES</h2>
-            <p class="section-subtitle">Pilih kategori untuk melihat daftar akun roleplay</p>
+            <h2 class="section-title">CATEGORIES</h2>
+            <p class="section-subtitle">Apa yang kamu cari?</p>
             
-            <div class="category-grid">
+            <!-- Tombol untuk menampilkan kategori -->
+            <button class="toggle-category-btn" id="toggleCategoryBtn" onclick="toggleCategoryGrid()">
+                <i class="fas fa-chevron-down"></i> Tampilkan Kategori
+            </button>
+            
+            <!-- Grid kategori (awalnya tersembunyi) -->
+            <div class="category-grid" id="categoryGrid">
                 <button class="cat-btn" data-category="entertainment" onclick="switchCategory('entertainment')">ENTERTAINMENT</button>
                 <button class="cat-btn" data-category="institusi" onclick="switchCategory('institusi')">INSTITUSI & ORGANISASI</button>
                 <button class="cat-btn" data-category="media" onclick="switchCategory('media')">MEDIA & KOMUNIKASI</button>
@@ -817,7 +804,7 @@
         </div>
     </section>
 
-    <!-- FOOTER - DUPLIKAT PERSIS DARI REFERENSI -->
+    <!-- FOOTER - tanpa Categories -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -836,29 +823,7 @@
                     </div>
                 </div>
                 
-                <div class="footer-section">
-                    <h3>Categories</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-film" style="color: rgba(255,255,255,0.7);"></i>
-                            <a href="#" onclick="switchCategory('entertainment'); return false;">Entertainment</a>
-                        </li>
-                        <li><i class="fas fa-building" style="color: rgba(255,255,255,0.7);"></i>
-                            <a href="#" onclick="switchCategory('institusi'); return false;">Institusi & Organisasi</a>
-                        </li>
-                        <li><i class="fas fa-newspaper" style="color: rgba(255,255,255,0.7);"></i>
-                            <a href="#" onclick="switchCategory('media'); return false;">Media & Komunikasi</a>
-                        </li>
-                        <li><i class="fas fa-briefcase" style="color: rgba(255,255,255,0.7);"></i>
-                            <a href="#" onclick="switchCategory('bisnis'); return false;">Bisnis & Usaha</a>
-                        </li>
-                        <li><i class="fas fa-heart" style="color: rgba(255,255,255,0.7);"></i>
-                            <a href="#" onclick="switchCategory('keluarga'); return false;">Keluarga</a>
-                        </li>
-                        <li><i class="fas fa-ellipsis-h" style="color: rgba(255,255,255,0.7);"></i>
-                            <a href="#" onclick="switchCategory('lainnya'); return false;">Lainnya</a>
-                        </li>
-                    </ul>
-                </div>
+                <!-- Categories section dihilangkan sesuai permintaan -->
                 
                 <div class="footer-section">
                     <h3>Contact</h3>
@@ -916,13 +881,13 @@
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
         const mobileMenuClose = document.getElementById('mobileMenuClose');
 
-        window.openMobileMenu = function() {
+        function openMobileMenu() {
             mobileMenu.classList.add('active');
             mobileMenuOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        window.closeMobileMenu = function() {
+        function closeMobileMenu() {
             mobileMenu.classList.remove('active');
             mobileMenuOverlay.classList.remove('active');
             document.body.style.overflow = '';
@@ -932,8 +897,21 @@
         mobileMenuClose.addEventListener('click', closeMobileMenu);
         mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
-        // ==================== DATA USER dengan logo berbeda ====================
-        // Sesuai instruksi: logo1.png, logo2.png, dst.
+        // ==================== TOGGLE KATEGORI ====================
+        const categoryGrid = document.getElementById('categoryGrid');
+        const toggleBtn = document.getElementById('toggleCategoryBtn');
+
+        window.toggleCategoryGrid = function() {
+            if (categoryGrid.classList.contains('visible')) {
+                categoryGrid.classList.remove('visible');
+                toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Tampilkan Kategori';
+            } else {
+                categoryGrid.classList.add('visible');
+                toggleBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Sembunyikan Kategori';
+            }
+        };
+
+        // ==================== DATA USER ====================
         const userData = {
             entertainment: [
                 { name: 'The Kachoo', username: '@TheKachoo', bio: 'Media & Berita', logo: 'logo1.png' },
@@ -997,15 +975,11 @@
             const titleText = categoryNames[categoryKey] || 'KATEGORI';
             categoryNameDisplay.textContent = titleText;
 
-            // Update active class di desktop nav
-            document.querySelectorAll('.desktop-nav .nav-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            // Cari tombol yang sesuai dan beri active
-            const activeBtn = Array.from(document.querySelectorAll('.desktop-nav .nav-button')).find(
-                btn => btn.textContent.trim().toLowerCase().includes(categoryKey.toLowerCase())
-            );
-            if (activeBtn) activeBtn.classList.add('active');
+            // Sembunyikan grid kategori setelah memilih (opsional, biar rapi)
+            if (categoryGrid.classList.contains('visible')) {
+                categoryGrid.classList.remove('visible');
+                toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Tampilkan Kategori';
+            }
 
             if (!items.length) {
                 userListContainer.innerHTML = `<div class="empty-state"><i class="fas fa-database" style="font-size: 48px; margin-bottom: 16px; display: block; color: #ccc;"></i><p>Belum ada data untuk kategori ini</p></div>`;
@@ -1039,7 +1013,6 @@
 
         // Set default active category (entertainment) setelah halaman siap
         window.addEventListener('load', function() {
-            // Tunda sebentar setelah splash
             setTimeout(() => {
                 switchCategory('entertainment');
             }, 1600);
@@ -1056,4 +1029,4 @@
         });
     </script>
 </body>
-  </html>
+    </html>
