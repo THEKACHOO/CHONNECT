@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>CHONNECT — direktori roleplay</title>
+  <!-- Google Fonts: Outfit (semua varian yang diperlukan) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* RESET & DASAR */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #ffffff;      /* latar putih */
+      color: #000000;                 /* teks hitam */
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* SPLASH SCREEN (gradasi hitam + logo) */
+    .splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #0a0a0a 0%, #2c2c2c 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.6s ease-out;
+      pointer-events: none;
+    }
+
+    .splash.fade-out {
+      opacity: 0;
+    }
+
+    .splash-logo {
+      width: 200px;
+      max-width: 70vw;
+      height: auto;
+      aspect-ratio: 1/1;
+      object-fit: contain;
+      filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15));
+      animation: splashPulse 2s infinite alternate ease-in-out;
+    }
+
+    @keyframes splashPulse {
+      0% { transform: scale(0.98); opacity: 0.9; }
+      100% { transform: scale(1.02); opacity: 1; }
+    }
+
+    /* KONTEN UTAMA – disembunyikan sampai splash selesai */
+    #content {
+      display: none;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.2rem 1rem 2rem;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* HEADER dengan logo kecil & judul */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .header-logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      border-radius: 12px;
+      background-color: #f5f5f5;
+      padding: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #000;
+      line-height: 1.2;
+    }
+
+    /* kategori / tombol – uppercase bold */
+    .category-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 2.5rem;
+      justify-content: center;
+    }
+
+    .cat-btn {
+      background: white;
+      border: 2px solid black;
+      padding: 0.75rem 1.2rem;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      color: black;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 0 black;
+      flex: 0 1 auto;
+    }
+
+    .cat-btn:hover {
+      background: black;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 black;
+    }
+
+    .cat-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 black;
+    }
+
+    /* area daftar username */
+    .list-container {
+      margin: 2rem 0 3rem;
+    }
+
+    .list-title {
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid black;
+      display: inline-block;
+    }
+
+    .user-grid {
+      display: grid;
+      grid-template-columns: 1fr;  /* 1 kolom di mobile */
+      gap: 1rem;
+    }
+
+    /* tiap item username dengan info tambahan */
+    .user-item {
+      display: flex;
+      gap: 1rem;
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 24px;         /* lebih soft, tidak terlalu pill */
+      padding: 0.8rem;
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      align-items: center;
+    }
+
+    .user-item:hover {
+      border-color: black;
+      background: #fafafa;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .user-logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      flex-shrink: 0;
+    }
+
+    .user-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      flex: 1;
+    }
+
+    .user-name-row {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .user-name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;            /* bold untuk nama utama (seperti The Kachoo) */
+      font-size: 1.1rem;
+      color: black;
+      text-decoration: none;
+    }
+
+    .user-username {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;            /* normal untuk @username */
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    .user-bio {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;            /* normal untuk keterangan singkat */
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.4;
+      margin-top: 2px;
+    }
+
+    /* tautan seluruh card (agar klik mengarah ke X) */
+    .user-link-card {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      gap: 1rem;
+      width: 100%;
+      align-items: center;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 2px solid #000;
+      font-size: 0.95rem;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .footer-moto {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px dashed #444;
+      padding-bottom: 0.8rem;
+    }
+
+    .footer-moto span:first-child {
+      font-weight: 700;
+    }
+
+    .footer-address {
+      font-style: normal;
+      line-height: 1.6;
+      color: #222;
+    }
+
+    .footer-social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    .footer-social a {
+      color: black;
+      text-decoration: none;
+      font-weight: 400;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .footer-social a:hover {
+      border-bottom: 1px solid black;
+    }
+
+    .footer-social strong {
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-right: 0.25rem;
+    }
+
+    /* RESPONSIVE (tablet/desktop) */
+    @media (min-width: 600px) {
+      .user-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .category-grid {
+        gap: 1rem;
+      }
+
+      .cat-btn {
+        padding: 0.9rem 2rem;
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .user-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .footer-row {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .footer-moto {
+        width: 100%;
+      }
+
+      .footer-address {
+        max-width: 450px;
+      }
+    }
+
+    .text-small {
+      font-size: 0.9rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <!-- SPLASH dengan gradasi hitam dan logo -->
+  <div id="splash" class="splash">
+    <img src="logochonnect1.png" alt="CHONNECT logo" class="splash-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23222%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2270%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ECHONNECT%3C%2Ftext%3E%3C%2Fsvg%3E');">
+  </div>
+
+  <!-- KONTEN UTAMA (muncul setelah splash) -->
+  <div id="content">
+    <!-- HEADER dengan logo kecil -->
+    <header class="header">
+      <img src="logochonnect2.png" alt="CHONNECT" class="header-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23333%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2270%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ELOGO%3C%2Ftext%3E%3C%2Fsvg%3E');">
+      <h1>CHONNECT</h1>
+    </header>
+
+    <main>
+      <!-- 6 tombol kategori (bold + uppercase) -->
+      <div class="category-grid">
+        <button class="cat-btn" data-category="entertainment">ENTERTAINMENT</button>
+        <button class="cat-btn" data-category="institusi">INSTITUSI & ORGANISASI</button>
+        <button class="cat-btn" data-category="media">MEDIA & KOMUNIKASI</button>
+        <button class="cat-btn" data-category="bisnis">BISNIS & USAHA</button>
+        <button class="cat-btn" data-category="keluarga">KELUARGA</button>
+        <button class="cat-btn" data-category="lainnya">LAINNYA</button>
+      </div>
+
+      <!-- area tampil list username -->
+      <div class="list-container">
+        <div class="list-title" id="active-category-title">📋 PILIH KATEGORI</div>
+        <div id="user-list" class="user-grid">
+          <!-- akan diisi lewat javascript -->
+          <div style="grid-column:1/-1; text-align:center; padding:2rem; color:#555;">Klik salah satu tombol di atas</div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-row">
+        <div class="footer-moto">
+          <span>FOR ROLEPLAY PURPOSE ONLY</span>
+          <span>FEATURED BY THE KACHOO</span>
+        </div>
+        <div class="footer-address">
+          <strong style="text-transform:uppercase;">Kachoo :</strong> Jenderal Sudirman Avenue, Lots 61–62, South Jakarta 12930, Indonesia
+        </div>
+        <div class="footer-social">
+          <div><strong>Official Kachoo</strong> <a href="https://x.com/TheKachoo" target="_blank" rel="noopener">@TheKachoo</a></div>
+          <div><strong>Narahubung</strong> <a href="https://x.com/HaiKachoo" target="_blank" rel="noopener">@HaiKachoo</a></div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      // SPLASH HANDLING
+      const splash = document.getElementById('splash');
+      const content = document.getElementById('content');
+
+      function hideSplashAndShowContent() {
+        splash.classList.add('fade-out');
+        splash.addEventListener('transitionend', function() {
+          splash.style.display = 'none';
+          content.style.display = 'block';
+        }, { once: true });
+      }
+
+      window.addEventListener('load', function() {
+        setTimeout(hideSplashAndShowContent, 1500);
+      });
+
+      // ========== DATA USERNAME DENGAN KETERANGAN SINGKAT ==========
+      // Setiap objek berisi: nama, username, bio (keterangan singkat)
+      // Semua @username tetap ditampilkan, dan bio berbeda tiap item.
+      const userData = {
+        entertainment: [
+          { name: 'The Kachoo', username: '@TheKachoo', bio: 'Media & Berita' },
+          { name: 'Kachoo Music', username: '@KachooMusic', bio: 'Label Independen' },
+          { name: 'Kachoo TV', username: '@KachooTV', bio: 'Hiburan Digital' },
+          { name: 'Kachoo Play', username: '@KachooPlay', bio: 'Game & Komunitas' },
+          { name: 'Kachoo Laughs', username: '@KachooLaughs', bio: 'Komedi & Lucu' }
+        ],
+        institusi: [
+          { name: 'Kachoo University', username: '@KachooUniv', bio: 'Pendidikan & Riset' },
+          { name: 'Kachoo Org', username: '@KachooOrg', bio: 'Organisasi Sosial' },
+          { name: 'Kachoo Institute', username: '@KachooLP', bio: 'Pelatihan & Sertifikasi' },
+          { name: 'Kachoo Foundation', username: '@KachooFDN', bio: 'Nirlaba / Amal' },
+          { name: 'Kachoo Youth', username: '@KachooYouth', bio: 'Komunitas Pemuda' }
+        ],
+        media: [
+          { name: 'Kachoo Daily', username: '@KachooDaily', bio: 'Berita Harian' },
+          { name: 'Kachoo News', username: '@KachooNews', bio: 'Media & Investigasi' },
+          { name: 'Kachoo Podcast', username: '@KachooPod', bio: 'Obrolan & Wawancara' },
+          { name: 'Kachoo Review', username: '@KachooReview', bio: 'Ulasan Film/Musik' },
+          { name: 'Kachoo Tekno', username: '@KachooTekno', bio: 'Teknologi & Inovasi' }
+        ],
+        bisnis: [
+          { name: 'Kachoo Startup', username: '@KachooStartup', bio: 'Inkubator Bisnis' },
+          { name: 'Kachoo Mart', username: '@KachooMart', bio: 'Toko Serba Ada' },
+          { name: 'Kachoo Biz', username: '@KachooBizID', bio: 'Konsultan UMKM' },
+          { name: 'Kachoo Finance', username: '@KachooFinance', bio: 'Tips Keuangan' },
+          { name: 'Kachoo Creative', username: '@KachooCreative', bio: 'Agensi Kreatif' }
+        ],
+        keluarga: [
+          { name: 'Keluarga Kachoo', username: '@KachooFamily', bio: 'Vlog Keluarga' },
+          { name: 'Bunda Kachoo', username: '@BundaKachoo', bio: 'Parenting & Ibu' },
+          { name: 'Ayah Kachoo', username: '@AyahKachoo', bio: 'Edukasi Ayah' },
+          { name: 'Si Kecil Kachoo', username: '@SiKecilKachoo', bio: 'Cerita Anak' },
+          { name: 'Kachoo Sahabat', username: '@KachooSahabat', bio: 'Sahabat Keluarga' }
+        ],
+        lainnya: [
+          { name: 'Kachoo Lain', username: '@KachooLain', bio: 'Kategori Lainnya' },
+          { name: 'Kachoo Random', username: '@KachooRandom', bio: 'Aneka Rupa' },
+          { name: 'Kachoo Stuff', username: '@KachooStuff', bio: 'Jualan Unik' },
+          { name: 'Kachoo Hobi', username: '@KachooHobi', bio: 'Komunitas Hobi' },
+          { name: 'Kachoo Kuliner', username: '@KachooKuliner', bio: 'Review Makanan' }
+        ]
+      };
+
+      const categoryNames = {
+        entertainment: 'ENTERTAINMENT',
+        institusi: 'INSTITUSI & ORGANISASI',
+        media: 'MEDIA & KOMUNIKASI',
+        bisnis: 'BISNIS & USAHA',
+        keluarga: 'KELUARGA',
+        lainnya: 'LAINNYA'
+      };
+
+      const userListDiv = document.getElementById('user-list');
+      const categoryTitle = document.getElementById('active-category-title');
+
+      // Fungsi untuk render dengan nama, username, bio, dan link ke X
+      function renderCategory(categoryKey) {
+        const items = userData[categoryKey] || [];
+        const titleText = categoryNames[categoryKey] || 'KATEGORI';
+        categoryTitle.textContent = `📋 ${titleText}`;
+
+        if (!items.length) {
+          userListDiv.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:2rem;">Belum ada entri untuk kategori ini</div>`;
+          return;
+        }
+
+        let htmlString = '';
+        items.forEach(item => {
+          const cleanUsername = item.username.startsWith('@') ? item.username.slice(1) : item.username;
+          const profileUrl = `https://x.com/${cleanUsername}`;
+
+          htmlString += `
+            <div class="user-item">
+              <a href="${profileUrl}" class="user-link-card" target="_blank" rel="noopener">
+                <img src="logo.png" alt="logo" class="user-logo" 
+                     onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23cccccc%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2250%22%20fill%3D%22%23333%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ELOGO%3C%2Ftext%3E%3C%2Fsvg%3E');">
+                <div class="user-info">
+                  <div class="user-name-row">
+                    <span class="user-name">${item.name}</span>
+                    <span class="user-username">${item.username}</span>
+                  </div>
+                  <div class="user-bio">${item.bio}</div>
+                </div>
+              </a>
+            </div>
+          `;
+        });
+
+        userListDiv.innerHTML = htmlString;
+      }
+
+      // Event listener untuk semua tombol kategori
+      const buttons = document.querySelectorAll('.cat-btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const category = this.dataset.category;
+          renderCategory(category);
+        });
+      });
+
+      // Setelah splash selesai, langsung tampilkan kategori entertainment (default)
+      const contentObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.attributeName === 'style' && content.style.display === 'block') {
+            renderCategory('entertainment');
+            contentObserver.disconnect();
+          }
+        });
+      });
+      contentObserver.observe(content, { attributes: true });
+
+      if (content.style.display === 'block') {
+        renderCategory('entertainment');
+      }
+    })();
+  </script>
+
+  <noscript>
+    <style>.splash { display: none; } #content { display: block; }</style>
+  </noscript>
+</body>
+  </html>
