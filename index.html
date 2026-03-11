@@ -1,537 +1,1059 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>CHONNECT by Kachoo</title>
-  <!-- Google Fonts: Outfit -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    /* RESET & DASAR - putih bersih */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Outfit', sans-serif;
-      background-color: #ffffff;
-      color: #000000;
-      line-height: 1.5;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* SPLASH PUTIH (gradasi putih ke abu sangat tipis) */
-    .splash {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      opacity: 1;
-      transition: opacity 0.6s ease-out;
-      pointer-events: none;
-    }
-
-    .splash.fade-out {
-      opacity: 0;
-    }
-
-    .splash-logo {
-      width: 220px; /* sedikit lebih besar dari sebelumnya */
-      max-width: 60vw;
-      height: auto;
-      aspect-ratio: 1/1;
-      object-fit: contain;
-      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.05));
-      animation: splashPulse 2s infinite alternate ease-in-out;
-    }
-
-    @keyframes splashPulse {
-      0% { transform: scale(0.98); opacity: 0.9; }
-      100% { transform: scale(1.02); opacity: 1; }
-    }
-
-    /* KONTEN UTAMA */
-    #content {
-      display: none;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem 1rem 2rem;
-      width: 100%;
-      flex: 1;
-    }
-
-    /* HEADER - hanya logo (lebih besar, tanpa teks CHONNECT) */
-    .header {
-      display: flex;
-      justify-content: center;  /* logo di tengah */
-      align-items: center;
-      margin: 0.5rem 0 2rem 0;
-    }
-
-    .header-logo {
-      width: 100px;  /* ukuran sedang, nyaman di mobile */
-      height: auto;
-      aspect-ratio: 1/1;
-      object-fit: contain;
-      border-radius: 20px;  /* lembut */
-      background-color: #ffffff;
-      padding: 6px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-    }
-
-    /* KATEGORI BUTTON - grid lebih rapat untuk mobile */
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* 2 kolom di mobile */
-      gap: 0.7rem;
-      margin-bottom: 2rem;
-    }
-
-    .cat-btn {
-      background: white;
-      border: 1.8px solid black;
-      padding: 0.8rem 0.2rem;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      letter-spacing: 0.3px;
-      color: black;
-      border-radius: 40px;
-      cursor: pointer;
-      transition: all 0.2s;
-      box-shadow: 0 3px 0 black;
-      width: 100%;
-      white-space: normal;
-      word-break: keep-all;
-      line-height: 1.3;
-    }
-
-    .cat-btn:active {
-      transform: translateY(3px);
-      box-shadow: none;
-    }
-
-    /* AREA LIST USER - hanya muncul setelah klik */
-    .list-container {
-      margin: 1rem 0 2.5rem;
-      min-height: 200px;
-    }
-
-    .list-title {
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid black;
-      display: inline-block;
-    }
-
-    .user-grid {
-      display: grid;
-      grid-template-columns: 1fr; /* 1 kolom di mobile */
-      gap: 1rem;
-    }
-
-    /* CARD USER - nyaman di mobile */
-    .user-item {
-      background: #ffffff;
-      border: 1px solid #eaeaea;
-      border-radius: 20px;
-      padding: 0;
-      transition: all 0.2s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    }
-
-    .user-item:hover {
-      border-color: black;
-      background: #fcfcfc;
-    }
-
-    .user-link-card {
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 0.8rem;
-      width: 100%;
-    }
-
-    .user-logo {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;  /* sedikit kotak, seperti di contoh */
-      object-fit: cover;
-      background: #f8f8f8;
-      border: 1px solid #eee;
-      flex-shrink: 0;
-    }
-
-    .user-info {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-      flex: 1;
-    }
-
-    .user-name-row {
-      display: flex;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 0.3rem 0.6rem;
-    }
-
-    .user-name {
-      font-weight: 700;  /* bold untuk nama */
-      font-size: 1rem;
-      color: black;
-    }
-
-    .user-username {
-      font-weight: 400;  /* normal untuk @username */
-      font-size: 0.85rem;
-      color: #555;
-    }
-
-    .user-bio {
-      font-weight: 400;
-      font-size: 0.85rem;
-      color: #666;
-      line-height: 1.3;
-    }
-
-    /* FOOTER - persis seperti contoh thekachoo.github.io/Home/ (tanpa simbol/emoji) */
-    footer {
-      margin-top: 3rem;
-      padding: 2rem 0 1rem;
-      border-top: 1px solid #ddd;
-      font-size: 0.9rem;
-      color: #333;
-    }
-
-    .footer-container {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .footer-row-1 {
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-
-    .footer-row-1 .roleplay {
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      letter-spacing: 0.3px;
-      color: black;
-    }
-
-    .footer-row-1 .featured {
-      font-weight: 400;
-      text-transform: uppercase;
-      font-size: 0.85rem;
-      color: #444;
-    }
-
-    .footer-address {
-      font-style: normal;
-      line-height: 1.6;
-      color: #333;
-      font-weight: 400;
-      max-width: 450px;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .footer-links a {
-      color: black;
-      text-decoration: none;
-      font-weight: 400;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
-    }
-
-    .footer-links a:hover {
-      border-bottom: 1px solid black;
-    }
-
-    .footer-links strong {
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-right: 0.4rem;
-      font-size: 0.85rem;
-    }
-
-    /* Responsive untuk tablet/desktop */
-    @media (min-width: 600px) {
-      .category-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 kolom di tablet */
-        gap: 1rem;
-      }
-
-      .user-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .cat-btn {
-        padding: 1rem 0.5rem;
-        font-size: 1rem;
-      }
-    }
-
-    @media (min-width: 900px) {
-      .category-grid {
-        grid-template-columns: repeat(6, 1fr); /* 6 kolom di desktop */
-      }
-
-      .user-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .footer-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: flex-start;
-      }
-
-      .footer-links {
-        flex-direction: row;
-        gap: 2rem;
-      }
-
-      .header-logo {
-        width: 110px;  /* sedikit lebih besar di desktop */
-      }
-    }
-
-    /* Utility */
-    .hidden {
-      display: none;
-    }
-  </style>
-</head>
-<body>
-  <!-- SPLASH dengan gradasi putih dan logo -->
-  <div id="splash" class="splash">
-    <img src="logo.png" alt="CHONNECT logo" class="splash-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2270%22%20fill%3D%22%23333%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ECHONNECT%3C%2Ftext%3E%3C%2Fsvg%3E');">
-  </div>
-
-  <!-- KONTEN UTAMA -->
-  <div id="content">
-    <!-- HEADER hanya logo (lebih besar) -->
-    <header class="header">
-      <img src="logo.png" alt="CHONNECT" class="header-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23e0e0e0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2260%22%20fill%3D%22%23333%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ELOGO%3C%2Ftext%3E%3C%2Fsvg%3E');">
-    </header>
-
-    <main>
-      <!-- 6 tombol kategori -->
-      <div class="category-grid">
-        <button class="cat-btn" data-category="entertainment">ENTERTAINMENT</button>
-        <button class="cat-btn" data-category="institusi">INSTITUSI & ORGANISASI</button>
-        <button class="cat-btn" data-category="media">MEDIA & KOMUNIKASI</button>
-        <button class="cat-btn" data-category="bisnis">BISNIS & USAHA</button>
-        <button class="cat-btn" data-category="keluarga">KELUARGA</button>
-        <button class="cat-btn" data-category="lainnya">LAINNYA</button>
-      </div>
-
-      <!-- area list username (awal kosong) -->
-      <div class="list-container">
-        <div class="list-title" id="active-category-title">PILIH KATEGORI</div>
-        <div id="user-list" class="user-grid">
-          <!-- kosong, akan diisi javascript -->
-        </div>
-      </div>
-    </main>
-
-    <!-- FOOTER sesuai contoh thekachoo.github.io/Home/ -->
-    <footer>
-      <div class="footer-container">
-        <div class="footer-row-1">
-          <div class="roleplay">FOR ROLEPLAY PURPOSE ONLY</div>
-          <div class="featured">FEATURED BY THE KACHOO</div>
-        </div>
-        
-        <div class="footer-address">
-          Jenderal Sudirman Avenue, Lots 61–62, South Jakarta 12930, Indonesia
-        </div>
-        
-        <div class="footer-links">
-          <div><strong>OFFICIAL KACHOO</strong> <a href="https://x.com/TheKachoo" target="_blank" rel="noopener">@TheKachoo</a></div>
-          <div><strong>NARAHUBUNG</strong> <a href="https://x.com/HaiKachoo" target="_blank" rel="noopener">@HaiKachoo</a></div>
-        </div>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    (function() {
-      // ========== SPLASH ==========
-      const splash = document.getElementById('splash');
-      const content = document.getElementById('content');
-
-      function hideSplashAndShowContent() {
-        splash.classList.add('fade-out');
-        splash.addEventListener('transitionend', function() {
-          splash.style.display = 'none';
-          content.style.display = 'block';
-        }, { once: true });
-      }
-
-      window.addEventListener('load', function() {
-        setTimeout(hideSplashAndShowContent, 1500);
-      });
-
-      // ========== DATA USER ==========
-      const userData = {
-        entertainment: [
-          { name: 'The Kachoo', username: '@TheKachoo', bio: 'Media & Berita' },
-          { name: 'Kachoo Music', username: '@KachooMusic', bio: 'Label Independen' },
-          { name: 'Kachoo TV', username: '@KachooTV', bio: 'Hiburan Digital' },
-          { name: 'Kachoo Play', username: '@KachooPlay', bio: 'Game & Komunitas' },
-          { name: 'Kachoo Laughs', username: '@KachooLaughs', bio: 'Komedi & Lucu' }
-        ],
-        institusi: [
-          { name: 'Kachoo University', username: '@KachooUniv', bio: 'Pendidikan & Riset' },
-          { name: 'Kachoo Org', username: '@KachooOrg', bio: 'Organisasi Sosial' },
-          { name: 'Kachoo Institute', username: '@KachooLP', bio: 'Pelatihan & Sertifikasi' },
-          { name: 'Kachoo Foundation', username: '@KachooFDN', bio: 'Nirlaba' },
-          { name: 'Kachoo Youth', username: '@KachooYouth', bio: 'Komunitas Pemuda' }
-        ],
-        media: [
-          { name: 'Kachoo Daily', username: '@KachooDaily', bio: 'Berita Harian' },
-          { name: 'Kachoo News', username: '@KachooNews', bio: 'Investigasi' },
-          { name: 'Kachoo Podcast', username: '@KachooPod', bio: 'Obrolan & Wawancara' },
-          { name: 'Kachoo Review', username: '@KachooReview', bio: 'Ulasan' },
-          { name: 'Kachoo Tekno', username: '@KachooTekno', bio: 'Teknologi' }
-        ],
-        bisnis: [
-          { name: 'Kachoo Startup', username: '@KachooStartup', bio: 'Inkubator Bisnis' },
-          { name: 'Kachoo Mart', username: '@KachooMart', bio: 'Toko Serba Ada' },
-          { name: 'Kachoo Biz', username: '@KachooBizID', bio: 'Konsultan UMKM' },
-          { name: 'Kachoo Finance', username: '@KachooFinance', bio: 'Tips Keuangan' },
-          { name: 'Kachoo Creative', username: '@KachooCreative', bio: 'Agensi Kreatif' }
-        ],
-        keluarga: [
-          { name: 'Keluarga Kachoo', username: '@KachooFamily', bio: 'Vlog Keluarga' },
-          { name: 'Bunda Kachoo', username: '@BundaKachoo', bio: 'Parenting' },
-          { name: 'Ayah Kachoo', username: '@AyahKachoo', bio: 'Edukasi Ayah' },
-          { name: 'Si Kecil Kachoo', username: '@SiKecilKachoo', bio: 'Cerita Anak' },
-          { name: 'Kachoo Sahabat', username: '@KachooSahabat', bio: 'Sahabat Keluarga' }
-        ],
-        lainnya: [
-          { name: 'Kachoo Lain', username: '@KachooLain', bio: 'Kategori Lainnya' },
-          { name: 'Kachoo Random', username: '@KachooRandom', bio: 'Aneka Rupa' },
-          { name: 'Kachoo Stuff', username: '@KachooStuff', bio: 'Jualan Unik' },
-          { name: 'Kachoo Hobi', username: '@KachooHobi', bio: 'Komunitas Hobi' },
-          { name: 'Kachoo Kuliner', username: '@KachooKuliner', bio: 'Review Makanan' }
-        ]
-      };
-
-      const categoryNames = {
-        entertainment: 'ENTERTAINMENT',
-        institusi: 'INSTITUSI & ORGANISASI',
-        media: 'MEDIA & KOMUNIKASI',
-        bisnis: 'BISNIS & USAHA',
-        keluarga: 'KELUARGA',
-        lainnya: 'LAINNYA'
-      };
-
-      const userListDiv = document.getElementById('user-list');
-      const categoryTitle = document.getElementById('active-category-title');
-
-      // Fungsi render: hanya muncul setelah tombol diklik
-      function renderCategory(categoryKey) {
-        const items = userData[categoryKey] || [];
-        const titleText = categoryNames[categoryKey] || 'KATEGORI';
-        categoryTitle.textContent = titleText;  // tanpa emoji/simbol
-
-        if (!items.length) {
-          userListDiv.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:2rem; color:#666;">Belum ada entri</div>';
-          return;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>CHONNECT — by KACHOO</title>
+    <!-- Google Fonts: Outfit (menggantikan Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (sama seperti referensi) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ROOT VARIABLES - persis seperti referensi */
+        :root {
+            --primary-black: #000000;
+            --primary-white: #FFFFFF;
+            --accent-gray: #F5F5F7;
+            --text-gray: #6E6E73;
+            --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        let htmlString = '';
-        items.forEach(item => {
-          const cleanUsername = item.username.startsWith('@') ? item.username.slice(1) : item.username;
-          const profileUrl = `https://x.com/${cleanUsername}`;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-          htmlString += `
-            <div class="user-item">
-              <a href="${profileUrl}" class="user-link-card" target="_blank" rel="noopener">
-                <img src="logo.png" alt="logo" class="user-logo" 
-                     onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3E%3C%2Ftext%3E%3C%2Fsvg%3E');">
-                <div class="user-info">
-                  <div class="user-name-row">
-                    <span class="user-name">${item.name}</span>
-                    <span class="user-username">${item.username}</span>
-                  </div>
-                  <div class="user-bio">${item.bio}</div>
-                </div>
-              </a>
+        body {
+            font-family: 'Outfit', sans-serif; /* Berubah dari Inter ke Outfit */
+            background-color: var(--primary-white);
+            color: var(--primary-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HEADER - persis struktur referensi, tapi tanpa teks, logo diperbesar */
+        header {
+            background-color: var(--primary-white);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 16px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo container - tanpa teks, hanya logo yang diperbesar */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-img {
+            height: 52px; /* diperbesar dari 40px */
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        /* Desktop Navigation - mengikuti struktur referensi dengan menu CHONNECT */
+        .desktop-nav {
+            display: flex;
+            gap: 4px;
+            background: var(--accent-gray);
+            padding: 4px;
+            border-radius: var(--border-radius);
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+        }
+
+        .nav-button {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .nav-button:hover {
+            color: var(--primary-black);
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .nav-button.active {
+            color: var(--primary-black);
+            background: var(--primary-white);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-black);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Mobile Menu - persis struktur */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: var(--primary-white);
+            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
+            padding: 80px 24px 24px;
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary-black);
+            cursor: pointer;
+        }
+
+        .mobile-menu-list {
+            list-style: none;
+        }
+
+        .mobile-menu-item {
+            margin-bottom: 16px;
+        }
+
+        .mobile-menu-link {
+            display: block;
+            padding: 16px;
+            background: var(--accent-gray);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            color: var(--primary-black);
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mobile-menu-link:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateX(4px);
+        }
+
+        /* HERO SECTION - diadaptasi untuk CHONNECT */
+        .hero {
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 120px 0 60px;
+                min-height: auto;
+            }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(0, 0, 0, 0.1) 50%, 
+                transparent 100%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--accent-gray);
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-gray);
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 4vw, 1.25rem);
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        /* SPLASH SCREEN - gradasi putih seperti diminta */
+        .splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        .splash.fade-out {
+            opacity: 0;
+        }
+
+        .splash-logo {
+            width: 220px;
+            max-width: 60vw;
+            height: auto;
+            aspect-ratio: 1/1;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.08));
+            animation: splashPulse 2s infinite alternate ease-in-out;
+        }
+
+        @keyframes splashPulse {
+            0% { transform: scale(0.98); opacity: 0.9; }
+            100% { transform: scale(1.02); opacity: 1; }
+        }
+
+        /* KATEGORI BUTTON - grid seperti di platform section */
+        .category-section {
+            padding: 40px 0 20px;
+            background: var(--primary-white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 900;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .category-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        .cat-btn {
+            background: var(--primary-white);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: var(--border-radius);
+            padding: 24px 16px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            color: var(--primary-black);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+            width: 100%;
+            text-align: center;
+            line-height: 1.3;
+            animation: float 3s ease-in-out infinite;
+            transform: translateY(0);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .cat-btn:hover {
+            animation-play-state: paused;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: var(--hover-shadow);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+
+        /* LIST USER SECTION - mengikuti style feature section */
+        .list-section {
+            padding: 40px 0 60px;
+            background: var(--accent-gray);
+        }
+
+        .list-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: var(--primary-black);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .list-title i {
+            color: var(--text-gray);
+        }
+
+        .user-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 600px) {
+            .user-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 900px) {
+            .user-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* CARD USER - persis style feature card */
+        .user-item {
+            background: var(--primary-white);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+            transform: translateY(0);
+        }
+
+        .user-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .user-link-card {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .user-logo {
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            object-fit: cover;
+            background: var(--accent-gray);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .user-item:hover .user-logo {
+            transform: scale(1.05);
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .user-name-row {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .user-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-black);
+        }
+
+        .user-username {
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .user-bio {
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.4;
+        }
+
+        /* EMPTY STATE */
+        .empty-state {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--primary-white);
+            border-radius: var(--border-radius);
+            color: var(--text-gray);
+            font-size: 1rem;
+            border: 1px dashed rgba(0,0,0,0.1);
+        }
+
+        /* FOOTER - DUPLIKAT PERSIS DARI REFERENSI */
+        footer {
+            background: var(--primary-black);
+            color: var(--primary-white);
+            padding: 80px 0 40px;
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 60px 0 40px;
+            }
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                gap: 32px;
+            }
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 32px;
+            height: 2px;
+            background: var(--primary-white);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-white);
+            transform: translateX(4px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--primary-white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary-white);
+            color: var(--primary-black);
+            transform: translateY(-4px);
+        }
+
+        /* X Logo Icon - Improved for Mobile */
+        .x-logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 18px;
+        }
+
+        /* Mobile-specific X Logo styling */
+        @media (max-width: 768px) {
+            .footer-section .x-logo {
+                font-size: 16px;
+                padding: 4px 6px;
+                border-radius: 4px;
+                background: white;
+                color: black;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 24px;
+                height: 24px;
+                margin-right: 8px;
+            }
+            
+            .footer-links li span.x-logo {
+                font-size: 14px;
+                padding: 3px 5px;
+            }
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        /* Responsive Design tambahan */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .user-link-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .user-name-row {
+                justify-content: center;
+            }
+            
+            .user-logo {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SPLASH dengan logo CHONNECT untuk awal (logochonnect1.png) -->
+    <div id="splash" class="splash">
+        <img src="logochonnect1.png" alt="CHONNECT logo" class="splash-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2270%22%20fill%3D%22%23333%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ECHONNECT%3C%2Ftext%3E%3C%2Fsvg%3E');">
+    </div>
+
+    <!-- HEADER - persis struktur referensi, tanpa teks, logo lebih besar (logochonnect2.png) -->
+    <header>
+        <div class="container header-content">
+            <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <img src="logochonnect2.png" alt="CHONNECT Logo" class="logo-img">
+                <!-- TIDAK ADA TEKS "CHONNECT" DI SINI, hanya logo -->
             </div>
-          `;
+            
+            <!-- Desktop Navigation Menu (menu untuk CHONNECT) -->
+            <nav class="desktop-nav">
+                <a href="#" class="nav-button active" onclick="switchCategory('entertainment'); return false;">ENTERTAINMENT</a>
+                <a href="#" class="nav-button" onclick="switchCategory('institusi'); return false;">INSTITUSI</a>
+                <a href="#" class="nav-button" onclick="switchCategory('media'); return false;">MEDIA</a>
+                <a href="#" class="nav-button" onclick="switchCategory('bisnis'); return false;">BISNIS</a>
+                <a href="#" class="nav-button" onclick="switchCategory('keluarga'); return false;">KELUARGA</a>
+                <a href="#" class="nav-button" onclick="switchCategory('lainnya'); return false;">LAINNYA</a>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu - dengan kategori yang sama -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <a href="#" class="mobile-menu-link" onclick="switchCategory('entertainment'); closeMobileMenu(); return false;">
+                    <i class="fas fa-film" style="margin-right: 12px;"></i>
+                    ENTERTAINMENT
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="#" class="mobile-menu-link" onclick="switchCategory('institusi'); closeMobileMenu(); return false;">
+                    <i class="fas fa-building" style="margin-right: 12px;"></i>
+                    INSTITUSI & ORGANISASI
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="#" class="mobile-menu-link" onclick="switchCategory('media'); closeMobileMenu(); return false;">
+                    <i class="fas fa-newspaper" style="margin-right: 12px;"></i>
+                    MEDIA & KOMUNIKASI
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="#" class="mobile-menu-link" onclick="switchCategory('bisnis'); closeMobileMenu(); return false;">
+                    <i class="fas fa-briefcase" style="margin-right: 12px;"></i>
+                    BISNIS & USAHA
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="#" class="mobile-menu-link" onclick="switchCategory('keluarga'); closeMobileMenu(); return false;">
+                    <i class="fas fa-heart" style="margin-right: 12px;"></i>
+                    KELUARGA
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="#" class="mobile-menu-link" onclick="switchCategory('lainnya'); closeMobileMenu(); return false;">
+                    <i class="fas fa-ellipsis-h" style="margin-right: 12px;"></i>
+                    LAINNYA
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- HERO SECTION - khusus CHONNECT -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-tag">Roleplay Database</div>
+            <h1>CHONNECT</h1>
+            <p class="hero-subtitle">
+                This feature serves as a database that collects official roleplay base accounts to make collaboration between roleplayers easier.
+            </p>
+        </div>
+    </section>
+
+    <!-- KATEGORI BUTTON SECTION (grid tombol) - mengikuti style platform section -->
+    <section class="category-section">
+        <div class="container">
+            <h2 class="section-title">EXPLORE CATEGORIES</h2>
+            <p class="section-subtitle">Pilih kategori untuk melihat daftar akun roleplay</p>
+            
+            <div class="category-grid">
+                <button class="cat-btn" data-category="entertainment" onclick="switchCategory('entertainment')">ENTERTAINMENT</button>
+                <button class="cat-btn" data-category="institusi" onclick="switchCategory('institusi')">INSTITUSI & ORGANISASI</button>
+                <button class="cat-btn" data-category="media" onclick="switchCategory('media')">MEDIA & KOMUNIKASI</button>
+                <button class="cat-btn" data-category="bisnis" onclick="switchCategory('bisnis')">BISNIS & USAHA</button>
+                <button class="cat-btn" data-category="keluarga" onclick="switchCategory('keluarga')">KELUARGA</button>
+                <button class="cat-btn" data-category="lainnya" onclick="switchCategory('lainnya')">LAINNYA</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIST USER SECTION (hasil klik kategori) -->
+    <section class="list-section" id="listSection">
+        <div class="container">
+            <div class="list-title" id="activeCategoryTitle">
+                <i class="fas fa-users"></i> 
+                <span id="categoryNameDisplay">PILIH KATEGORI</span>
+            </div>
+            
+            <div id="userListContainer" class="user-grid">
+                <!-- Akan diisi oleh JavaScript, awalnya kosong -->
+                <div class="empty-state">
+                    <i class="fas fa-hand-pointer" style="font-size: 48px; margin-bottom: 16px; display: block; color: #ccc;"></i>
+                    <p>Klik salah satu tombol kategori di atas untuk melihat daftar username</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER - DUPLIKAT PERSIS DARI REFERENSI -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CHONNECT</h3>
+                    <p style="color: rgba(255,255,255,0.7); margin-top: 16px; max-width: 300px;">
+                        Roleplay database by KACHOO. Connecting roleplayers across platforms.
+                    </p>
+                    <div class="social-links">
+                        <a href="mailto:ohkachoo@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://twitter.com/thekachoo" target="_blank" class="social-link">
+                            <span class="x-logo">𝕏</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-film" style="color: rgba(255,255,255,0.7);"></i>
+                            <a href="#" onclick="switchCategory('entertainment'); return false;">Entertainment</a>
+                        </li>
+                        <li><i class="fas fa-building" style="color: rgba(255,255,255,0.7);"></i>
+                            <a href="#" onclick="switchCategory('institusi'); return false;">Institusi & Organisasi</a>
+                        </li>
+                        <li><i class="fas fa-newspaper" style="color: rgba(255,255,255,0.7);"></i>
+                            <a href="#" onclick="switchCategory('media'); return false;">Media & Komunikasi</a>
+                        </li>
+                        <li><i class="fas fa-briefcase" style="color: rgba(255,255,255,0.7);"></i>
+                            <a href="#" onclick="switchCategory('bisnis'); return false;">Bisnis & Usaha</a>
+                        </li>
+                        <li><i class="fas fa-heart" style="color: rgba(255,255,255,0.7);"></i>
+                            <a href="#" onclick="switchCategory('keluarga'); return false;">Keluarga</a>
+                        </li>
+                        <li><i class="fas fa-ellipsis-h" style="color: rgba(255,255,255,0.7);"></i>
+                            <a href="#" onclick="switchCategory('lainnya'); return false;">Lainnya</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span>
+                            <a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo (Official)</a>
+                        </li>
+                        <li><span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span>
+                            <a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo (Contact Person)</a>
+                        </li>
+                        <li><i class="fas fa-envelope" style="color: rgba(255,255,255,0.7);"></i>
+                            <a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Address</h3>
+                    <ul class="footer-links">
+                        <li style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">
+                            <i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>
+                            Jenderal Sudirman Avenue,<br>
+                            Lots 61–62,<br>
+                            South Jakarta 12930,<br>
+                            Indonesia
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2026 CHONNECT by KACHOO. All rights reserved. For Roleplay Purpose Only.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ==================== SPLASH HANDLING ====================
+        const splash = document.getElementById('splash');
+        
+        function hideSplashAndShowContent() {
+            splash.classList.add('fade-out');
+            splash.addEventListener('transitionend', function() {
+                splash.style.display = 'none';
+            }, { once: true });
+        }
+
+        window.addEventListener('load', function() {
+            setTimeout(hideSplashAndShowContent, 1500);
         });
 
-        userListDiv.innerHTML = htmlString;
-      }
+        // ==================== MOBILE MENU ====================
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
 
-      // Event listener untuk tombol kategori
-      const buttons = document.querySelectorAll('.cat-btn');
-      buttons.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          const category = this.dataset.category;
-          renderCategory(category);
+        window.openMobileMenu = function() {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        window.closeMobileMenu = function() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+        // ==================== DATA USER dengan logo berbeda ====================
+        // Sesuai instruksi: logo1.png, logo2.png, dst.
+        const userData = {
+            entertainment: [
+                { name: 'The Kachoo', username: '@TheKachoo', bio: 'Media & Berita', logo: 'logo1.png' },
+                { name: 'Kachoo Music', username: '@KachooMusic', bio: 'Label Independen', logo: 'logo2.png' },
+                { name: 'Kachoo TV', username: '@KachooTV', bio: 'Hiburan Digital', logo: 'logo3.png' },
+                { name: 'Kachoo Play', username: '@KachooPlay', bio: 'Game & Komunitas', logo: 'logo4.png' },
+                { name: 'Kachoo Laughs', username: '@KachooLaughs', bio: 'Komedi & Lucu', logo: 'logo5.png' }
+            ],
+            institusi: [
+                { name: 'Kachoo University', username: '@KachooUniv', bio: 'Pendidikan & Riset', logo: 'logo1.png' },
+                { name: 'Kachoo Org', username: '@KachooOrg', bio: 'Organisasi Sosial', logo: 'logo2.png' },
+                { name: 'Kachoo Institute', username: '@KachooLP', bio: 'Pelatihan & Sertifikasi', logo: 'logo3.png' },
+                { name: 'Kachoo Foundation', username: '@KachooFDN', bio: 'Nirlaba', logo: 'logo4.png' },
+                { name: 'Kachoo Youth', username: '@KachooYouth', bio: 'Komunitas Pemuda', logo: 'logo5.png' }
+            ],
+            media: [
+                { name: 'Kachoo Daily', username: '@KachooDaily', bio: 'Berita Harian', logo: 'logo1.png' },
+                { name: 'Kachoo News', username: '@KachooNews', bio: 'Investigasi', logo: 'logo2.png' },
+                { name: 'Kachoo Podcast', username: '@KachooPod', bio: 'Obrolan & Wawancara', logo: 'logo3.png' },
+                { name: 'Kachoo Review', username: '@KachooReview', bio: 'Ulasan', logo: 'logo4.png' },
+                { name: 'Kachoo Tekno', username: '@KachooTekno', bio: 'Teknologi', logo: 'logo5.png' }
+            ],
+            bisnis: [
+                { name: 'Kachoo Startup', username: '@KachooStartup', bio: 'Inkubator Bisnis', logo: 'logo1.png' },
+                { name: 'Kachoo Mart', username: '@KachooMart', bio: 'Toko Serba Ada', logo: 'logo2.png' },
+                { name: 'Kachoo Biz', username: '@KachooBizID', bio: 'Konsultan UMKM', logo: 'logo3.png' },
+                { name: 'Kachoo Finance', username: '@KachooFinance', bio: 'Tips Keuangan', logo: 'logo4.png' },
+                { name: 'Kachoo Creative', username: '@KachooCreative', bio: 'Agensi Kreatif', logo: 'logo5.png' }
+            ],
+            keluarga: [
+                { name: 'Keluarga Kachoo', username: '@KachooFamily', bio: 'Vlog Keluarga', logo: 'logo1.png' },
+                { name: 'Bunda Kachoo', username: '@BundaKachoo', bio: 'Parenting', logo: 'logo2.png' },
+                { name: 'Ayah Kachoo', username: '@AyahKachoo', bio: 'Edukasi Ayah', logo: 'logo3.png' },
+                { name: 'Si Kecil Kachoo', username: '@SiKecilKachoo', bio: 'Cerita Anak', logo: 'logo4.png' },
+                { name: 'Kachoo Sahabat', username: '@KachooSahabat', bio: 'Sahabat Keluarga', logo: 'logo5.png' }
+            ],
+            lainnya: [
+                { name: 'Kachoo Lain', username: '@KachooLain', bio: 'Kategori Lainnya', logo: 'logo1.png' },
+                { name: 'Kachoo Random', username: '@KachooRandom', bio: 'Aneka Rupa', logo: 'logo2.png' },
+                { name: 'Kachoo Stuff', username: '@KachooStuff', bio: 'Jualan Unik', logo: 'logo3.png' },
+                { name: 'Kachoo Hobi', username: '@KachooHobi', bio: 'Komunitas Hobi', logo: 'logo4.png' },
+                { name: 'Kachoo Kuliner', username: '@KachooKuliner', bio: 'Review Makanan', logo: 'logo5.png' }
+            ]
+        };
+
+        const categoryNames = {
+            entertainment: 'ENTERTAINMENT',
+            institusi: 'INSTITUSI & ORGANISASI',
+            media: 'MEDIA & KOMUNIKASI',
+            bisnis: 'BISNIS & USAHA',
+            keluarga: 'KELUARGA',
+            lainnya: 'LAINNYA'
+        };
+
+        const userListContainer = document.getElementById('userListContainer');
+        const categoryNameDisplay = document.getElementById('categoryNameDisplay');
+
+        // Fungsi untuk render kategori
+        window.switchCategory = function(categoryKey) {
+            const items = userData[categoryKey] || [];
+            const titleText = categoryNames[categoryKey] || 'KATEGORI';
+            categoryNameDisplay.textContent = titleText;
+
+            // Update active class di desktop nav
+            document.querySelectorAll('.desktop-nav .nav-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Cari tombol yang sesuai dan beri active
+            const activeBtn = Array.from(document.querySelectorAll('.desktop-nav .nav-button')).find(
+                btn => btn.textContent.trim().toLowerCase().includes(categoryKey.toLowerCase())
+            );
+            if (activeBtn) activeBtn.classList.add('active');
+
+            if (!items.length) {
+                userListContainer.innerHTML = `<div class="empty-state"><i class="fas fa-database" style="font-size: 48px; margin-bottom: 16px; display: block; color: #ccc;"></i><p>Belum ada data untuk kategori ini</p></div>`;
+                return;
+            }
+
+            let htmlString = '';
+            items.forEach(item => {
+                const cleanUsername = item.username.startsWith('@') ? item.username.slice(1) : item.username;
+                const profileUrl = `https://x.com/${cleanUsername}`;
+
+                htmlString += `
+                    <div class="user-item">
+                        <a href="${profileUrl}" class="user-link-card" target="_blank" rel="noopener">
+                            <img src="${item.logo}" alt="logo" class="user-logo" 
+                                 onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ELOGO%3C%2Ftext%3E%3C%2Fsvg%3E');">
+                            <div class="user-info">
+                                <div class="user-name-row">
+                                    <span class="user-name">${item.name}</span>
+                                    <span class="user-username">${item.username}</span>
+                                </div>
+                                <div class="user-bio">${item.bio}</div>
+                            </div>
+                        </a>
+                    </div>
+                `;
+            });
+
+            userListContainer.innerHTML = htmlString;
+        };
+
+        // Set default active category (entertainment) setelah halaman siap
+        window.addEventListener('load', function() {
+            // Tunda sebentar setelah splash
+            setTimeout(() => {
+                switchCategory('entertainment');
+            }, 1600);
         });
-      });
 
-      // Saat content pertama tampil, daftar kosong (tidak otomatis muncul)
-      // Kita hanya mengosongkan list
-      userListDiv.innerHTML = ''; // kosong
-      categoryTitle.textContent = 'PILIH KATEGORI';
-
-      // Observer untuk memastikan setelah splash konten siap
-      const contentObserver = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          if (mutation.attributeName === 'style' && content.style.display === 'block') {
-            // Pastikan list kosong
-            userListDiv.innerHTML = '';
-            categoryTitle.textContent = 'PILIH KATEGORI';
-            contentObserver.disconnect();
-          }
+        // Scroll effect untuk header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 24px rgba(0, 0, 0, 0.08)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
         });
-      });
-      contentObserver.observe(content, { attributes: true });
-
-      if (content.style.display === 'block') {
-        userListDiv.innerHTML = '';
-        categoryTitle.textContent = 'PILIH KATEGORI';
-      }
-    })();
-  </script>
-  <noscript>
-    <style>.splash { display: none; } #content { display: block; }</style>
-  </noscript>
+    </script>
 </body>
   </html>
