@@ -45,7 +45,7 @@
             padding: 0 24px;
         }
 
-        /* HEADER - navigasi diganti: Kachoo dan Chobank */
+        /* HEADER - navigasi diganti: Kachoo dan Chobank + SEARCH */
         header {
             background-color: var(--primary-white);
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -63,18 +63,83 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
             cursor: pointer;
+            flex-shrink: 0;
         }
 
         .logo-img {
             height: 52px;
             width: auto;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        /* SEARCH ENGINE - ditengah header */
+        .search-wrapper {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--accent-gray);
+            border-radius: 40px;
+            padding: 8px 18px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+        }
+
+        .search-box:focus-within {
+            border-color: var(--primary-black);
+            box-shadow: 0 0 0 2px rgba(0,0,0,0.05);
+            background: var(--primary-white);
+        }
+
+        .search-box i {
+            color: var(--text-gray);
+            font-size: 16px;
+            margin-right: 12px;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            padding: 8px 0;
+            outline: none;
+            color: var(--primary-black);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-gray);
+            font-weight: 400;
+        }
+
+        .search-clear {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            font-size: 14px;
+            padding: 4px;
+            border-radius: 50%;
+            display: none;
+            transition: var(--transition);
+        }
+
+        .search-clear:hover {
+            color: var(--primary-black);
         }
 
         /* Desktop Navigation - GANTI dengan Kachoo & Chobank */
@@ -84,11 +149,23 @@
             background: transparent;
             padding: 0;
             border-radius: 0;
+            flex-shrink: 0;
         }
 
         @media (max-width: 768px) {
             .desktop-nav {
                 display: none;
+            }
+            
+            .search-wrapper {
+                order: 3;
+                max-width: 100%;
+                margin-top: 12px;
+                width: 100%;
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
             }
         }
 
@@ -136,6 +213,7 @@
             padding: 8px;
             border-radius: 8px;
             transition: var(--transition);
+            flex-shrink: 0;
         }
 
         @media (max-width: 768px) {
@@ -236,7 +314,7 @@
 
         @media (max-width: 768px) {
             .hero {
-                padding: 120px 0 50px;
+                padding: 130px 0 50px;
                 min-height: auto;
             }
         }
@@ -332,7 +410,7 @@
 
         /* KATEGORI BUTTON SECTION - ditengahkan, jarak ke footer diatur */
         .category-section {
-            padding: 30px 0 30px;  /* dikurangi padding bawah */
+            padding: 30px 0 30px;
             background: var(--primary-white);
         }
 
@@ -340,7 +418,7 @@
             text-align: center;
             font-size: clamp(1.6rem, 4vw, 2.2rem);
             font-weight: 800;
-            margin-bottom: 8px;  /* diperkecil */
+            margin-bottom: 8px;
             letter-spacing: -0.3px;
         }
 
@@ -348,7 +426,7 @@
             text-align: center;
             color: var(--text-gray);
             max-width: 600px;
-            margin: 0 auto 24px;  /* dikurangi */
+            margin: 0 auto 24px;
             font-size: clamp(0.9rem, 3vw, 1rem);
         }
 
@@ -357,7 +435,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
-            margin-top: 0;  /* dihilangkan margin atas berlebih */
+            margin-top: 0;
         }
 
         @media (min-width: 600px) {
@@ -408,14 +486,14 @@
 
         /* LIST USER SECTION - ditengahkan, jarak diatur */
         .list-section {
-            padding: 20px 0 60px;  /* padding atas dikurangi, bawah untuk jarak ke footer */
+            padding: 20px 0 60px;
             background: var(--accent-gray);
         }
 
         .list-title {
             font-size: 22px;
             font-weight: 700;
-            margin-bottom: 24px;  /* dikurangi */
+            margin-bottom: 24px;
             color: var(--primary-black);
             display: flex;
             align-items: center;
@@ -534,7 +612,7 @@
         footer {
             background: var(--primary-black);
             color: var(--primary-white);
-            padding: 70px 0 40px;  /* dikurangi padding atas */
+            padding: 70px 0 40px;
         }
 
         @media (max-width: 768px) {
@@ -547,7 +625,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 48px;
-            margin-bottom: 50px;  /* dikurangi */
+            margin-bottom: 50px;
         }
 
         @media (max-width: 768px) {
@@ -651,7 +729,7 @@
 
         .copyright {
             text-align: center;
-            padding-top: 30px;  /* dikurangi */
+            padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.5);
             font-size: 14px;
@@ -677,6 +755,11 @@
                 height: 80px;
             }
         }
+        
+        .search-highlight {
+            background-color: rgba(0,0,0,0.05);
+            font-weight: 700;
+        }
     </style>
 </head>
 <body>
@@ -685,14 +768,23 @@
         <img src="logochonnect1.png" alt="CHONNECT logo" class="splash-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2270%22%20fill%3D%22%23333%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ECHONNECT%3C%2Ftext%3E%3C%2Fsvg%3E');">
     </div>
 
-    <!-- HEADER - navigasi diganti: Kachoo & Chobank -->
+    <!-- HEADER - dengan search engine di tengah -->
     <header>
         <div class="container header-content">
             <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                 <img src="logochonnect1.png" alt="CHONNECT Logo" class="logo-img">
             </div>
             
-            <!-- Desktop Navigation - GANTI dengan 2 menu: Kachoo & Chobank -->
+            <!-- SEARCH ENGINE DITENGAH HEADER ATAS -->
+            <div class="search-wrapper">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="search-input" id="globalSearchInput" placeholder="Cari nama atau keterangan...">
+                    <button class="search-clear" id="searchClearBtn"><i class="fas fa-times-circle"></i></button>
+                </div>
+            </div>
+            
+            <!-- Desktop Navigation - Kachoo & Chobank -->
             <nav class="desktop-nav">
                 <a href="https://thekachoo.github.io/Home/" class="nav-button" target="_blank" rel="noopener">Kachoo</a>
                 <a href="https://thekachoo.github.io/CHOBANK/" class="nav-button" target="_blank" rel="noopener">Chobank</a>
@@ -705,7 +797,7 @@
         </div>
     </header>
 
-    <!-- Mobile Menu - sederhana sesuai navigasi baru -->
+    <!-- Mobile Menu -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-menu-close" id="mobileMenuClose">
@@ -737,17 +829,15 @@
         </div>
     </section>
 
-    <!-- KATEGORI BUTTON SECTION - spasi judul diperkecil, konten ditengahkan -->
+    <!-- KATEGORI BUTTON SECTION -->
     <section class="category-section">
         <div class="container">
             <h2 class="section-title">CATEGORIES</h2>
             <p class="section-subtitle">Apa yang kamu cari?</p>
-            
-            <!-- Grid kategori -->
             <div class="category-grid" id="categoryGrid">
                 <button class="cat-btn" data-category="entertainment" onclick="switchCategory('entertainment')">ENTERTAINMENT</button>
                 <button class="cat-btn" data-category="institusi" onclick="switchCategory('institusi')">INSTITUSI & ORGANISASI</button>
-                <button class="cat-btn" data-category="media" onclick="switchCategory('media')">MEDIA & KOMUNIKASI</button>
+                <button class="cat-btn" data-category="media" onclick="switchCategory('media')">MEDIA & BERITA</button>
                 <button class="cat-btn" data-category="bisnis" onclick="switchCategory('bisnis')">BISNIS & USAHA</button>
                 <button class="cat-btn" data-category="keluarga" onclick="switchCategory('keluarga')">KELUARGA</button>
                 <button class="cat-btn" data-category="lainnya" onclick="switchCategory('lainnya')">LAINNYA</button>
@@ -755,17 +845,14 @@
         </div>
     </section>
 
-    <!-- LIST USER SECTION - spasi judul diperkecil -->
+    <!-- LIST USER SECTION -->
     <section class="list-section" id="listSection" style="display: none;">
         <div class="container">
             <div class="list-title" id="activeCategoryTitle">
                 <i class="fas fa-users"></i> 
                 <span id="categoryNameDisplay">PILIH KATEGORI</span>
             </div>
-            
-            <div id="userListContainer" class="user-grid">
-                <!-- Akan diisi oleh JavaScript -->
-            </div>
+            <div id="userListContainer" class="user-grid"></div>
         </div>
     </section>
 
@@ -826,14 +913,12 @@
     <script>
         // ==================== SPLASH HANDLING ====================
         const splash = document.getElementById('splash');
-        
         function hideSplashAndShowContent() {
             splash.classList.add('fade-out');
             splash.addEventListener('transitionend', function() {
                 splash.style.display = 'none';
             }, { once: true });
         }
-
         window.addEventListener('load', function() {
             setTimeout(hideSplashAndShowContent, 1500);
         });
@@ -843,101 +928,91 @@
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
         const mobileMenuClose = document.getElementById('mobileMenuClose');
-
-        function openMobileMenu() {
-            mobileMenu.classList.add('active');
-            mobileMenuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('active');
-            mobileMenuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
+        function openMobileMenu() { mobileMenu.classList.add('active'); mobileMenuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeMobileMenu() { mobileMenu.classList.remove('active'); mobileMenuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
         mobileMenuBtn.addEventListener('click', openMobileMenu);
         mobileMenuClose.addEventListener('click', closeMobileMenu);
         mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
-        // ==================== DATA USER ====================
+        // ==================== DATA USER (The Kachoo dipindah ke Media & Berita) ====================
         const userData = {
             entertainment: [
-                { name: 'The Kachoo', username: '@TheKachoo', bio: 'Media & Berita', logo: 'logo-thekachoo.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png' }
+                { name: 'Contoh Hiburan', username: '@Hiburan', bio: 'Konten kreatif & musik', logo: 'logo2.png' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png' }
             ],
             institusi: [
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png' }
+                { name: 'Contoh Institusi', username: '@Instansi', bio: 'Organisasi resmi', logo: 'logo1.png' }
             ],
             media: [
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png' }
+                { name: 'The Kachoo', username: '@TheKachoo', bio: 'Media & Berita - Platform roleplay terintegrasi', logo: 'logo-thekachoo.png' },
+                { name: 'Media Update', username: '@MediaID', bio: 'Berita terbaru seputar komunitas', logo: 'logo2.png' },
+                { name: 'Kabar Roleplay', username: '@KabarRP', bio: 'Informasi dan event RP', logo: 'logo3.png' }
             ],
             bisnis: [
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png' }
+                { name: 'Bisnis Digital', username: '@BisnisID', bio: 'Usaha kreatif', logo: 'logo1.png' }
             ],
             keluarga: [
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png' }
+                { name: 'Keluarga Bahagia', username: '@Keluarga', bio: 'Komunitas keluarga', logo: 'logo2.png' }
             ],
             lainnya: [
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png' }
+                { name: 'Komunitas Lain', username: '@Lainnya', bio: 'Berbagai macam', logo: 'logo3.png' }
             ]
         };
 
         const categoryNames = {
             entertainment: 'ENTERTAINMENT',
             institusi: 'INSTITUSI & ORGANISASI',
-            media: 'MEDIA & KOMUNIKASI',
+            media: 'MEDIA & BERITA',
             bisnis: 'BISNIS & USAHA',
             keluarga: 'KELUARGA',
             lainnya: 'LAINNYA'
         };
 
+        let currentCategory = null;
+        let currentSearchTerm = '';
         const listSection = document.getElementById('listSection');
         const userListContainer = document.getElementById('userListContainer');
         const categoryNameDisplay = document.getElementById('categoryNameDisplay');
+        const searchInput = document.getElementById('globalSearchInput');
+        const searchClearBtn = document.getElementById('searchClearBtn');
 
-        // Fungsi untuk render kategori
-        window.switchCategory = function(categoryKey) {
-            const items = userData[categoryKey] || [];
-            const titleText = categoryNames[categoryKey] || 'KATEGORI';
+        // Fungsi render dengan filter pencarian (berdasarkan nama atau bio/keterangan)
+        function renderCurrentView() {
+            if (!currentCategory) return;
+            let items = userData[currentCategory] ? [...userData[currentCategory]] : [];
+            
+            // Filter berdasarkan search term
+            if (currentSearchTerm.trim() !== '') {
+                const term = currentSearchTerm.toLowerCase().trim();
+                items = items.filter(item => 
+                    item.name.toLowerCase().includes(term) || 
+                    item.bio.toLowerCase().includes(term) ||
+                    item.username.toLowerCase().includes(term)
+                );
+            }
+            
+            const titleText = categoryNames[currentCategory] || 'KATEGORI';
             categoryNameDisplay.textContent = titleText;
-
-            // Tampilkan list section
             listSection.style.display = 'block';
-
+            
             if (!items.length) {
-                userListContainer.innerHTML = `<div class="empty-state"><i class="fas fa-database" style="font-size: 48px; margin-bottom: 16px; display: block; color: #ccc;"></i><p>Belum ada data untuk kategori ini</p></div>`;
+                userListContainer.innerHTML = `<div class="empty-state"><i class="fas fa-search" style="font-size: 48px; margin-bottom: 16px; display: block; color: #ccc;"></i><p>Tidak ada hasil yang sesuai dengan "${currentSearchTerm}"</p></div>`;
                 return;
             }
-
+            
             let htmlString = '';
             items.forEach(item => {
                 const cleanUsername = item.username.startsWith('@') ? item.username.slice(1) : item.username;
                 const profileUrl = `https://x.com/${cleanUsername}`;
-
+                // Highlight jika ada kata kunci
+                let displayName = item.name;
+                let displayBio = item.bio;
+                if (currentSearchTerm.trim()) {
+                    const regex = new RegExp(`(${currentSearchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                    displayName = item.name.replace(regex, '<span class="search-highlight">$1</span>');
+                    displayBio = item.bio.replace(regex, '<span class="search-highlight">$1</span>');
+                }
+                
                 htmlString += `
                     <div class="user-item">
                         <a href="${profileUrl}" class="user-link-card" target="_blank" rel="noopener">
@@ -945,27 +1020,65 @@
                                  onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ELOGO%3C%2Ftext%3E%3C%2Fsvg%3E');">
                             <div class="user-info">
                                 <div class="user-name-row">
-                                    <span class="user-name">${item.name}</span>
+                                    <span class="user-name">${displayName}</span>
                                     <span class="user-username">${item.username}</span>
                                 </div>
-                                <div class="user-bio">${item.bio}</div>
+                                <div class="user-bio">${displayBio}</div>
                             </div>
                         </a>
                     </div>
                 `;
             });
-
             userListContainer.innerHTML = htmlString;
-        };
+        }
 
-        // Set default - list section disembunyikan
+        // Fungsi switch kategori global
+        window.switchCategory = function(categoryKey) {
+            currentCategory = categoryKey;
+            currentSearchTerm = '';
+            if (searchInput) searchInput.value = '';
+            if (searchClearBtn) searchClearBtn.style.display = 'none';
+            renderCurrentView();
+        };
+        
+        // Event listener untuk search
+        function handleSearch() {
+            if (currentCategory) {
+                currentSearchTerm = searchInput.value;
+                if (searchClearBtn) searchClearBtn.style.display = currentSearchTerm ? 'block' : 'none';
+                renderCurrentView();
+            } else {
+                // Jika belum pilih kategori, tapi user search - pilih default atau tampilkan semua? Lebih intuitif tampilkan instruksi.
+                if (searchInput.value.trim() !== '') {
+                    // Bisa cari tanpa kategori? Tampilkan pesan atau default ke media? Biar user friendly, tampilkan pilih kategori dulu
+                    userListContainer.innerHTML = `<div class="empty-state"><i class="fas fa-info-circle" style="font-size: 48px; margin-bottom: 16px; display: block; color: #ccc;"></i><p>Silakan pilih kategori terlebih dahulu untuk melakukan pencarian</p></div>`;
+                    listSection.style.display = 'block';
+                    categoryNameDisplay.textContent = 'PILIH KATEGORI';
+                } else if (!currentCategory && listSection.style.display === 'block') {
+                    listSection.style.display = 'none';
+                }
+            }
+        }
+        
+        if (searchInput) {
+            searchInput.addEventListener('input', handleSearch);
+        }
+        if (searchClearBtn) {
+            searchClearBtn.addEventListener('click', () => {
+                if (searchInput) searchInput.value = '';
+                handleSearch();
+                searchInput.focus();
+            });
+        }
+        
+        // Initial state: listSection hidden
         window.addEventListener('load', function() {
             setTimeout(() => {
-                listSection.style.display = 'none';
-            }, 1600);
+                if (!currentCategory) listSection.style.display = 'none';
+            }, 100);
         });
-
-        // Scroll effect untuk header
+        
+        // Scroll effect header
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
