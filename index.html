@@ -144,14 +144,47 @@
             color: var(--primary-black);
         }
 
-        /* Desktop Navigation */
+        /* Desktop Navigation - Gaya Baru untuk Logo Ikon */
         .desktop-nav {
             display: flex;
-            gap: 8px;
+            gap: 12px;
             background: transparent;
             padding: 0;
             border-radius: 0;
             flex-shrink: 0;
+            align-items: center;
+        }
+        
+        .nav-icon-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-gray);
+            border-radius: 40px;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            text-decoration: none;
+        }
+        
+        .nav-icon-link:hover {
+            background: var(--primary-black);
+            transform: translateY(-2px);
+            box-shadow: var(--card-shadow);
+            border-color: var(--primary-black);
+        }
+        
+        .nav-icon-img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            display: block;
+            transition: filter 0.2s;
+        }
+        
+        .nav-icon-link:hover .nav-icon-img {
+            filter: brightness(0) invert(1);
         }
 
         @media (max-width: 768px) {
@@ -194,33 +227,6 @@
                 font-size: 11px;
                 margin-right: 4px;
             }
-        }
-
-        .nav-button {
-            padding: 10px 24px;
-            background: transparent;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 40px;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--primary-black);
-            cursor: pointer;
-            transition: var(--transition);
-            white-space: nowrap;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            background: var(--accent-gray);
-            letter-spacing: 0.3px;
-        }
-
-        .nav-button:hover {
-            background: var(--primary-black);
-            color: var(--primary-white);
-            border-color: var(--primary-black);
-            transform: translateY(-2px);
-            box-shadow: var(--card-shadow);
         }
 
         /* Mobile Menu Button */
@@ -321,6 +327,12 @@
             background: rgba(0, 0, 0, 0.1);
             transform: translateX(4px);
         }
+        
+        .mobile-icon-img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
 
         /* HERO SECTION - DESKTOP: title diperkecil, jarak ke kategori lebih rapat */
         .hero {
@@ -387,7 +399,7 @@
             line-height: 1.7;
         }
 
-        /* CONTAINER DUKUNGAN FITUR - BARU (di bawah subtitle) */
+        /* CONTAINER DUKUNGAN FITUR - BARU (di bawah subtitle) - LOGO DIPERBESAR */
         .support-badge-container {
             margin-top: 20px;
             text-align: center;
@@ -412,9 +424,9 @@
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 28px;
             background: rgba(0, 0, 0, 0.02);
-            padding: 12px 24px;
+            padding: 16px 32px;
             border-radius: 60px;
             backdrop-filter: blur(4px);
             border: 1px solid rgba(0, 0, 0, 0.05);
@@ -422,15 +434,16 @@
             max-width: fit-content;
         }
 
+        /* LOGO DIPERBESAR: dari 60px menjadi 80px */
         .support-logo {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             object-fit: contain;
             transition: var(--transition);
             filter: grayscale(0%);
-            border-radius: 12px;
+            border-radius: 16px;
             background: white;
-            padding: 4px;
+            padding: 6px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
@@ -442,12 +455,12 @@
 
         @media (max-width: 640px) {
             .support-logo {
-                width: 48px;
-                height: 48px;
+                width: 64px;
+                height: 64px;
             }
             .logo-strip {
-                gap: 12px;
-                padding: 8px 16px;
+                gap: 16px;
+                padding: 12px 20px;
             }
         }
 
@@ -790,19 +803,30 @@
             font-size: 18px;
         }
 
-        /* featured support row */
+        /* featured support row - gaya baru: Support By, ketebalan sama seperti Contact & Address */
         .featured-support {
             margin-bottom: 48px;
             padding-top: 20px;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
         .featured-support h4 {
-            font-size: 14px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 18px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            letter-spacing: 0px;
+            text-transform: none;
+            color: var(--primary-white);
+        }
+        .featured-support h4::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 28px;
+            height: 2px;
+            background: var(--primary-white);
         }
         .support-links {
             display: flex;
@@ -899,8 +923,12 @@
             </div>
             
             <nav class="desktop-nav">
-                <a href="https://thekachoo.github.io/Home/" class="nav-button" target="_blank" rel="noopener">Kachoo</a>
-                <a href="https://thekachoo.github.io/CHOBANK/" class="nav-button" target="_blank" rel="noopener">Chobank</a>
+                <a href="https://thekachoo.github.io/Home/" class="nav-icon-link" target="_blank" rel="noopener">
+                    <img src="logo-thekachoo.png" alt="Kachoo" class="nav-icon-img" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2220%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2226%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%3EK%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                </a>
+                <a href="https://thekachoo.github.io/CHOBANK/" class="nav-icon-link" target="_blank" rel="noopener">
+                    <img src="chobank1.png" alt="Chobank" class="nav-icon-img" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2220%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2226%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%3EC%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                </a>
             </nav>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -917,13 +945,13 @@
         <ul class="mobile-menu-list">
             <li class="mobile-menu-item">
                 <a href="https://thekachoo.github.io/Home/" class="mobile-menu-link" target="_blank" rel="noopener">
-                    <i class="fas fa-globe"></i>
+                    <img src="logo-thekachoo.png" class="mobile-icon-img" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23ccc%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2216%22%20font-size%3D%228%22%20text-anchor%3D%22middle%22%3EK%3C%2Ftext%3E%3C%2Fsvg%3E'">
                     Kachoo
                 </a>
             </li>
             <li class="mobile-menu-item">
                 <a href="https://thekachoo.github.io/CHOBANK/" class="mobile-menu-link" target="_blank" rel="noopener">
-                    <i class="fas fa-landmark"></i>
+                    <img src="chobank1.png" class="mobile-icon-img" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23ccc%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2216%22%20font-size%3D%228%22%20text-anchor%3D%22middle%22%3EC%3C%2Ftext%3E%3C%2Fsvg%3E'">
                     Chobank
                 </a>
             </li>
@@ -937,7 +965,7 @@
                 Terhubung lebih mudah bersama Chonnect. Dengan sistem direktori yang memudahkan terhubungnya berbagai kontak untuk keperluan relasi
             </p>
         </div>
-        <!-- CONTAINER KECIL: Pihak yang mendukung fitur Chonnect + 5 LOGO (800x800px) -->
+        <!-- CONTAINER KECIL: Pihak yang mendukung fitur Chonnect + 5 LOGO (DIPERBESAR) -->
         <div class="container support-badge-container">
             <div class="support-label">Pihak yang mendukung fitur Chonnect</div>
             <div class="logo-strip">
@@ -993,9 +1021,9 @@
                     </div>
                 </div>
 
-                <!-- FEATURED SUPPORT (sebelum contact & copyright) -->
+                <!-- FEATURED SUPPORT (Support By dengan ketebalan sama seperti Contact & Address) -->
             <div class="featured-support">
-                <h4>This featured support by,</h4>
+                <h4>Support By</h4>
                 <div class="support-links">
                     <a href="https://x.com/Outer_Cosmo" target="_blank" class="support-link-item"><i class="fa-brands fa-x-twitter"></i> Outer Cosmo Menfess</a>
                     <a href="#" class="support-link-item">Contoh</a>
@@ -1060,7 +1088,7 @@
         mobileMenuClose.addEventListener('click', closeMobileMenu);
         mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
-        // DATA USER (SEMUA 5 DATA "Contoh" PER KATEGORI, The Kachoo DI Media & Berita) - TIDAK DIUBAH
+        // DATA USER (SEMUA 5 DATA "Contoh" PER KATEGORI, The Kachoo Di Media & Berita) - TIDAK DIUBAH
         const userData = {
             entertainment: [
                 { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png', category: 'entertainment' },
