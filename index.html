@@ -322,13 +322,12 @@
             transform: translateX(4px);
         }
 
-        /* HERO SECTION */
+        /* HERO SECTION - desktop: title lebih kecil, rapi */
         .hero {
-            padding: 130px 0 70px;
+            padding: 130px 0 50px;
             background: linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%);
             position: relative;
             overflow: hidden;
-            min-height: 50vh;
             display: flex;
             align-items: center;
         }
@@ -336,7 +335,6 @@
         @media (max-width: 768px) {
             .hero {
                 padding: 115px 0 50px;
-                min-height: auto;
             }
         }
 
@@ -358,82 +356,67 @@
             }
         }
 
+        /* DESKTOP: title lebih kecil dan proporsional */
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
             background: linear-gradient(135deg, #000000 0%, #333333 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
+        @media (min-width: 769px) {
+            .hero h1 {
+                font-size: 3rem;
+                margin-bottom: 12px;
+            }
+        }
+
         .hero-subtitle {
-            font-size: clamp(1rem, 4vw, 1.25rem);
+            font-size: clamp(0.95rem, 3vw, 1.1rem);
             color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 30px;
-            line-height: 1.7;
+            max-width: 550px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
         }
 
-        /* SPLASH SCREEN */
-        .splash {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 0.6s ease-out;
-            pointer-events: none;
-        }
-
-        .splash.fade-out {
-            opacity: 0;
-        }
-
-        .splash-logo {
-            width: 220px;
-            max-width: 60vw;
-            height: auto;
-            aspect-ratio: 1/1;
-            object-fit: contain;
-            filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.08));
-            animation: splashPulse 2s infinite alternate ease-in-out;
-        }
-
-        @keyframes splashPulse {
-            0% { transform: scale(0.98); opacity: 0.9; }
-            100% { transform: scale(1.02); opacity: 1; }
-        }
-
-        /* KATEGORI BUTTON SECTION */
+        /* KATEGORI BUTTON SECTION - desktop: lebih rapat ke title dan ditengah */
         .category-section {
-            padding: 30px 0 30px;
+            padding: 20px 0 40px;
             background: var(--primary-white);
+        }
+
+        @media (min-width: 769px) {
+            .category-section {
+                padding: 10px 0 45px;
+            }
         }
 
         .section-title {
             text-align: center;
-            font-size: clamp(1.6rem, 4vw, 2.2rem);
-            font-weight: 800;
-            margin-bottom: 8px;
-            letter-spacing: -0.3px;
+            font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: -0.2px;
+            color: var(--primary-black);
         }
 
         .section-subtitle {
             text-align: center;
             color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 24px;
-            font-size: clamp(0.9rem, 3vw, 1rem);
+            max-width: 550px;
+            margin: 0 auto 28px;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+        }
+
+        @media (min-width: 769px) {
+            .section-subtitle {
+                margin-bottom: 32px;
+            }
         }
 
         .category-grid {
@@ -453,6 +436,9 @@
         @media (min-width: 900px) {
             .category-grid {
                 grid-template-columns: repeat(6, 1fr);
+                gap: 18px;
+                max-width: 1000px;
+                margin: 0 auto;
             }
         }
 
@@ -460,11 +446,11 @@
             background: var(--primary-white);
             border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: var(--border-radius);
-            padding: 20px 12px;
+            padding: 18px 10px;
             font-family: 'Outfit', sans-serif;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 0.5px;
             color: var(--primary-black);
             cursor: pointer;
@@ -477,9 +463,16 @@
             transform: translateY(0);
         }
 
+        @media (min-width: 769px) {
+            .cat-btn {
+                padding: 16px 8px;
+                font-size: 0.75rem;
+            }
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
+            50% { transform: translateY(-4px); }
         }
 
         .cat-btn:hover {
@@ -769,6 +762,13 @@
             background-color: var(--primary-black);
             color: var(--primary-white);
             border-color: var(--primary-black);
+            animation: none;
+            transform: scale(1.02);
+        }
+        
+        .active-cat-indicator:hover {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
         }
     </style>
 </head>
@@ -993,7 +993,6 @@
         const searchInput = document.getElementById('globalSearchInput');
         const searchClearBtn = document.getElementById('searchClearBtn');
         
-        // Gabungkan semua data untuk pencarian global
         function getAllUsers() {
             let all = [];
             for (let cat in userData) {
@@ -1005,19 +1004,16 @@
         function renderSearchResults() {
             const term = currentSearchTerm.toLowerCase().trim();
             if (term === '') {
-                // Jika tidak ada pencarian, dan tidak ada kategori aktif, sembunyikan list
                 if (!currentCategory) {
                     listSection.style.display = 'none';
                     return;
                 } else {
-                    // Tampilkan berdasarkan kategori aktif
                     const items = userData[currentCategory] || [];
                     displayUsers(items, categoryNames[currentCategory]);
                     return;
                 }
             }
             
-            // Cari di semua data
             const allUsers = getAllUsers();
             const filtered = allUsers.filter(item => 
                 item.name.toLowerCase().includes(term) || 
@@ -1025,7 +1021,6 @@
                 item.username.toLowerCase().includes(term)
             );
             
-            // Tampilkan hasil pencarian global
             displayUsers(filtered, `HASIL PENCARIAN: "${currentSearchTerm}"`);
         }
         
@@ -1073,15 +1068,12 @@
             currentSearchTerm = searchInput.value;
             if (searchClearBtn) searchClearBtn.style.display = currentSearchTerm ? 'block' : 'none';
             
-            // Reset kategori aktif saat mencari (biar pencarian global)
             if (currentSearchTerm.trim() !== '') {
-                // Hapus highlight kategori aktif
                 document.querySelectorAll('.cat-btn').forEach(btn => {
                     btn.classList.remove('active-cat-indicator');
                 });
                 renderSearchResults();
             } else {
-                // Jika search kosong, kembali ke kategori terakhir yang dipilih (atau hidden)
                 if (currentCategory) {
                     document.querySelectorAll('.cat-btn').forEach(btn => {
                         if (btn.getAttribute('data-category') === currentCategory) {
@@ -1100,14 +1092,12 @@
         
         window.switchCategory = function(categoryKey) {
             currentCategory = categoryKey;
-            // Kosongkan search input saat pilih kategori
             if (searchInput) {
                 searchInput.value = '';
                 currentSearchTerm = '';
                 if (searchClearBtn) searchClearBtn.style.display = 'none';
             }
             
-            // Update active class pada tombol kategori
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 if (btn.getAttribute('data-category') === categoryKey) {
                     btn.classList.add('active-cat-indicator');
@@ -1129,7 +1119,6 @@
             });
         }
         
-        // Initial state
         window.addEventListener('load', function() {
             setTimeout(() => {
                 if (!currentCategory && (!searchInput.value || searchInput.value === '')) {
