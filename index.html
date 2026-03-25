@@ -45,7 +45,7 @@
             padding: 0 24px;
         }
 
-        /* HEADER - navigasi diganti: Kachoo dan Chobank + SEARCH */
+        /* HEADER */
         header {
             background-color: var(--primary-white);
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -79,7 +79,7 @@
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
         }
 
-        /* SEARCH ENGINE - diperkecil di mobile */
+        /* SEARCH ENGINE - compact */
         .search-wrapper {
             flex: 1;
             max-width: 280px;
@@ -91,7 +91,7 @@
             align-items: center;
             background: var(--accent-gray);
             border-radius: 40px;
-            padding: 6px 14px;
+            padding: 6px 12px;
             border: 1px solid rgba(0, 0, 0, 0.08);
             transition: var(--transition);
         }
@@ -105,7 +105,7 @@
         .search-box i {
             color: var(--text-gray);
             font-size: 14px;
-            margin-right: 8px;
+            margin-right: 6px;
         }
 
         .search-input {
@@ -117,6 +117,7 @@
             padding: 6px 0;
             outline: none;
             color: var(--primary-black);
+            min-width: 0;
         }
 
         .search-input::placeholder {
@@ -130,18 +131,20 @@
             border: none;
             color: var(--text-gray);
             cursor: pointer;
-            font-size: 12px;
+            font-size: 14px;
             padding: 4px;
             border-radius: 50%;
             display: none;
             transition: var(--transition);
+            flex-shrink: 0;
+            margin-left: 4px;
         }
 
         .search-clear:hover {
             color: var(--primary-black);
         }
 
-        /* Desktop Navigation - GANTI dengan Kachoo & Chobank */
+        /* Desktop Navigation */
         .desktop-nav {
             display: flex;
             gap: 8px;
@@ -157,7 +160,7 @@
             }
             
             .search-wrapper {
-                max-width: 180px;
+                max-width: 200px;
             }
             
             .search-box {
@@ -175,15 +178,20 @@
             .logo-img {
                 height: 38px;
             }
+            
+            .search-clear {
+                font-size: 12px;
+                padding: 2px;
+            }
         }
 
         @media (max-width: 480px) {
             .search-wrapper {
-                max-width: 140px;
+                max-width: 160px;
             }
             
             .search-box i {
-                font-size: 12px;
+                font-size: 11px;
                 margin-right: 4px;
             }
         }
@@ -213,12 +221,6 @@
             border-color: var(--primary-black);
             transform: translateY(-2px);
             box-shadow: var(--card-shadow);
-        }
-
-        .nav-button.active {
-            background: var(--primary-black);
-            color: var(--primary-white);
-            border-color: var(--primary-black);
         }
 
         /* Mobile Menu Button */
@@ -338,19 +340,6 @@
             }
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(0, 0, 0, 0.1) 50%, 
-                transparent 100%);
-        }
-
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
@@ -379,7 +368,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: fadeInUp 1s ease-out 0.2s both;
         }
 
         .hero-subtitle {
@@ -388,7 +376,6 @@
             max-width: 600px;
             margin: 0 auto 30px;
             line-height: 1.7;
-            animation: fadeInUp 1s ease-out 0.4s both;
         }
 
         /* SPLASH SCREEN */
@@ -427,7 +414,7 @@
             100% { transform: scale(1.02); opacity: 1; }
         }
 
-        /* KATEGORI BUTTON SECTION - ditengahkan, jarak ke footer diatur */
+        /* KATEGORI BUTTON SECTION */
         .category-section {
             padding: 30px 0 30px;
             background: var(--primary-white);
@@ -449,7 +436,6 @@
             font-size: clamp(0.9rem, 3vw, 1rem);
         }
 
-        /* Grid kategori */
         .category-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -503,7 +489,7 @@
             border-color: rgba(0, 0, 0, 0.2);
         }
 
-        /* LIST USER SECTION - ditengahkan, jarak diatur */
+        /* LIST USER SECTION */
         .list-section {
             padding: 20px 0 60px;
             background: var(--accent-gray);
@@ -542,7 +528,6 @@
             }
         }
 
-        /* CARD USER */
         .user-item {
             background: var(--primary-white);
             border: 1px solid rgba(0, 0, 0, 0.08);
@@ -615,7 +600,6 @@
             line-height: 1.4;
         }
 
-        /* EMPTY STATE */
         .empty-state {
             grid-column: 1/-1;
             text-align: center;
@@ -754,7 +738,6 @@
             font-size: 14px;
         }
 
-        /* Responsive Design */
         @media (max-width: 480px) {
             .container {
                 padding: 0 16px;
@@ -781,44 +764,44 @@
             border-radius: 4px;
             padding: 0 2px;
         }
+        
+        .active-cat-indicator {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            border-color: var(--primary-black);
+        }
     </style>
 </head>
 <body>
-    <!-- SPLASH dengan logo CHONNECT -->
     <div id="splash" class="splash">
         <img src="logochonnect1.png" alt="CHONNECT logo" class="splash-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2270%22%20fill%3D%22%23333%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ECHONNECT%3C%2Ftext%3E%3C%2Fsvg%3E');">
     </div>
 
-    <!-- HEADER - dengan search engine di tengah, diperkecil -->
     <header>
         <div class="container header-content">
             <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                 <img src="logochonnect1.png" alt="CHONNECT Logo" class="logo-img">
             </div>
             
-            <!-- SEARCH ENGINE DITENGAH HEADER ATAS - ukuran compact -->
             <div class="search-wrapper">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" class="search-input" id="globalSearchInput" placeholder="Cari nama atau keterangan...">
+                    <input type="text" class="search-input" id="globalSearchInput" placeholder="Cari">
                     <button class="search-clear" id="searchClearBtn"><i class="fas fa-times-circle"></i></button>
                 </div>
             </div>
             
-            <!-- Desktop Navigation - Kachoo & Chobank -->
             <nav class="desktop-nav">
                 <a href="https://thekachoo.github.io/Home/" class="nav-button" target="_blank" rel="noopener">Kachoo</a>
                 <a href="https://thekachoo.github.io/CHOBANK/" class="nav-button" target="_blank" rel="noopener">Chobank</a>
             </nav>
             
-            <!-- Mobile Menu Button -->
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
 
-    <!-- Mobile Menu -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <button class="mobile-menu-close" id="mobileMenuClose">
@@ -840,7 +823,6 @@
         </ul>
     </div>
 
-    <!-- HERO SECTION -->
     <section class="hero">
         <div class="container hero-content">
             <h1>CHONNECT</h1>
@@ -850,7 +832,6 @@
         </div>
     </section>
 
-    <!-- KATEGORI BUTTON SECTION -->
     <section class="category-section">
         <div class="container">
             <h2 class="section-title">CATEGORIES</h2>
@@ -866,7 +847,6 @@
         </div>
     </section>
 
-    <!-- LIST USER SECTION -->
     <section class="list-section" id="listSection" style="display: none;">
         <div class="container">
             <div class="list-title" id="activeCategoryTitle">
@@ -877,7 +857,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -932,19 +911,15 @@
     </footer>
 
     <script>
-        // ==================== SPLASH HANDLING ====================
+        // SPLASH
         const splash = document.getElementById('splash');
-        function hideSplashAndShowContent() {
+        function hideSplash() {
             splash.classList.add('fade-out');
-            splash.addEventListener('transitionend', function() {
-                splash.style.display = 'none';
-            }, { once: true });
+            splash.addEventListener('transitionend', () => splash.style.display = 'none', { once: true });
         }
-        window.addEventListener('load', function() {
-            setTimeout(hideSplashAndShowContent, 1500);
-        });
+        window.addEventListener('load', () => setTimeout(hideSplash, 1500));
 
-        // ==================== MOBILE MENU ====================
+        // MOBILE MENU
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
@@ -955,50 +930,49 @@
         mobileMenuClose.addEventListener('click', closeMobileMenu);
         mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
-        // ==================== DATA USER ====================
-        // Semua kategori memiliki 5 data "Contoh" sesuai permintaan, The Kachoo di Media & Berita
+        // DATA USER (semua 5 data "Contoh" per kategori, The Kachoo di Media & Berita)
         const userData = {
             entertainment: [
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png' }
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png', category: 'entertainment' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png', category: 'entertainment' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png', category: 'entertainment' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png', category: 'entertainment' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png', category: 'entertainment' }
             ],
             institusi: [
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png' }
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png', category: 'institusi' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png', category: 'institusi' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png', category: 'institusi' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png', category: 'institusi' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png', category: 'institusi' }
             ],
             media: [
-                { name: 'The Kachoo', username: '@TheKachoo', bio: 'Media & Berita', logo: 'logo-thekachoo.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png' }
+                { name: 'The Kachoo', username: '@TheKachoo', bio: 'Media & Berita', logo: 'logo-thekachoo.png', category: 'media' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png', category: 'media' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png', category: 'media' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png', category: 'media' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png', category: 'media' }
             ],
             bisnis: [
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png' }
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png', category: 'bisnis' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png', category: 'bisnis' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png', category: 'bisnis' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png', category: 'bisnis' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png', category: 'bisnis' }
             ],
             keluarga: [
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png' }
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png', category: 'keluarga' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png', category: 'keluarga' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png', category: 'keluarga' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png', category: 'keluarga' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png', category: 'keluarga' }
             ],
             lainnya: [
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png' }
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png', category: 'lainnya' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png', category: 'lainnya' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png', category: 'lainnya' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png', category: 'lainnya' },
+                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png', category: 'lainnya' }
             ]
         };
 
@@ -1018,36 +992,59 @@
         const categoryNameDisplay = document.getElementById('categoryNameDisplay');
         const searchInput = document.getElementById('globalSearchInput');
         const searchClearBtn = document.getElementById('searchClearBtn');
-
-        function renderCurrentView() {
-            if (!currentCategory) return;
-            let items = userData[currentCategory] ? [...userData[currentCategory]] : [];
-            
-            if (currentSearchTerm.trim() !== '') {
-                const term = currentSearchTerm.toLowerCase().trim();
-                items = items.filter(item => 
-                    item.name.toLowerCase().includes(term) || 
-                    item.bio.toLowerCase().includes(term) ||
-                    item.username.toLowerCase().includes(term)
-                );
+        
+        // Gabungkan semua data untuk pencarian global
+        function getAllUsers() {
+            let all = [];
+            for (let cat in userData) {
+                all = all.concat(userData[cat]);
+            }
+            return all;
+        }
+        
+        function renderSearchResults() {
+            const term = currentSearchTerm.toLowerCase().trim();
+            if (term === '') {
+                // Jika tidak ada pencarian, dan tidak ada kategori aktif, sembunyikan list
+                if (!currentCategory) {
+                    listSection.style.display = 'none';
+                    return;
+                } else {
+                    // Tampilkan berdasarkan kategori aktif
+                    const items = userData[currentCategory] || [];
+                    displayUsers(items, categoryNames[currentCategory]);
+                    return;
+                }
             }
             
-            const titleText = categoryNames[currentCategory] || 'KATEGORI';
-            categoryNameDisplay.textContent = titleText;
+            // Cari di semua data
+            const allUsers = getAllUsers();
+            const filtered = allUsers.filter(item => 
+                item.name.toLowerCase().includes(term) || 
+                item.bio.toLowerCase().includes(term) ||
+                item.username.toLowerCase().includes(term)
+            );
+            
+            // Tampilkan hasil pencarian global
+            displayUsers(filtered, `HASIL PENCARIAN: "${currentSearchTerm}"`);
+        }
+        
+        function displayUsers(users, title) {
+            categoryNameDisplay.textContent = title;
             listSection.style.display = 'block';
             
-            if (!items.length) {
+            if (!users.length) {
                 userListContainer.innerHTML = `<div class="empty-state"><i class="fas fa-search" style="font-size: 48px; margin-bottom: 16px; display: block; color: #ccc;"></i><p>Tidak ada hasil yang sesuai dengan "${currentSearchTerm}"</p></div>`;
                 return;
             }
             
             let htmlString = '';
-            items.forEach(item => {
+            users.forEach(item => {
                 const cleanUsername = item.username.startsWith('@') ? item.username.slice(1) : item.username;
                 const profileUrl = `https://x.com/${cleanUsername}`;
                 let displayName = item.name;
                 let displayBio = item.bio;
-                if (currentSearchTerm.trim()) {
+                if (currentSearchTerm && currentSearchTerm.trim()) {
                     const regex = new RegExp(`(${currentSearchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
                     displayName = item.name.replace(regex, '<span class="search-highlight">$1</span>');
                     displayBio = item.bio.replace(regex, '<span class="search-highlight">$1</span>');
@@ -1071,43 +1068,73 @@
             });
             userListContainer.innerHTML = htmlString;
         }
-
-        window.switchCategory = function(categoryKey) {
-            currentCategory = categoryKey;
-            currentSearchTerm = '';
-            if (searchInput) searchInput.value = '';
-            if (searchClearBtn) searchClearBtn.style.display = 'none';
-            renderCurrentView();
-        };
         
-        function handleSearch() {
-            if (currentCategory) {
-                currentSearchTerm = searchInput.value;
-                if (searchClearBtn) searchClearBtn.style.display = currentSearchTerm ? 'block' : 'none';
-                renderCurrentView();
+        function handleGlobalSearch() {
+            currentSearchTerm = searchInput.value;
+            if (searchClearBtn) searchClearBtn.style.display = currentSearchTerm ? 'block' : 'none';
+            
+            // Reset kategori aktif saat mencari (biar pencarian global)
+            if (currentSearchTerm.trim() !== '') {
+                // Hapus highlight kategori aktif
+                document.querySelectorAll('.cat-btn').forEach(btn => {
+                    btn.classList.remove('active-cat-indicator');
+                });
+                renderSearchResults();
             } else {
-                if (searchInput.value.trim() !== '') {
-                    userListContainer.innerHTML = `<div class="empty-state"><i class="fas fa-info-circle" style="font-size: 48px; margin-bottom: 16px; display: block; color: #ccc;"></i><p>Silakan pilih kategori terlebih dahulu untuk melakukan pencarian</p></div>`;
-                    listSection.style.display = 'block';
-                    categoryNameDisplay.textContent = 'PILIH KATEGORI';
-                } else if (!currentCategory && listSection.style.display === 'block') {
+                // Jika search kosong, kembali ke kategori terakhir yang dipilih (atau hidden)
+                if (currentCategory) {
+                    document.querySelectorAll('.cat-btn').forEach(btn => {
+                        if (btn.getAttribute('data-category') === currentCategory) {
+                            btn.classList.add('active-cat-indicator');
+                        } else {
+                            btn.classList.remove('active-cat-indicator');
+                        }
+                    });
+                    const items = userData[currentCategory] || [];
+                    displayUsers(items, categoryNames[currentCategory]);
+                } else {
                     listSection.style.display = 'none';
                 }
             }
         }
         
-        if (searchInput) searchInput.addEventListener('input', handleSearch);
+        window.switchCategory = function(categoryKey) {
+            currentCategory = categoryKey;
+            // Kosongkan search input saat pilih kategori
+            if (searchInput) {
+                searchInput.value = '';
+                currentSearchTerm = '';
+                if (searchClearBtn) searchClearBtn.style.display = 'none';
+            }
+            
+            // Update active class pada tombol kategori
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.getAttribute('data-category') === categoryKey) {
+                    btn.classList.add('active-cat-indicator');
+                } else {
+                    btn.classList.remove('active-cat-indicator');
+                }
+            });
+            
+            const items = userData[categoryKey] || [];
+            displayUsers(items, categoryNames[categoryKey]);
+        };
+        
+        if (searchInput) searchInput.addEventListener('input', handleGlobalSearch);
         if (searchClearBtn) {
             searchClearBtn.addEventListener('click', () => {
                 if (searchInput) searchInput.value = '';
-                handleSearch();
+                handleGlobalSearch();
                 searchInput.focus();
             });
         }
         
+        // Initial state
         window.addEventListener('load', function() {
             setTimeout(() => {
-                if (!currentCategory) listSection.style.display = 'none';
+                if (!currentCategory && (!searchInput.value || searchInput.value === '')) {
+                    listSection.style.display = 'none';
+                }
             }, 100);
         });
         
