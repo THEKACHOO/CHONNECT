@@ -334,7 +334,7 @@
             object-fit: contain;
         }
 
-        /* HERO SECTION - DESKTOP: title diperkecil, jarak ke kategori lebih rapat */
+        /* HERO SECTION */
         .hero {
             padding: 130px 0 40px;
             background: linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%);
@@ -369,7 +369,6 @@
             }
         }
 
-        /* DESKTOP: title CHONNECT diperkecil */
         .hero h1 {
             font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 800;
@@ -382,7 +381,6 @@
             background-clip: text;
         }
 
-        /* TAMPILAN MOBILE: ukuran title tetap seperti semula */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: clamp(2.5rem, 8vw, 4.5rem);
@@ -399,7 +397,7 @@
             line-height: 1.7;
         }
 
-        /* CONTAINER DUKUNGAN FITUR - BARU (di bawah subtitle) - LOGO DIPERBESAR */
+        /* CONTAINER DUKUNGAN FITUR - kontainer tetap kecil, logo diperbesar dengan efek klik */
         .support-badge-container {
             margin-top: 20px;
             text-align: center;
@@ -424,9 +422,9 @@
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 28px;
+            gap: 24px;
             background: rgba(0, 0, 0, 0.02);
-            padding: 16px 32px;
+            padding: 12px 24px;
             border-radius: 60px;
             backdrop-filter: blur(4px);
             border: 1px solid rgba(0, 0, 0, 0.05);
@@ -434,37 +432,101 @@
             max-width: fit-content;
         }
 
-        /* LOGO DIPERBESAR: dari 60px menjadi 80px */
+        /* LOGO DIPERBESAR ukurannya, tapi container tetap kecil */
         .support-logo {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             object-fit: contain;
             transition: var(--transition);
             filter: grayscale(0%);
             border-radius: 16px;
             background: white;
-            padding: 6px;
+            padding: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            cursor: pointer;
         }
 
         .support-logo:hover {
-            transform: scale(1.08);
+            transform: scale(1.05);
             filter: grayscale(0%);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
         @media (max-width: 640px) {
             .support-logo {
-                width: 64px;
-                height: 64px;
+                width: 80px;
+                height: 80px;
+                padding: 6px;
             }
             .logo-strip {
                 gap: 16px;
-                padding: 12px 20px;
+                padding: 10px 20px;
             }
         }
 
-        /* SPLASH SCREEN - TIDAK DIUBAH */
+        /* MODAL UNTUK ZOOM GAMBAR SAAT DIKLIK */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .image-modal.active {
+            display: flex;
+        }
+        
+        .modal-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            animation: zoomIn 0.3s ease;
+        }
+        
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 10001;
+        }
+        
+        .modal-close:hover {
+            color: #ccc;
+            transform: scale(1.1);
+        }
+
+        /* SPLASH SCREEN */
         .splash {
             position: fixed;
             top: 0;
@@ -500,7 +562,7 @@
             100% { transform: scale(1.02); opacity: 1; }
         }
 
-        /* KATEGORI BUTTON SECTION - desktop: jarak ke title lebih rapat */
+        /* KATEGORI BUTTON SECTION */
         .category-section {
             padding: 20px 0 40px;
             background: var(--primary-white);
@@ -528,7 +590,6 @@
             font-size: clamp(0.9rem, 3vw, 1rem);
         }
 
-        /* DESKTOP: grid kategori tetap di tengah */
         .category-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -803,7 +864,6 @@
             font-size: 18px;
         }
 
-        /* featured support row - gaya baru: Support By, ketebalan sama seperti Contact & Address */
         .featured-support {
             margin-bottom: 48px;
             padding-top: 20px;
@@ -908,6 +968,12 @@
         <img src="logochonnect1.png" alt="CHONNECT logo" class="splash-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2270%22%20fill%3D%22%23333%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ECHONNECT%3C%2Ftext%3E%3C%2Fsvg%3E');">
     </div>
 
+    <!-- MODAL UNTUK ZOOM GAMBAR -->
+    <div id="imageModal" class="image-modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-image" id="modalImage" src="" alt="Zoomed Logo">
+    </div>
+
     <header>
         <div class="container header-content">
             <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
@@ -945,7 +1011,7 @@
         <ul class="mobile-menu-list">
             <li class="mobile-menu-item">
                 <a href="https://thekachoo.github.io/Home/" class="mobile-menu-link" target="_blank" rel="noopener">
-                    <img src="logo-thekachoo.png" class="mobile-icon-img" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23ccc%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2216%22%20font-size%3D%228%22%20text-anchor%3D%22middle%22%3EK%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <img src="thekachoologo.png" class="mobile-icon-img" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23ccc%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2216%22%20font-size%3D%228%22%20text-anchor%3D%22middle%22%3EK%3C%2Ftext%3E%3C%2Fsvg%3E'">
                     Kachoo
                 </a>
             </li>
@@ -965,15 +1031,15 @@
                 Terhubung lebih mudah bersama Chonnect. Dengan sistem direktori yang memudahkan terhubungnya berbagai kontak untuk keperluan relasi
             </p>
         </div>
-        <!-- CONTAINER KECIL: Pihak yang mendukung fitur Chonnect + 5 LOGO (DIPERBESAR) -->
+        <!-- CONTAINER: logo diperbesar dan bisa diklik untuk zoom -->
         <div class="container support-badge-container">
             <div class="support-label">Pihak yang mendukung fitur Chonnect</div>
             <div class="logo-strip">
-                <img src="outer.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23ddd%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2260%22%20fill%3D%22%23666%22%20text-anchor%3D%22middle%22%3Eouter%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                <img src="contoh1.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC1%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                <img src="contoh2.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC2%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                <img src="contoh3.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC3%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                <img src="contoh4.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC4%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="outer.png" alt="support logo" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23ddd%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2260%22%20fill%3D%22%23666%22%20text-anchor%3D%22middle%22%3Eouter%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="contoh1.png" alt="support logo" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC1%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="contoh2.png" alt="support logo" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC2%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="contoh3.png" alt="support logo" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC3%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="contoh4.png" alt="support logo" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC4%3C%2Ftext%3E%3C%2Fsvg%3E'">
             </div>
         </div>
     </section>
@@ -1021,17 +1087,16 @@
                     </div>
                 </div>
 
-                <!-- FEATURED SUPPORT (Support By dengan ketebalan sama seperti Contact & Address) -->
-            <div class="featured-support">
-                <h4>Support By</h4>
-                <div class="support-links">
-                    <a href="https://x.com/Outer_Cosmo" target="_blank" class="support-link-item"><i class="fa-brands fa-x-twitter"></i> Outer Cosmo Menfess</a>
-                    <a href="#" class="support-link-item">Contoh</a>
-                    <a href="#" class="support-link-item">Contoh</a>
-                    <a href="#" class="support-link-item">Contoh</a>
-                    <a href="#" class="support-link-item">Contoh</a>
+                <div class="featured-support">
+                    <h4>Support By</h4>
+                    <div class="support-links">
+                        <a href="https://x.com/Outer_Cosmo" target="_blank" class="support-link-item"><i class="fa-brands fa-x-twitter"></i> Outer Cosmo Menfess</a>
+                        <a href="#" class="support-link-item">Contoh</a>
+                        <a href="#" class="support-link-item">Contoh</a>
+                        <a href="#" class="support-link-item">Contoh</a>
+                        <a href="#" class="support-link-item">Contoh</a>
+                    </div>
                 </div>
-            </div>
                 
                 <div class="footer-section">
                     <h3>Contact</h3>
@@ -1077,6 +1142,28 @@
         }
         window.addEventListener('load', () => setTimeout(hideSplash, 1500));
 
+        // MODAL ZOOM IMAGE
+        function openModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'flex';
+            modalImg.src = imgSrc;
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
         // MOBILE MENU
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -1088,7 +1175,7 @@
         mobileMenuClose.addEventListener('click', closeMobileMenu);
         mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
-        // DATA USER (SEMUA 5 DATA "Contoh" PER KATEGORI, The Kachoo Di Media & Berita) - TIDAK DIUBAH
+        // DATA USER
         const userData = {
             entertainment: [
                 { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png', category: 'entertainment' },
