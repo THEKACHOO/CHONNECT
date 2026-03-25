@@ -330,6 +330,7 @@
             overflow: hidden;
             display: flex;
             align-items: center;
+            flex-direction: column;
         }
 
         @media (max-width: 768px) {
@@ -384,6 +385,70 @@
             max-width: 600px;
             margin: 0 auto 30px;
             line-height: 1.7;
+        }
+
+        /* CONTAINER DUKUNGAN FITUR - BARU (di bawah subtitle) */
+        .support-badge-container {
+            margin-top: 20px;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .support-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            color: var(--text-gray);
+            margin-bottom: 12px;
+            display: inline-block;
+            background: rgba(0,0,0,0.03);
+            padding: 4px 12px;
+            border-radius: 40px;
+        }
+
+        .logo-strip {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.02);
+            padding: 12px 24px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            margin: 0 auto;
+            max-width: fit-content;
+        }
+
+        .support-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            transition: var(--transition);
+            filter: grayscale(0%);
+            border-radius: 12px;
+            background: white;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .support-logo:hover {
+            transform: scale(1.08);
+            filter: grayscale(0%);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 640px) {
+            .support-logo {
+                width: 48px;
+                height: 48px;
+            }
+            .logo-strip {
+                gap: 12px;
+                padding: 8px 16px;
+            }
         }
 
         /* SPLASH SCREEN - TIDAK DIUBAH */
@@ -725,24 +790,50 @@
             font-size: 18px;
         }
 
-        @media (max-width: 768px) {
-            .footer-section .x-logo {
-                font-size: 16px;
-                padding: 4px 6px;
-                border-radius: 4px;
-                background: white;
-                color: black;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                min-width: 24px;
-                height: 24px;
-                margin-right: 8px;
-            }
-            
-            .footer-links li span.x-logo {
-                font-size: 14px;
-                padding: 3px 5px;
+        /* featured support row */
+        .featured-support {
+            margin-bottom: 48px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .featured-support h4 {
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 18px;
+        }
+        .support-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            align-items: center;
+            row-gap: 16px;
+        }
+        .support-link-item {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .support-link-item:hover {
+            color: white;
+            transform: translateX(3px);
+        }
+        .support-link-item i {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+        @media (max-width: 600px) {
+            .support-links {
+                gap: 18px;
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
 
@@ -846,6 +937,17 @@
                 Terhubung lebih mudah bersama Chonnect. Dengan sistem direktori yang memudahkan terhubungnya berbagai kontak untuk keperluan relasi
             </p>
         </div>
+        <!-- CONTAINER KECIL: Pihak yang mendukung fitur Chonnect + 5 LOGO (800x800px) -->
+        <div class="container support-badge-container">
+            <div class="support-label">✦ Pihak yang mendukung fitur Chonnect ✦</div>
+            <div class="logo-strip">
+                <img src="outer.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23ddd%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2260%22%20fill%3D%22%23666%22%20text-anchor%3D%22middle%22%3Eouter%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="contoh1.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC1%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="contoh2.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC2%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="contoh3.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC3%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="contoh4.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC4%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            </div>
+        </div>
     </section>
 
     <section class="category-section">
@@ -917,6 +1019,18 @@
                             Indonesia
                         </li>
                     </ul>
+                </div>
+            </div>
+
+            <!-- FEATURED SUPPORT (sebelum contact & copyright) -->
+            <div class="featured-support">
+                <h4>This featured support by,</h4>
+                <div class="support-links">
+                    <a href="https://x.com/Outer_Cosmo" target="_blank" class="support-link-item"><i class="fa-brands fa-x-twitter"></i> Outer Cosmo Menfess</a>
+                    <a href="#" class="support-link-item">Contoh</a>
+                    <a href="#" class="support-link-item">Contoh</a>
+                    <a href="#" class="support-link-item">Contoh</a>
+                    <a href="#" class="support-link-item">Contoh</a>
                 </div>
             </div>
             
