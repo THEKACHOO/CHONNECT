@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>CHONNECT by KACHOO | Form Pendaftaran</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-black: #000000;
+            --primary-white: #FFFFFF;
+            --accent-gray: #F5F5F7;
+            --text-gray: #6E6E73;
+            --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--primary-white);
+            color: var(--primary-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HEADER - hanya logo tengah */
+        header {
+            background-color: var(--primary-white);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 16px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        @media (max-width: 768px) {
+            .logo-img {
+                height: 42px;
+            }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 110px 0 30px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 0 24px;
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            color: var(--text-gray);
+            max-width: 550px;
+            margin: 12px auto 0;
+        }
+
+        /* PDF PROPOSAL SECTION - DULUAN */
+        .pdf-proposal {
+            padding: 20px 0 40px;
+            background: var(--primary-white);
+        }
+        .pdf-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            background: white;
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+        .pdf-title {
+            font-weight: 700;
+            font-size: 1.3rem;
+            padding: 20px 24px 12px;
+        }
+        .pdf-embed {
+            width: 100%;
+            height: 550px;
+            border: none;
+        }
+        @media (max-width: 768px) {
+            .pdf-embed { height: 400px; }
+            .pdf-title { font-size: 1.1rem; padding: 16px 20px 8px; }
+        }
+
+        /* FORM SECTION */
+        .form-section {
+            padding: 20px 0 50px;
+            background: var(--accent-gray);
+        }
+
+        .form-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--primary-white);
+            border-radius: 28px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .form-header {
+            padding: 28px 32px 8px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .form-header h2 {
+            font-weight: 700;
+            font-size: 1.7rem;
+            letter-spacing: -0.3px;
+        }
+
+        .contact-info {
+            margin-top: 16px;
+            margin-bottom: 12px;
+            background: var(--accent-gray);
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+        }
+
+        .contact-info a {
+            color: var(--primary-black);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+        }
+
+        .form-body {
+            padding: 24px 32px 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .label-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .label-wrapper label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .info-icon {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+            background: var(--accent-gray);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-icon:hover {
+            background: var(--primary-black);
+            color: white;
+        }
+
+        .tooltip-text {
+            display: none;
+            font-size: 0.7rem;
+            color: var(--text-gray);
+            margin-top: 6px;
+            background: var(--accent-gray);
+            padding: 6px 12px;
+            border-radius: 20px;
+            width: fit-content;
+        }
+
+        .tooltip-text.show {
+            display: block;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            font-family: 'Outfit', sans-serif;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 16px;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            background: var(--primary-white);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-black);
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 6px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-gray);
+            padding: 8px 18px;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .radio-option.selected {
+            background: var(--primary-black);
+            color: white;
+            border-color: var(--primary-black);
+        }
+
+        .radio-option.selected label {
+            color: white;
+        }
+
+        .radio-option input {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+            accent-color: black;
+        }
+
+        .radio-option label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+        .image-upload-area {
+            border: 1px dashed rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 18px;
+            text-align: center;
+            background: #FEFEFE;
+        }
+
+        .file-input-label {
+            display: inline-block;
+            background: var(--primary-black);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+
+        .file-name {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            margin-top: 8px;
+        }
+
+        .drive-link-input {
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid #eee;
+        }
+
+        .small-note {
+            font-size: 0.7rem;
+            color: #888;
+            margin-top: 6px;
+        }
+
+        .btn-submit {
+            background: var(--primary-black);
+            color: white;
+            border: none;
+            padding: 16px 28px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .notification {
+            margin-top: 20px;
+            padding: 14px;
+            border-radius: 60px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+        .notification.success {
+            background: #e6f7e6;
+            color: #1e7e34;
+            border: 1px solid #b2e0b2;
+        }
+
+        .notification.error {
+            background: #ffe6e6;
+            color: #b33;
+            border: 1px solid #ffc2c2;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 30px 0 40px;
+            background: var(--primary-white);
+        }
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-black);
+            color: white;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: 700;
+            transition: 0.2s;
+            margin-bottom: 16px;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--hover-shadow);
+        }
+        .update-note {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            margin-top: 8px;
+        }
+
+        /* support badge */
+        .support-badge-container {
+            margin-top: 20px;
+            text-align: center;
+            padding: 24px 0;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background: var(--primary-white);
+        }
+        .support-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            color: var(--text-gray);
+            margin-bottom: 12px;
+        }
+        .logo-strip {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+        }
+        .support-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        .support-logo {
+            width: 64px;
+            height: auto;
+            max-height: 64px;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+        .logo-caption {
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--text-gray);
+            margin-top: 6px;
+        }
+
+        /* FOOTER - mobile friendly */
+        footer {
+            background: var(--primary-black);
+            color: var(--primary-white);
+            padding: 50px 0 30px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-section h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            position: relative;
+            display: inline-block;
+        }
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 28px;
+            height: 2px;
+            background: var(--primary-white);
+        }
+        .footer-section p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-top: 12px;
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .footer-links a:hover {
+            color: white;
+        }
+        .social-links {
+            display: flex;
+            gap: 14px;
+            margin-top: 16px;
+        }
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .x-logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 1rem;
+        }
+        .featured-support {
+            margin-bottom: 0;
+        }
+        .featured-support h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .support-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            flex-direction: column;
+        }
+        .support-link-item {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .support-link-item:hover {
+            color: white;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 28px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+        }
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                text-align: left;
+            }
+            .footer-section h3::after {
+                left: 0;
+            }
+            .support-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+            .support-link-item {
+                font-size: 0.8rem;
+            }
+            .footer-links li {
+                flex-wrap: wrap;
+            }
+            .form-body {
+                padding: 20px;
+            }
+            .form-header {
+                padding: 20px;
+            }
+            .contact-info {
+                font-size: 0.75rem;
+            }
+        }
+
+        .image-modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.9); z-index:10000; justify-content: center; align-items: center; }
+        .modal-image { max-width: 90%; max-height: 90%; }
+        .modal-close { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; cursor: pointer; }
+        .splash {
+            position: fixed;
+            top:0; left:0; width:100%; height:100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.6s;
+        }
+        .splash.fade-out { opacity: 0; pointer-events: none; }
+        .splash-logo { width: 220px; max-width: 60vw; object-fit: contain; }
+    </style>
+</head>
+<body>
+<div id="splash" class="splash">
+    <img src="logochonnect1.png" alt="CHONNECT" class="splash-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%22%20font-size%3D%2270%22%20fill%3D%22%23333%22%20text-anchor%3D%22middle%22%3ECHONNECT%3C%2Ftext%3E%3C%2Fsvg%3E'">
+</div>
+<div id="imageModal" class="image-modal" onclick="closeModal()"><span class="modal-close">&times;</span><img class="modal-image" id="modalImage"></div>
+
+<header>
+    <div class="container header-content">
+        <div class="logo-container" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+            <img src="logochonnect1.png" alt="CHONNECT" class="logo-img">
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container hero-content">
+        <h1>CHONNECT</h1>
+        <p class="hero-subtitle">Terhubung lebih mudah bersama Chonnect. Dengan sistem direktori yang memudahkan terhubungnya berbagai kontak untuk keperluan relasi.</p>
+    </div>
+</section>
+
+<!-- PDF PROPOSAL DULUAN -->
+<section class="pdf-proposal">
+    <div class="container">
+        <div class="pdf-container">
+            <div class="pdf-title">Proposal CHONNECT</div>
+            <iframe class="pdf-embed" src="https://drive.google.com/file/d/1DexcXXkd69C5wNerVi8EIqXDCN3hx8-b/preview" allow="autoplay"></iframe>
+        </div>
+    </div>
+</section>
+
+<!-- FORM SECTION -->
+<section class="form-section">
+    <div class="container">
+        <div class="form-card">
+            <div class="form-header">
+                <h2>Formulir Pendaftaran Direktori</h2>
+                <div class="contact-info"><i class="fas fa-info-circle"></i> Apabila ada kesalahan dalam input data, bisa menghubungi <a href="https://x.com/HaiKachoo" target="_blank">@HaiKachoo</a> di X</div>
+            </div>
+            <div class="form-body">
+                <form id="registrationForm">
+                    <!-- Nama dengan tooltip icon -->
+                    <div class="form-group">
+                        <div class="label-wrapper">
+                            <label>Nama</label>
+                            <i class="fas fa-info-circle info-icon" data-tooltip="namaTooltip"></i>
+                        </div>
+                        <input type="text" id="nama" placeholder="Contoh: The Kachoo" required>
+                        <div id="namaTooltip" class="tooltip-text">Isi ini dengan nama perusahaan, Project, Usaha, dll milikmu. Harap sudah tersedia akunnya supaya memudahkan pendataan.</div>
+                    </div>
+                    <!-- Username -->
+                    <div class="form-group">
+                        <div class="label-wrapper">
+                            <label>Username</label>
+                            <i class="fas fa-info-circle info-icon" data-tooltip="usernameTooltip"></i>
+                        </div>
+                        <input type="text" id="username" placeholder="@TheKachoo" required>
+                        <div id="usernameTooltip" class="tooltip-text">Harap mengisi ini dengan username akun base, pastikan sudah memiliki akun!</div>
+                    </div>
+                    <!-- Kategori -->
+                    <div class="form-group">
+                        <div class="label-wrapper">
+                            <label>Kategori</label>
+                            <i class="fas fa-info-circle info-icon" data-tooltip="kategoriTooltip"></i>
+                        </div>
+                        <div class="radio-group" id="categoryGroup">
+                            <div class="radio-option" data-value="entertainment"><input type="radio" name="kategori" value="entertainment" id="cat1"><label for="cat1">ENTERTAINMENT</label></div>
+                            <div class="radio-option" data-value="institusi"><input type="radio" name="kategori" value="institusi" id="cat2"><label for="cat2">INSTITUSI & ORGANISASI</label></div>
+                            <div class="radio-option" data-value="media"><input type="radio" name="kategori" value="media" id="cat3"><label for="cat3">MEDIA & BERITA</label></div>
+                            <div class="radio-option" data-value="bisnis"><input type="radio" name="kategori" value="bisnis" id="cat4"><label for="cat4">BISNIS & USAHA</label></div>
+                            <div class="radio-option" data-value="keluarga"><input type="radio" name="kategori" value="keluarga" id="cat5"><label for="cat5">KELUARGA</label></div>
+                            <div class="radio-option" data-value="lainnya"><input type="radio" name="kategori" value="lainnya" id="cat6"><label for="cat6">LAINNYA</label></div>
+                        </div>
+                        <div id="kategoriTooltip" class="tooltip-text">Pilih salah satu dari kategori yang tersedia</div>
+                    </div>
+                    <!-- Nama founder -->
+                    <div class="form-group">
+                        <div class="label-wrapper">
+                            <label>Nama founder</label>
+                            <i class="fas fa-info-circle info-icon" data-tooltip="founderTooltip"></i>
+                        </div>
+                        <input type="text" id="founder" placeholder="Nama pendiri / penanggung jawab" required>
+                        <div id="founderTooltip" class="tooltip-text">Harap diisi dengan nama pendiri atau nama penanggungjawab, boleh lebih dari satu.</div>
+                    </div>
+                    <!-- Tahun terbit -->
+                    <div class="form-group">
+                        <div class="label-wrapper">
+                            <label>Tahun terbit</label>
+                            <i class="fas fa-info-circle info-icon" data-tooltip="tahunTooltip"></i>
+                        </div>
+                        <input type="number" id="tahun" placeholder="2026" min="1900" max="2030" required>
+                        <div id="tahunTooltip" class="tooltip-text">Hanya tahun, ini adalah tahun terbitnya sesuai dengan IC</div>
+                    </div>
+                    <!-- Kontak Narahubung -->
+                    <div class="form-group">
+                        <div class="label-wrapper">
+                            <label>Kontak Narahubung</label>
+                            <i class="fas fa-info-circle info-icon" data-tooltip="kontakTooltip"></i>
+                        </div>
+                        <input type="text" id="kontak" placeholder="@HaiKachoo" required>
+                        <div id="kontakTooltip" class="tooltip-text">Harap diisi dengan @ username X atau kontak narahubung. Apabila menghubungi melalui base, bisa memberikan tanda strip</div>
+                    </div>
+                    <!-- Keterangan -->
+                    <div class="form-group">
+                        <div class="label-wrapper">
+                            <label>Keterangan</label>
+                            <i class="fas fa-info-circle info-icon" data-tooltip="keteranganTooltip"></i>
+                        </div>
+                        <textarea id="keterangan" placeholder="Deskripsi singkat tentang akun / project. Contoh: Media & Berita Digital"></textarea>
+                        <div id="keteranganTooltip" class="tooltip-text">Diisi dengan keterangan singkat mengenai akun</div>
+                    </div>
+                    <!-- Input Gambar -->
+                    <div class="form-group">
+                        <div class="label-wrapper">
+                            <label>Input Gambar</label>
+                            <i class="fas fa-info-circle info-icon" data-tooltip="gambarTooltip"></i>
+                        </div>
+                        <div class="image-upload-area">
+                            <input type="file" id="gambarFile" accept="image/png" style="display:none;">
+                            <button type="button" class="file-input-label" id="uploadBtn"><i class="fas fa-upload"></i> Pilih file PNG</button>
+                            <div id="fileNameDisplay" class="file-name">Belum ada file dipilih</div>
+                            <div class="drive-link-input">
+                                <input type="text" id="gdriveLink" placeholder="Atau tempel link Google Drive (pastikan akses publik)">
+                                <div class="small-note">Pastikan link sudah diatur "Anyone with the link can view"</div>
+                            </div>
+                            <div class="small-note">Ukuran gambar disarankan 800x800px, format PNG</div>
+                        </div>
+                        <div id="gambarTooltip" class="tooltip-text">Upload file PNG 800x800px atau berikan link Google Drive publik</div>
+                    </div>
+                    <div id="formNotification" class="notification"></div>
+                    <button type="submit" class="btn-submit">Kirim Pendaftaran <i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tombol ke CHONNECT -->
+<div class="container cta-section">
+    <a href="index.html" class="cta-button" target="_blank">Lihat Direktori CHONNECT <i class="fas fa-external-link-alt"></i></a>
+    <div class="update-note"><i class="fas fa-sync-alt"></i> Update dilakukan bertahap, mohon untuk merefresh page secara berkala.</div>
+</div>
+
+<!-- SUPPORT BADGE -->
+<div class="container support-badge-container">
+    <div class="support-label">Pihak yang mendukung fitur Chonnect</div>
+    <div class="logo-strip">
+        <div class="support-item"><img src="SOC.png" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC1%3C%2Ftext%3E%3C%2Fsvg%3E'"><span class="logo-caption">Shout Out Confess</span></div>
+        <div class="support-item"><img src="outer.png" class="support-logo" onclick="openModal(this.src)"><span class="logo-caption">Outer Cosmo</span></div>
+        <div class="support-item"><img src="contoh2.png" class="support-logo" onclick="openModal(this.src)"><span class="logo-caption">Mitra 1</span></div>
+        <div class="support-item"><img src="contoh3.png" class="support-logo" onclick="openModal(this.src)"><span class="logo-caption">Mitra 2</span></div>
+        <div class="support-item"><img src="contoh4.png" class="support-logo" onclick="openModal(this.src)"><span class="logo-caption">Mitra 3</span></div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CHONNECT</h3>
+                <p>Roleplay database by KACHOO. Connecting roleplayers across platforms.</p>
+                <div class="social-links">
+                    <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+                    <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul class="footer-links">
+                    <li><span class="x-logo" style="background:white; color:black; padding:2px 6px; border-radius:6px; font-size:12px;">𝕏</span> <a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo (Official)</a></li>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Address</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> Jenderal Sudirman Avenue, South Jakarta, Indonesia</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">&copy; 2026 CHONNECT by KACHOO. All rights reserved. For Roleplay Purpose Only.</div>
+    </div>
+</footer>
+
+<script>
+    // splash screen
+    const splashDiv = document.getElementById('splash');
+    window.addEventListener('load',()=>setTimeout(()=>{splashDiv.classList.add('fade-out'); setTimeout(()=>splashDiv.style.display='none',600);},1500));
+    
+    function openModal(src){ const modal=document.getElementById('imageModal'); document.getElementById('modalImage').src=src; modal.style.display='flex'; }
+    function closeModal(){ document.getElementById('imageModal').style.display='none'; }
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+    
+    // tooltip icons: klik muncul tooltip
+    const infoIcons = document.querySelectorAll('.info-icon');
+    infoIcons.forEach(icon => {
+        icon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const tooltipId = icon.getAttribute('data-tooltip');
+            const tooltipEl = document.getElementById(tooltipId);
+            if(tooltipEl) {
+                tooltipEl.classList.toggle('show');
+                setTimeout(() => {
+                    if(tooltipEl.classList.contains('show')) setTimeout(() => tooltipEl.classList.remove('show'), 4000);
+                }, 100);
+            }
+        });
+    });
+    
+    // radio styling
+    const radioOptions = document.querySelectorAll('.radio-option');
+    radioOptions.forEach(opt => {
+        const radio = opt.querySelector('input[type="radio"]');
+        radio.addEventListener('change', function() {
+            radioOptions.forEach(o => o.classList.remove('selected'));
+            if(this.checked) opt.classList.add('selected');
+        });
+        if(radio.checked) opt.classList.add('selected');
+    });
+    
+    // file upload
+    const fileInput = document.getElementById('gambarFile');
+    const uploadBtn = document.getElementById('uploadBtn');
+    const fileNameSpan = document.getElementById('fileNameDisplay');
+    uploadBtn.addEventListener('click', ()=>fileInput.click());
+    fileInput.addEventListener('change', function(e){
+        if(this.files.length){
+            const file = this.files[0];
+            if(file.type === 'image/png') fileNameSpan.innerText = file.name;
+            else { alert('Hanya file PNG yang diperbolehkan'); fileInput.value = ''; fileNameSpan.innerText = 'Belum ada file dipilih'; }
+        } else fileNameSpan.innerText = 'Belum ada file dipilih';
+    });
+    
+    // submit ke Google Apps Script (GANTI URL)
+    const form = document.getElementById('registrationForm');
+    const notificationDiv = document.getElementById('formNotification');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        notificationDiv.style.display = 'none';
+        let selectedCat = null;
+        for(let radio of document.getElementsByName('kategori')) if(radio.checked) selectedCat = radio.value;
+        if(!selectedCat) { showNotif('Pilih salah satu kategori terlebih dahulu', 'error'); return; }
+        const nama = document.getElementById('nama').value.trim();
+        const username = document.getElementById('username').value.trim();
+        const founder = document.getElementById('founder').value.trim();
+        const tahun = document.getElementById('tahun').value.trim();
+        const kontak = document.getElementById('kontak').value.trim();
+        const keterangan = document.getElementById('keterangan').value.trim();
+        const gdriveLink = document.getElementById('gdriveLink').value.trim();
+        let imageData = '';
+        if(fileInput.files.length > 0){
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            const promise = new Promise((resolve) => {
+                reader.onload = (ev) => { imageData = ev.target.result.split(',')[1]; resolve(); };
+                reader.readAsDataURL(file);
+            });
+            await promise;
+        } else if(gdriveLink) imageData = gdriveLink;
+        else { showNotif('Harap unggah gambar PNG atau berikan link Google Drive publik', 'error'); return; }
+        const payload = { nama, username, kategori: selectedCat, founder, tahun, kontak, keterangan, imageData, isDriveLink: gdriveLink ? 'yes' : 'no' };
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzGANTI_DEW/exec';
+        showNotif('Mengirim data...', 'info');
+        try {
+            await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(payload) });
+            showNotif('Pendaftaran berhasil dikirim! Data akan ditinjau dan dimasukkan ke direktori.', 'success');
+            form.reset(); fileInput.value = ''; fileNameSpan.innerText = 'Belum ada file dipilih'; document.getElementById('gdriveLink').value = '';
+            radioOptions.forEach(o=>o.classList.remove('selected'));
+        } catch(err){ showNotif('Gagal mengirim. Coba lagi atau hubungi @HaiKachoo', 'error'); console.error(err); }
+    });
+    function showNotif(msg, type){ notificationDiv.innerText = msg; notificationDiv.className = `notification ${type}`; notificationDiv.style.display = 'block'; setTimeout(()=>{ if(notificationDiv) notificationDiv.style.display='none'; }, 5000); }
+</script>
+</body>
+</html>
