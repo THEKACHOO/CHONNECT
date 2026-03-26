@@ -347,7 +347,7 @@
 
         @media (max-width: 768px) {
             .hero {
-                padding: 115px 0 50px;
+                padding: 115px 0 30px;
             }
         }
 
@@ -397,7 +397,8 @@
             line-height: 1.7;
         }
 
-        /* CONTAINER DUKUNGAN FITUR - kontainer tetap kecil, logo diperbesar dengan efek klik */
+        /* ========== DESAIN LOGO PENDUKUNG YANG DIPERBARUI ========== */
+        /* Container tetap kecil dan rapi, logo mengikuti bentuk asli gambar tanpa kotak/lingkaran */
         .support-badge-container {
             margin-top: 20px;
             text-align: center;
@@ -417,50 +418,78 @@
             border-radius: 40px;
         }
 
+        /* Logo strip - tidak ada batasan kotak/lingkaran, background transparan */
         .logo-strip {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 24px;
-            background: rgba(0, 0, 0, 0.02);
-            padding: 12px 24px;
-            border-radius: 60px;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            gap: 20px;
+            background: transparent;
+            padding: 8px 16px;
             margin: 0 auto;
             max-width: fit-content;
         }
 
-        /* LOGO DIPERBESAR ukurannya, tapi container tetap kecil */
+        /* Logo pendukung: tanpa background kotak, tanpa border-radius memaksa, hanya gambar asli dengan ukuran kecil */
         .support-logo {
-            width: 100px;
-            height: 100px;
+            width: 64px;
+            height: auto;
+            max-height: 64px;
             object-fit: contain;
             transition: var(--transition);
-            filter: grayscale(0%);
-            border-radius: 16px;
-            background: white;
-            padding: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             cursor: pointer;
+            display: inline-block;
+            /* Tidak ada background, border, atau border-radius yang memaksakan bentuk kotak */
+            background: transparent;
+            padding: 0;
+            box-shadow: none;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.08));
         }
 
         .support-logo:hover {
-            transform: scale(1.05);
-            filter: grayscale(0%);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transform: scale(1.08);
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.12));
+        }
+        
+        /* Nama/nama pendukung di bawah logo - ukuran kecil */
+        .logo-caption {
+            text-align: center;
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--text-gray);
+            margin-top: 4px;
+            letter-spacing: 0.2px;
+            transition: color 0.2s;
+        }
+        
+        /* Setiap item logo + caption dibungkus agar caption rapi di bawah */
+        .support-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.2s;
+            max-width: 80px;
+        }
+        
+        .support-item:hover .logo-caption {
+            color: var(--primary-black);
         }
 
         @media (max-width: 640px) {
             .support-logo {
-                width: 80px;
-                height: 80px;
-                padding: 6px;
+                width: 52px;
+                max-height: 52px;
             }
             .logo-strip {
                 gap: 16px;
-                padding: 10px 20px;
+            }
+            .logo-caption {
+                font-size: 9px;
+            }
+            .support-item {
+                max-width: 70px;
             }
         }
 
@@ -562,7 +591,8 @@
             100% { transform: scale(1.02); opacity: 1; }
         }
 
-        /* KATEGORI BUTTON SECTION */
+        /* ========== DESAIN KATEGORI YANG DIPERBARUI UNTUK MOBILE ========== */
+        /* Mempertahankan list (teks) yang sama, hanya ubah visual agar lebih menarik dan nyaman di mobile */
         .category-section {
             padding: 20px 0 40px;
             background: var(--primary-white);
@@ -570,7 +600,7 @@
 
         @media (max-width: 768px) {
             .category-section {
-                padding: 30px 0 30px;
+                padding: 24px 0 32px;
             }
         }
 
@@ -586,65 +616,88 @@
             text-align: center;
             color: var(--text-gray);
             max-width: 600px;
-            margin: 0 auto 24px;
+            margin: 0 auto 28px;
             font-size: clamp(0.9rem, 3vw, 1rem);
         }
 
+        /* Category Grid: tampilan modern, responsive, tombol lebih nyaman disentuh di mobile */
         .category-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
+            gap: 14px;
             margin-top: 0;
         }
 
-        @media (min-width: 600px) {
+        @media (min-width: 500px) {
             .category-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
+                gap: 16px;
             }
         }
 
-        @media (min-width: 900px) {
+        @media (min-width: 768px) {
             .category-grid {
                 grid-template-columns: repeat(6, 1fr);
                 gap: 18px;
             }
         }
 
+        /* Desain tombol kategori baru: lebih elegan, padding yang pas untuk mobile, efek sentuh halus */
         .cat-btn {
             background: var(--primary-white);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: var(--border-radius);
-            padding: 20px 12px;
+            border: 1.5px solid rgba(0, 0, 0, 0.08);
+            border-radius: 60px; /* Membuat bentuk capsule modern */
+            padding: 14px 8px;
             font-family: 'Outfit', sans-serif;
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
+            font-size: 0.75rem;
+            letter-spacing: 0.8px;
             color: var(--primary-black);
             cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--card-shadow);
+            transition: all 0.25s ease;
             width: 100%;
             text-align: center;
-            line-height: 1.3;
-            animation: float 3s ease-in-out infinite;
-            transform: translateY(0);
+            line-height: 1.2;
+            backdrop-filter: blur(2px);
+            background-color: rgba(255,255,255,0.95);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-
+        /* Hover dan active untuk mobile friendly */
         .cat-btn:hover {
-            animation-play-state: paused;
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: var(--hover-shadow);
-            border-color: rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+            border-color: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            background: var(--primary-white);
+        }
+        
+        .cat-btn:active {
+            transform: scale(0.97);
+            transition-duration: 0.05s;
         }
 
-        /* LIST USER SECTION */
+        .active-cat-indicator {
+            background-color: var(--primary-black);
+            color: var(--primary-white);
+            border-color: var(--primary-black);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+        }
+        
+        .active-cat-indicator:hover {
+            background-color: var(--primary-black);
+            color: white;
+        }
+
+        @media (max-width: 480px) {
+            .cat-btn {
+                font-size: 0.7rem;
+                padding: 12px 6px;
+                letter-spacing: 0.5px;
+            }
+        }
+
+        /* LIST USER SECTION - tetap sama */
         .list-section {
             padding: 20px 0 60px;
             background: var(--accent-gray);
@@ -765,8 +818,15 @@
             font-size: 1rem;
             border: 1px dashed rgba(0,0,0,0.1);
         }
-
-        /* FOOTER */
+        
+        .search-highlight {
+            background-color: rgba(0,0,0,0.08);
+            font-weight: 700;
+            border-radius: 4px;
+            padding: 0 2px;
+        }
+        
+        /* FOOTER (tetap) */
         footer {
             background: var(--primary-black);
             color: var(--primary-white);
@@ -784,12 +844,6 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 48px;
             margin-bottom: 50px;
-        }
-
-        @media (max-width: 768px) {
-            .footer-content {
-                gap: 32px;
-            }
         }
 
         .footer-section h3 {
@@ -873,20 +927,6 @@
             font-size: 18px;
             font-weight: 700;
             margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-            letter-spacing: 0px;
-            text-transform: none;
-            color: var(--primary-white);
-        }
-        .featured-support h4::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 28px;
-            height: 2px;
-            background: var(--primary-white);
         }
         .support-links {
             display: flex;
@@ -909,18 +949,6 @@
             color: white;
             transform: translateX(3px);
         }
-        .support-link-item i {
-            font-size: 13px;
-            opacity: 0.7;
-        }
-        @media (max-width: 600px) {
-            .support-links {
-                gap: 18px;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
         .copyright {
             text-align: center;
             padding-top: 30px;
@@ -933,33 +961,17 @@
             .container {
                 padding: 0 16px;
             }
-            
             .user-link-card {
                 flex-direction: column;
                 text-align: center;
             }
-            
             .user-name-row {
                 justify-content: center;
             }
-            
             .user-logo {
                 width: 80px;
                 height: 80px;
             }
-        }
-        
-        .search-highlight {
-            background-color: rgba(0,0,0,0.08);
-            font-weight: 700;
-            border-radius: 4px;
-            padding: 0 2px;
-        }
-        
-        .active-cat-indicator {
-            background-color: var(--primary-black);
-            color: var(--primary-white);
-            border-color: var(--primary-black);
         }
     </style>
 </head>
@@ -968,7 +980,6 @@
         <img src="logochonnect1.png" alt="CHONNECT logo" class="splash-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2270%22%20fill%3D%22%23333%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ECHONNECT%3C%2Ftext%3E%3C%2Fsvg%3E');">
     </div>
 
-    <!-- MODAL UNTUK ZOOM GAMBAR -->
     <div id="imageModal" class="image-modal" onclick="closeModal()">
         <span class="modal-close" onclick="closeModal()">&times;</span>
         <img class="modal-image" id="modalImage" src="" alt="Zoomed Logo">
@@ -979,7 +990,6 @@
             <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                 <img src="logochonnect1.png" alt="CHONNECT Logo" class="logo-img">
             </div>
-            
             <div class="search-wrapper">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
@@ -987,7 +997,6 @@
                     <button class="search-clear" id="searchClearBtn"><i class="fas fa-times-circle"></i></button>
                 </div>
             </div>
-            
             <nav class="desktop-nav">
                 <a href="https://thekachoo.github.io/Home/" class="nav-icon-link" target="_blank" rel="noopener">
                     <img src="logo-thekachoo.png" alt="Kachoo" class="nav-icon-img" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2220%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2226%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%3EK%3C%2Ftext%3E%3C%2Fsvg%3E'">
@@ -996,41 +1005,52 @@
                     <img src="chobank1.png" alt="Chobank" class="nav-icon-img" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2220%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2226%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%3EC%3C%2Ftext%3E%3C%2Fsvg%3E'">
                 </a>
             </nav>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
         </div>
     </header>
 
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-close" id="mobileMenuClose">
-            <i class="fas fa-times"></i>
-        </button>
+        <button class="mobile-menu-close" id="mobileMenuClose"><i class="fas fa-times"></i></button>
         <ul class="mobile-menu-list">
-            <li class="mobile-menu-item">
-                <a href="https://thekachoo.github.io/Home/" class="mobile-menu-link" target="_blank" rel="noopener">
-                    <img src="thekachoologo.png" class="mobile-icon-img" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23ccc%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2216%22%20font-size%3D%228%22%20text-anchor%3D%22middle%22%3EK%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                    Kachoo
-                </a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="https://thekachoo.github.io/CHOBANK/" class="mobile-menu-link" target="_blank" rel="noopener">
-                    <img src="chobank1.png" class="mobile-icon-img" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23ccc%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2216%22%20font-size%3D%228%22%20text-anchor%3D%22middle%22%3EC%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                    Chobank
-                </a>
-            </li>
+            <li class="mobile-menu-item"><a href="https://thekachoo.github.io/Home/" class="mobile-menu-link" target="_blank" rel="noopener"><img src="thekachoologo.png" class="mobile-icon-img"> Kachoo</a></li>
+            <li class="mobile-menu-item"><a href="https://thekachoo.github.io/CHOBANK/" class="mobile-menu-link" target="_blank" rel="noopener"><img src="chobank1.png" class="mobile-icon-img"> Chobank</a></li>
         </ul>
     </div>
 
     <section class="hero">
         <div class="container hero-content">
             <h1>CHONNECT</h1>
-            <p class="hero-subtitle">
-                Terhubung lebih mudah bersama Chonnect. Dengan sistem direktori yang memudahkan terhubungnya berbagai kontak untuk keperluan relasi
-            </p>
+            <p class="hero-subtitle">Terhubung lebih mudah bersama Chonnect. Dengan sistem direktori yang memudahkan terhubungnya berbagai kontak untuk keperluan relasi</p>
         </div>
+        
+        <!-- Bagian pendukung: logo tanpa kotak/lingkaran, ukuran kecil, ada nama di bawah -->
+        <div class="container support-badge-container">
+            <div class="support-label">Pihak yang mendukung fitur Chonnect</div>
+            <div class="logo-strip">
+                <div class="support-item">
+                    <img src="outer.png" alt="Outer Cosmo" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2080%2080%22%3E%3Ctext%20x%3D%2240%22%20y%3D%2245%22%20font-size%3D%2212%22%20fill%3D%22gray%22%3EOuter%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <span class="logo-caption">Outer Cosmo</span>
+                </div>
+                <div class="support-item">
+                    <img src="SOC.png" alt="SOC" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2080%2080%22%3E%3Ctext%20x%3D%2240%22%20y%3D%2245%22%20font-size%3D%2212%22%20fill%3D%22gray%22%3ESOC%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <span class="logo-caption">SOC</span>
+                </div>
+                <div class="support-item">
+                    <img src="contoh2.png" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2080%2080%22%3E%3Ctext%20x%3D%2240%22%20y%3D%2245%22%20font-size%3D%2212%22%20fill%3D%22gray%22%3EMitra%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <span class="logo-caption">Mitra 1</span>
+                </div>
+                <div class="support-item">
+                    <img src="contoh3.png" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2080%2080%22%3E%3Ctext%20x%3D%2240%22%20y%3D%2245%22%20font-size%3D%2212%22%20fill%3D%22gray%22%3EMitra%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <span class="logo-caption">Mitra 2</span>
+                </div>
+                <div class="support-item">
+                    <img src="contoh4.png" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2080%2080%22%3E%3Ctext%20x%3D%2240%22%20y%3D%2245%22%20font-size%3D%2212%22%20fill%3D%22gray%22%3EMitra%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <span class="logo-caption">Mitra 3</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="category-section">
         <div class="container">
@@ -1049,338 +1069,77 @@
 
     <section class="list-section" id="listSection" style="display: none;">
         <div class="container">
-            <div class="list-title" id="activeCategoryTitle">
-                <i class="fas fa-users"></i> 
-                <span id="categoryNameDisplay">PILIH KATEGORI</span>
-            </div>
+            <div class="list-title"><i class="fas fa-users"></i> <span id="categoryNameDisplay">PILIH KATEGORI</span></div>
             <div id="userListContainer" class="user-grid"></div>
-        </div>
-    </section>
-
-        <!-- CONTAINER: logo diperbesar dan bisa diklik untuk zoom -->
-        <div class="container support-badge-container">
-            <div class="support-label">Pihak yang mendukung fitur Chonnect</div>
-            <div class="logo-strip">
-                <img src="outer.png" alt="support logo" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23ddd%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2260%22%20fill%3D%22%23666%22%20text-anchor%3D%22middle%22%3Eouter%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                <img src="contoh1.png" alt="support logo" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC1%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                <img src="contoh2.png" alt="support logo" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC2%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                <img src="contoh3.png" alt="support logo" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC3%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                <img src="contoh4.png" alt="support logo" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC4%3C%2Ftext%3E%3C%2Fsvg%3E'">
-            </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>CHONNECT</h3>
-                    <p style="color: rgba(255,255,255,0.7); margin-top: 16px; max-width: 300px;">
-                        Roleplay database by KACHOO. Connecting roleplayers across platforms.
-                    </p>
-                    <div class="social-links">
-                        <a href="mailto:ohkachoo@gmail.com" class="social-link">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="https://twitter.com/thekachoo" target="_blank" class="social-link">
-                            <span class="x-logo">𝕏</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="featured-support">
-                    <h4>Support By</h4>
-                    <div class="support-links">
-                        <a href="https://x.com/Outer_Cosmo" target="_blank" class="support-link-item"><i class="fa-brands fa-x-twitter"></i> Outer Cosmo Menfess</a>
-                        <a href="#" class="support-link-item">Contoh</a>
-                        <a href="#" class="support-link-item">Contoh</a>
-                        <a href="#" class="support-link-item">Contoh</a>
-                        <a href="#" class="support-link-item">Contoh</a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Contact</h3>
-                    <ul class="footer-links">
-                        <li><span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span>
-                            <a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo (Official)</a>
-                        </li>
-                        <li><span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span>
-                            <a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo (Contact Person)</a>
-                        </li>
-                        <li><i class="fas fa-envelope" style="color: rgba(255,255,255,0.7);"></i>
-                            <a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Address</h3>
-                    <ul class="footer-links">
-                        <li style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">
-                            <i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>
-                            Jenderal Sudirman Avenue,<br>
-                            Lots 61–62,<br>
-                            South Jakarta 12930,<br>
-                            Indonesia
-                        </li>
-                    </ul>
-                </div>
+                <div class="footer-section"><h3>CHONNECT</h3><p style="color: rgba(255,255,255,0.7); margin-top: 16px;">Roleplay database by KACHOO. Connecting roleplayers across platforms.</p><div class="social-links"><a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a><a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a></div></div>
+                <div class="featured-support"><h4>Support By</h4><div class="support-links"><a href="https://x.com/txtdrreizei" target="_blank" class="support-link-item"><i class="fa-brands fa-x-twitter"></i>Shout Out Confess</a><a href="https://x.com/Outer_Cosmo" target="_blank" class="support-link-item"><i class="fa-brands fa-x-twitter"></i>Outer Cosmo</a><a href="#" class="support-link-item">Contoh</a><a href="#" class="support-link-item">Contoh</a></div></div>
+                <div class="footer-section"><h3>Contact</h3><ul class="footer-links"><li><span class="x-logo" style="background:white; padding:2px 4px; border-radius:3px;">𝕏</span> <a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo</a></li><li><i class="fas fa-envelope"></i> <a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li></ul></div>
+                <div class="footer-section"><h3>Address</h3><ul class="footer-links"><li style="color: rgba(255,255,255,0.7);"><i class="fas fa-map-marker-alt"></i> Jenderal Sudirman Avenue, Jakarta</li></ul></div>
             </div>
-            
-            <div class="copyright">
-                &copy; 2026 CHONNECT by KACHOO. All rights reserved. For Roleplay Purpose Only.
-            </div>
+            <div class="copyright">&copy; 2026 CHONNECT by KACHOO. For Roleplay Purpose Only.</div>
         </div>
     </footer>
 
     <script>
-        // SPLASH
         const splash = document.getElementById('splash');
-        function hideSplash() {
-            splash.classList.add('fade-out');
-            splash.addEventListener('transitionend', () => splash.style.display = 'none', { once: true });
-        }
+        function hideSplash() { splash.classList.add('fade-out'); splash.addEventListener('transitionend', () => splash.style.display = 'none', { once: true }); }
         window.addEventListener('load', () => setTimeout(hideSplash, 1500));
 
-        // MODAL ZOOM IMAGE
-        function openModal(imgSrc) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            modal.style.display = 'flex';
-            modalImg.src = imgSrc;
-            document.body.style.overflow = 'hidden';
-        }
+        function openModal(imgSrc) { document.getElementById('imageModal').style.display = 'flex'; document.getElementById('modalImage').src = imgSrc; document.body.style.overflow = 'hidden'; }
+        function closeModal() { document.getElementById('imageModal').style.display = 'none'; document.body.style.overflow = ''; }
+        document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
         
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            modal.style.display = 'none';
-            document.body.style.overflow = '';
-        }
-        
-        // Close modal with ESC key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        // MOBILE MENU
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn'), mobileMenu = document.getElementById('mobileMenu'), mobileMenuOverlay = document.getElementById('mobileMenuOverlay'), mobileMenuClose = document.getElementById('mobileMenuClose');
         function openMobileMenu() { mobileMenu.classList.add('active'); mobileMenuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
         function closeMobileMenu() { mobileMenu.classList.remove('active'); mobileMenuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
-        mobileMenuBtn.addEventListener('click', openMobileMenu);
-        mobileMenuClose.addEventListener('click', closeMobileMenu);
-        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-
-        // DATA USER
+        mobileMenuBtn.addEventListener('click', openMobileMenu); mobileMenuClose.addEventListener('click', closeMobileMenu); mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        
         const userData = {
-            entertainment: [
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png', category: 'entertainment' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png', category: 'entertainment' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png', category: 'entertainment' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png', category: 'entertainment' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png', category: 'entertainment' }
-            ],
-            institusi: [
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png', category: 'institusi' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png', category: 'institusi' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png', category: 'institusi' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png', category: 'institusi' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png', category: 'institusi' }
-            ],
-            media: [
-                { name: 'The Kachoo', username: '@TheKachoo', bio: 'Media & Berita', logo: 'logo-thekachoo.png', category: 'media' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png', category: 'media' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png', category: 'media' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png', category: 'media' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png', category: 'media' }
-            ],
-            bisnis: [
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png', category: 'bisnis' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png', category: 'bisnis' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png', category: 'bisnis' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png', category: 'bisnis' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png', category: 'bisnis' }
-            ],
-            keluarga: [
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png', category: 'keluarga' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png', category: 'keluarga' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png', category: 'keluarga' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png', category: 'keluarga' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png', category: 'keluarga' }
-            ],
-            lainnya: [
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png', category: 'lainnya' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png', category: 'lainnya' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png', category: 'lainnya' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png', category: 'lainnya' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png', category: 'lainnya' }
-            ]
+            entertainment: [ { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png' }, { name: 'Contoh2', username: '@contoh', bio: 'Roleplayer', logo: 'logo2.png' } ],
+            institusi: [ { name: 'Contoh Instansi', username: '@instansi', bio: 'Organisasi', logo: 'logo1.png' } ],
+            media: [ { name: 'The Kachoo', username: '@TheKachoo', bio: 'Media & Berita', logo: 'logo-thekachoo.png' } ],
+            bisnis: [ { name: 'Bisnis', username: '@bisnis', bio: 'Usaha', logo: 'logo1.png' } ],
+            keluarga: [ { name: 'Keluarga', username: '@keluarga', bio: 'Family', logo: 'logo1.png' } ],
+            lainnya: [ { name: 'Lainnya', username: '@lain', bio: 'Lainnya', logo: 'logo1.png' } ]
         };
-
-        const categoryNames = {
-            entertainment: 'ENTERTAINMENT',
-            institusi: 'INSTITUSI & ORGANISASI',
-            media: 'MEDIA & BERITA',
-            bisnis: 'BISNIS & USAHA',
-            keluarga: 'KELUARGA',
-            lainnya: 'LAINNYA'
-        };
-
-        let currentCategory = null;
-        let currentSearchTerm = '';
-        const listSection = document.getElementById('listSection');
-        const userListContainer = document.getElementById('userListContainer');
-        const categoryNameDisplay = document.getElementById('categoryNameDisplay');
-        const searchInput = document.getElementById('globalSearchInput');
-        const searchClearBtn = document.getElementById('searchClearBtn');
-        
-        function getAllUsers() {
-            let all = [];
-            for (let cat in userData) {
-                all = all.concat(userData[cat]);
-            }
-            return all;
-        }
-        
-        function renderSearchResults() {
-            const term = currentSearchTerm.toLowerCase().trim();
-            if (term === '') {
-                if (!currentCategory) {
-                    listSection.style.display = 'none';
-                    return;
-                } else {
-                    const items = userData[currentCategory] || [];
-                    displayUsers(items, categoryNames[currentCategory]);
-                    return;
-                }
-            }
-            
-            const allUsers = getAllUsers();
-            const filtered = allUsers.filter(item => 
-                item.name.toLowerCase().includes(term) || 
-                item.bio.toLowerCase().includes(term) ||
-                item.username.toLowerCase().includes(term)
-            );
-            
-            displayUsers(filtered, `HASIL PENCARIAN: "${currentSearchTerm}"`);
-        }
-        
+        const categoryNames = { entertainment:'ENTERTAINMENT', institusi:'INSTITUSI & ORGANISASI', media:'MEDIA & BERITA', bisnis:'BISNIS & USAHA', keluarga:'KELUARGA', lainnya:'LAINNYA' };
+        let currentCategory = null, currentSearchTerm = '';
+        const listSection = document.getElementById('listSection'), userListContainer = document.getElementById('userListContainer'), categoryNameDisplay = document.getElementById('categoryNameDisplay'), searchInput = document.getElementById('globalSearchInput'), searchClearBtn = document.getElementById('searchClearBtn');
+        function getAllUsers() { let all=[]; for(let cat in userData) all=all.concat(userData[cat]); return all; }
         function displayUsers(users, title) {
-            categoryNameDisplay.textContent = title;
-            listSection.style.display = 'block';
-            
-            if (!users.length) {
-                userListContainer.innerHTML = `<div class="empty-state"><i class="fas fa-search" style="font-size: 48px; margin-bottom: 16px; display: block; color: #ccc;"></i><p>Tidak ada hasil yang sesuai dengan "${currentSearchTerm}"</p></div>`;
-                return;
-            }
-            
-            let htmlString = '';
-            users.forEach(item => {
-                const cleanUsername = item.username.startsWith('@') ? item.username.slice(1) : item.username;
-                const profileUrl = `https://x.com/${cleanUsername}`;
-                let displayName = item.name;
-                let displayBio = item.bio;
-                if (currentSearchTerm && currentSearchTerm.trim()) {
-                    const regex = new RegExp(`(${currentSearchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-                    displayName = item.name.replace(regex, '<span class="search-highlight">$1</span>');
-                    displayBio = item.bio.replace(regex, '<span class="search-highlight">$1</span>');
+            categoryNameDisplay.textContent = title; listSection.style.display = 'block';
+            if(!users.length) { userListContainer.innerHTML = `<div class="empty-state"><i class="fas fa-search" style="font-size:48px;color:#ccc;"></i><p>Tidak ada hasil</p></div>`; return; }
+            let html='';
+            users.forEach(item=>{ let cleanUsername = item.username.startsWith('@')?item.username.slice(1):item.username; let profileUrl = `https://x.com/${cleanUsername}`;
+                let displayName=item.name, displayBio=item.bio;
+                if(currentSearchTerm.trim()){
+                    let regex = new RegExp(`(${currentSearchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                    displayName = item.name.replace(regex,'<span class="search-highlight">$1</span>'); displayBio = item.bio.replace(regex,'<span class="search-highlight">$1</span>');
                 }
-                
-                htmlString += `
-                    <div class="user-item">
-                        <a href="${profileUrl}" class="user-link-card" target="_blank" rel="noopener">
-                            <img src="${item.logo}" alt="logo" class="user-logo" 
-                                 onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ELOGO%3C%2Ftext%3E%3C%2Fsvg%3E');">
-                            <div class="user-info">
-                                <div class="user-name-row">
-                                    <span class="user-name">${displayName}</span>
-                                    <span class="user-username">${item.username}</span>
-                                </div>
-                                <div class="user-bio">${displayBio}</div>
-                            </div>
-                        </a>
-                    </div>
-                `;
+                html+=`<div class="user-item"><a href="${profileUrl}" class="user-link-card" target="_blank"><img src="${item.logo}" class="user-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2080%2080%22%3E%3Crect%20width%3D%2280%22%20height%3D%2280%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%2240%22%20y%3D%2245%22%20font-size%3D%2210%22%3ELOGO%3C%2Ftext%3E%3C%2Fsvg%3E'"><div class="user-info"><div class="user-name-row"><span class="user-name">${displayName}</span><span class="user-username">${item.username}</span></div><div class="user-bio">${displayBio}</div></div></a></div>`;
             });
-            userListContainer.innerHTML = htmlString;
+            userListContainer.innerHTML = html;
         }
-        
         function handleGlobalSearch() {
-            currentSearchTerm = searchInput.value;
-            if (searchClearBtn) searchClearBtn.style.display = currentSearchTerm ? 'block' : 'none';
-            
-            if (currentSearchTerm.trim() !== '') {
-                document.querySelectorAll('.cat-btn').forEach(btn => {
-                    btn.classList.remove('active-cat-indicator');
-                });
-                renderSearchResults();
-            } else {
-                if (currentCategory) {
-                    document.querySelectorAll('.cat-btn').forEach(btn => {
-                        if (btn.getAttribute('data-category') === currentCategory) {
-                            btn.classList.add('active-cat-indicator');
-                        } else {
-                            btn.classList.remove('active-cat-indicator');
-                        }
-                    });
-                    const items = userData[currentCategory] || [];
-                    displayUsers(items, categoryNames[currentCategory]);
-                } else {
-                    listSection.style.display = 'none';
-                }
-            }
+            currentSearchTerm = searchInput.value; searchClearBtn.style.display = currentSearchTerm ? 'block' : 'none';
+            if(currentSearchTerm.trim() !== ''){ document.querySelectorAll('.cat-btn').forEach(btn=>btn.classList.remove('active-cat-indicator')); renderSearchResults(); }
+            else { if(currentCategory){ document.querySelectorAll('.cat-btn').forEach(btn=>{ if(btn.getAttribute('data-category')===currentCategory) btn.classList.add('active-cat-indicator'); else btn.classList.remove('active-cat-indicator'); }); displayUsers(userData[currentCategory]||[], categoryNames[currentCategory]); } else listSection.style.display='none'; }
         }
-        
-        window.switchCategory = function(categoryKey) {
-            currentCategory = categoryKey;
-            if (searchInput) {
-                searchInput.value = '';
-                currentSearchTerm = '';
-                if (searchClearBtn) searchClearBtn.style.display = 'none';
-            }
-            
-            document.querySelectorAll('.cat-btn').forEach(btn => {
-                if (btn.getAttribute('data-category') === categoryKey) {
-                    btn.classList.add('active-cat-indicator');
-                } else {
-                    btn.classList.remove('active-cat-indicator');
-                }
-            });
-            
-            const items = userData[categoryKey] || [];
-            displayUsers(items, categoryNames[categoryKey]);
+        function renderSearchResults(){ const term=currentSearchTerm.toLowerCase().trim(); if(term===''){ if(currentCategory) displayUsers(userData[currentCategory]||[],categoryNames[currentCategory]); else listSection.style.display='none'; return; } const filtered=getAllUsers().filter(i=>i.name.toLowerCase().includes(term)||i.bio.toLowerCase().includes(term)||i.username.toLowerCase().includes(term)); displayUsers(filtered,`HASIL PENCARIAN: "${currentSearchTerm}"`); }
+        window.switchCategory = function(cat){
+            currentCategory=cat; if(searchInput) { searchInput.value=''; currentSearchTerm=''; if(searchClearBtn) searchClearBtn.style.display='none'; }
+            document.querySelectorAll('.cat-btn').forEach(btn=>{ if(btn.getAttribute('data-category')===cat) btn.classList.add('active-cat-indicator'); else btn.classList.remove('active-cat-indicator'); });
+            displayUsers(userData[cat]||[], categoryNames[cat]);
         };
-        
-        if (searchInput) searchInput.addEventListener('input', handleGlobalSearch);
-        if (searchClearBtn) {
-            searchClearBtn.addEventListener('click', () => {
-                if (searchInput) searchInput.value = '';
-                handleGlobalSearch();
-                searchInput.focus();
-            });
-        }
-        
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                if (!currentCategory && (!searchInput.value || searchInput.value === '')) {
-                    listSection.style.display = 'none';
-                }
-            }, 100);
-        });
-        
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.boxShadow = '0 4px 24px rgba(0, 0, 0, 0.08)';
-            } else {
-                header.style.boxShadow = 'none';
-            }
-        });
+        if(searchInput) searchInput.addEventListener('input', handleGlobalSearch);
+        if(searchClearBtn) searchClearBtn.addEventListener('click',()=>{ if(searchInput) searchInput.value=''; handleGlobalSearch(); searchInput.focus(); });
+        window.addEventListener('scroll',()=>{ document.querySelector('header').style.boxShadow = window.scrollY>100 ? '0 4px 24px rgba(0,0,0,0.08)' : 'none'; });
     </script>
 </body>
     </html>
