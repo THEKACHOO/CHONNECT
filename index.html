@@ -466,6 +466,7 @@
             flex-direction: column;
             align-items: center;
             text-decoration: none;
+            cursor: pointer;
         }
 
         @media (max-width: 640px) {
@@ -997,7 +998,7 @@
         <img src="logochonnect1.png" alt="CHONNECT logo" class="splash-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2270%22%20fill%3D%22%23333%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ECHONNECT%3C%2Ftext%3E%3C%2Fsvg%3E');">
     </div>
 
-    <!-- MODAL UNTUK ZOOM GAMBAR -->
+    <!-- MODAL UNTUK ZOOM GAMBAR (tetap dipertahankan untuk keperluan lain jika diperlukan) -->
     <div id="imageModal" class="image-modal" onclick="closeModal()">
         <span class="modal-close" onclick="closeModal()">&times;</span>
         <img class="modal-image" id="modalImage" src="" alt="Zoomed Logo">
@@ -1098,24 +1099,24 @@
     <div class="container support-badge-container">
         <div class="support-label">Pihak yang mendukung fitur Chonnect</div>
         <div class="logo-strip">
-            <div class="support-item">
-                <img src="SOC.png" alt="support logo" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC1%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <div class="support-item" onclick="window.open('https://x.com/txtdrreizei', '_blank')">
+                <img src="SOC.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC1%3C%2Ftext%3E%3C%2Fsvg%3E'">
                 <span class="logo-caption">Shout Out Confess</span>
             </div>
-            <div class="support-item">
-                <img src="outer.png" alt="support logo" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23ddd%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2260%22%20fill%3D%22%23666%22%20text-anchor%3D%22middle%22%3Eouter%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <div class="support-item" onclick="window.open('https://x.com/Outer_Cosmo', '_blank')">
+                <img src="outer.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23ddd%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2260%22%20fill%3D%22%23666%22%20text-anchor%3D%22middle%22%3Eouter%3C%2Ftext%3E%3C%2Fsvg%3E'">
                 <span class="logo-caption">Outer Cosmo</span>
             </div>
-            <div class="support-item">
-                <img src="IndecentPals.png" alt="support logo" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC2%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <div class="support-item" onclick="window.open('https://x.com/indecentpals', '_blank')">
+                <img src="IndecentPals.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC2%3C%2Ftext%3E%3C%2Fsvg%3E'">
                 <span class="logo-caption">Indecent Pals</span>
             </div>
-            <div class="support-item">
-                <img src="PromptIdeas.png" alt="support logo" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC3%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <div class="support-item" onclick="window.open('https://x.com/promptideas', '_blank')">
+                <img src="PromptIdeas.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC3%3C%2Ftext%3E%3C%2Fsvg%3E'">
                 <span class="logo-caption">Prompt Ideas</span>
             </div>
-            <div class="support-item">
-                <img src="AURPID.png" alt="support logo" class="support-logo" onclick="openModal(this.src)" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC4%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <div class="support-item" onclick="window.open('https://x.com/AUroleplayID', '_blank')">
+                <img src="AURPID.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC4%3C%2Ftext%3E%3C%2Fsvg%3E'">
                 <span class="logo-caption">AU Roleplay ID</span>
             </div>
         </div>
@@ -1127,7 +1128,7 @@
                 <div class="footer-section">
                     <h3>CHONNECT</h3>
                     <p style="color: rgba(255,255,255,0.7); margin-top: 16px; max-width: 300px;">
-                        Roleplay database by KACHOO. Connecting roleplayers across platforms.
+                        A space dedicated to connecting roleplayers across platforms through creativity and collaboration. This website and all its contents are created solely for roleplaying and fictional purposes. All characters, stories, and portrayals are not affiliated with or representative of the real-life individuals whose faces or identities may be used. KACHOO does not receive any financial compensation from this project.
                     </p>
                     <div class="social-links">
                         <a href="mailto:ohkachoo@gmail.com" class="social-link">
@@ -1194,7 +1195,7 @@
         }
         window.addEventListener('load', () => setTimeout(hideSplash, 1500));
 
-        // MODAL ZOOM IMAGE
+        // MODAL ZOOM IMAGE (tetap dipertahankan untuk keperluan lain)
         function openModal(imgSrc) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
