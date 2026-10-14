@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>CHONNECT by KACHOO</title>
-    <!-- Google Fonts: Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ROOT VARIABLES - TIDAK DIUBAH */
         :root {
             --primary-black: #000000;
             --primary-white: #FFFFFF;
@@ -22,13 +19,7 @@
             --border-radius: 12px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Outfit', sans-serif;
             background-color: var(--primary-white);
@@ -38,687 +29,311 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* HEADER - TIDAK DIUBAH */
         header {
-            background-color: var(--primary-white);
+            background-color: rgba(255, 255, 255, 0.98);
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             padding: 12px 0;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.98);
+            transition: box-shadow 0.3s;
         }
+        .header-content { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+        .logo-container { display: flex; align-items: center; cursor: pointer; flex-shrink: 0; }
+        .logo-img { height: 44px; width: auto; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)); }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .logo-img {
-            height: 44px;
-            width: auto;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-        }
-
-        /* SEARCH ENGINE - TIDAK DIUBAH */
-        .search-wrapper {
-            flex: 1;
-            max-width: 280px;
-            position: relative;
-        }
-
+        .search-wrapper { flex: 1; max-width: 280px; position: relative; }
         .search-box {
-            display: flex;
-            align-items: center;
+            display: flex; align-items: center;
             background: var(--accent-gray);
             border-radius: 40px;
             padding: 6px 12px;
             border: 1px solid rgba(0, 0, 0, 0.08);
             transition: var(--transition);
         }
-
         .search-box:focus-within {
             border-color: var(--primary-black);
             box-shadow: 0 0 0 2px rgba(0,0,0,0.05);
             background: var(--primary-white);
         }
-
-        .search-box i {
-            color: var(--text-gray);
-            font-size: 14px;
-            margin-right: 6px;
-        }
-
+        .search-box i { color: var(--text-gray); font-size: 14px; margin-right: 6px; }
         .search-input {
-            flex: 1;
-            border: none;
-            background: transparent;
-            font-family: 'Outfit', sans-serif;
-            font-size: 14px;
-            padding: 6px 0;
-            outline: none;
-            color: var(--primary-black);
+            flex: 1; border: none; background: transparent;
+            font-family: 'Outfit', sans-serif; font-size: 14px;
+            padding: 6px 0; outline: none; color: var(--primary-black);
             min-width: 0;
         }
-
-        .search-input::placeholder {
-            color: var(--text-gray);
-            font-weight: 400;
-            font-size: 13px;
-        }
-
+        .search-input::placeholder { color: var(--text-gray); font-weight: 400; font-size: 13px; }
         .search-clear {
-            background: none;
-            border: none;
-            color: var(--text-gray);
-            cursor: pointer;
-            font-size: 14px;
-            padding: 4px;
-            border-radius: 50%;
-            display: none;
-            transition: var(--transition);
-            flex-shrink: 0;
-            margin-left: 4px;
+            background: none; border: none;
+            color: var(--text-gray); cursor: pointer;
+            font-size: 14px; padding: 4px;
+            border-radius: 50%; display: none;
+            flex-shrink: 0; margin-left: 4px;
         }
+        .search-clear:hover { color: var(--primary-black); }
 
-        .search-clear:hover {
-            color: var(--primary-black);
-        }
-
-        /* Desktop Navigation - TIDAK DIUBAH */
-        .desktop-nav {
-            display: flex;
-            gap: 12px;
-            background: transparent;
-            padding: 0;
-            border-radius: 0;
-            flex-shrink: 0;
-            align-items: center;
-        }
-        
+        .desktop-nav { display: flex; gap: 12px; flex-shrink: 0; align-items: center; }
         .nav-icon-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px;
             background: var(--accent-gray);
             border-radius: 40px;
             transition: var(--transition);
             border: 1px solid rgba(0, 0, 0, 0.08);
             text-decoration: none;
         }
-        
         .nav-icon-link:hover {
             background: var(--primary-black);
             transform: translateY(-2px);
             box-shadow: var(--card-shadow);
             border-color: var(--primary-black);
         }
-        
-        .nav-icon-img {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
-            display: block;
-            transition: filter 0.2s;
-        }
-        
-        .nav-icon-link:hover .nav-icon-img {
-            filter: brightness(0) invert(1);
-        }
+        .nav-icon-img { width: 24px; height: 24px; object-fit: contain; transition: filter 0.2s; }
+        .nav-icon-link:hover .nav-icon-img { filter: brightness(0) invert(1); }
 
         @media (max-width: 768px) {
-            .desktop-nav {
-                display: none;
-            }
-            
-            .search-wrapper {
-                max-width: 200px;
-            }
-            
-            .search-box {
-                padding: 5px 10px;
-            }
-            
-            .search-input {
-                font-size: 12px;
-            }
-            
-            .search-input::placeholder {
-                font-size: 11px;
-            }
-            
-            .logo-img {
-                height: 38px;
-            }
-            
-            .search-clear {
-                font-size: 12px;
-                padding: 2px;
-            }
+            .desktop-nav { display: none; }
+            .search-wrapper { max-width: 200px; }
+            .search-box { padding: 5px 10px; }
+            .search-input { font-size: 12px; }
+            .search-input::placeholder { font-size: 11px; }
+            .logo-img { height: 38px; }
         }
-
         @media (max-width: 480px) {
-            .search-wrapper {
-                max-width: 160px;
-            }
-            
-            .search-box i {
-                font-size: 11px;
-                margin-right: 4px;
-            }
+            .search-wrapper { max-width: 160px; }
+            .search-box i { font-size: 11px; margin-right: 4px; }
         }
 
-        /* Mobile Menu Button - TIDAK DIUBAH */
         .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 22px;
-            color: var(--primary-black);
-            cursor: pointer;
-            padding: 6px;
-            border-radius: 8px;
-            transition: var(--transition);
-            flex-shrink: 0;
+            display: none; background: none; border: none;
+            font-size: 22px; color: var(--primary-black);
+            cursor: pointer; padding: 6px; border-radius: 8px;
+            transition: var(--transition); flex-shrink: 0;
         }
+        @media (max-width: 768px) { .mobile-menu-btn { display: block; } }
+        .mobile-menu-btn:hover { background: rgba(0, 0, 0, 0.05); }
 
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-        }
-
-        .mobile-menu-btn:hover {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        /* Mobile Menu - TIDAK DIUBAH */
         .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 280px;
-            height: 100vh;
+            position: fixed; top: 0; right: -300px;
+            width: 280px; height: 100vh;
             background: var(--primary-white);
             box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
             padding: 80px 24px 24px;
             transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 999;
-            overflow-y: auto;
+            z-index: 999; overflow-y: auto;
         }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
+        .mobile-menu.active { right: 0; }
         .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 998;
+            opacity: 0; visibility: hidden;
+            transition: all 0.3s ease; z-index: 998;
         }
-
-        .mobile-menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
+        .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
         .mobile-menu-close {
-            position: absolute;
-            top: 24px;
-            right: 24px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: var(--primary-black);
-            cursor: pointer;
+            position: absolute; top: 24px; right: 24px;
+            background: none; border: none;
+            font-size: 24px; color: var(--primary-black); cursor: pointer;
         }
-
-        .mobile-menu-list {
-            list-style: none;
-        }
-
-        .mobile-menu-item {
-            margin-bottom: 16px;
-        }
-
+        .mobile-menu-list { list-style: none; }
+        .mobile-menu-item { margin-bottom: 16px; }
         .mobile-menu-link {
-            display: block;
-            padding: 16px;
+            display: flex; padding: 16px;
             background: var(--accent-gray);
             border-radius: var(--border-radius);
-            text-decoration: none;
-            color: var(--primary-black);
-            font-weight: 600;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            text-decoration: none; color: var(--primary-black);
+            font-weight: 600; transition: var(--transition);
+            align-items: center; gap: 12px;
         }
+        .mobile-menu-link:hover { background: rgba(0, 0, 0, 0.1); transform: translateX(4px); }
+        .mobile-icon-img { width: 24px; height: 24px; object-fit: contain; }
 
-        .mobile-menu-link:hover {
-            background: rgba(0, 0, 0, 0.1);
-            transform: translateX(4px);
-        }
-        
-        .mobile-icon-img {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
-        }
-
-        /* HERO SECTION - TIDAK DIUBAH */
         .hero {
             padding: 130px 0 40px;
             background: linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
+            display: flex; align-items: center; flex-direction: column;
         }
-
-        @media (max-width: 768px) {
-            .hero {
-                padding: 115px 0 50px;
-            }
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            animation: fadeInUp 1s ease-out;
-        }
-
+        @media (max-width: 768px) { .hero { padding: 115px 0 50px; } }
+        .hero-content { max-width: 800px; margin: 0 auto; text-align: center; animation: fadeInUp 1s ease-out; }
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
         .hero h1 {
             font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 800;
-            line-height: 1.2;
-            letter-spacing: -0.5px;
-            margin-bottom: 16px;
+            font-weight: 800; line-height: 1.2;
+            letter-spacing: -0.5px; margin-bottom: 16px;
             background: linear-gradient(135deg, #000000 0%, #333333 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: clamp(2.5rem, 8vw, 4.5rem);
-                font-weight: 900;
-                margin-bottom: 20px;
-            }
+            .hero h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 900; margin-bottom: 20px; }
         }
-
         .hero-subtitle {
             font-size: clamp(1rem, 4vw, 1.25rem);
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 30px;
-            line-height: 1.7;
+            color: var(--text-gray); max-width: 600px;
+            margin: 0 auto 30px; line-height: 1.7;
         }
 
-        /* ========== DESAIN LOGO PENDUKUNG YANG DIPERBARUI ========== */
-        /* HANYA MENGUBAH TAMPILAN LOGO, POSISI TETAP DI BAWAH KATEGORI */
-        .support-badge-container {
-            margin-top: 20px;
-            text-align: center;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-
+        .support-badge-container { margin-top: 20px; text-align: center; animation: fadeInUp 0.8s ease-out 0.2s both; }
         .support-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            color: var(--text-gray);
-            margin-bottom: 12px;
+            font-size: 0.75rem; text-transform: uppercase;
+            letter-spacing: 1px; font-weight: 600;
+            color: var(--text-gray); margin-bottom: 12px;
             display: inline-block;
             background: rgba(0,0,0,0.03);
-            padding: 4px 12px;
-            border-radius: 40px;
+            padding: 4px 12px; border-radius: 40px;
         }
-
-        /* Logo strip - tanpa background kotak, tanpa border-radius memaksa */
         .logo-strip {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 24px;
-            background: transparent;
-            padding: 8px 16px;
-            margin: 0 auto;
+            display: flex; flex-wrap: wrap;
+            justify-content: center; align-items: center;
+            gap: 24px; background: transparent;
+            padding: 8px 16px; margin: 0 auto;
             max-width: fit-content;
         }
-
-        /* Logo mengikuti bentuk asli gambar (tanpa kotak/lingkaran), ukuran kecil */
         .support-logo {
-            width: 64px;
-            height: auto;
-            max-height: 64px;
+            width: 64px; height: auto; max-height: 64px;
             object-fit: contain;
             transition: var(--transition);
             cursor: pointer;
             background: transparent;
-            padding: 0;
-            box-shadow: none;
             filter: drop-shadow(0 2px 6px rgba(0,0,0,0.08));
         }
-
         .support-logo:hover {
             transform: scale(1.08);
             filter: drop-shadow(0 6px 12px rgba(0,0,0,0.12));
         }
-        
-        /* Nama pendukung di bawah logo - ukuran kecil */
         .logo-caption {
-            text-align: center;
-            font-size: 10px;
-            font-weight: 500;
-            color: var(--text-gray);
-            margin-top: 6px;
-            letter-spacing: 0.2px;
+            text-align: center; font-size: 10px;
+            font-weight: 500; color: var(--text-gray);
+            margin-top: 6px; letter-spacing: 0.2px;
         }
-        
-        /* Setiap item logo + caption */
-        .support-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
+        .support-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
         @media (max-width: 640px) {
-            .support-logo {
-                width: 52px;
-                max-height: 52px;
-            }
-            .logo-strip {
-                gap: 16px;
-            }
-            .logo-caption {
-                font-size: 9px;
-            }
+            .support-logo { width: 52px; max-height: 52px; }
+            .logo-strip { gap: 16px; }
+            .logo-caption { font-size: 9px; }
         }
 
-        /* MODAL UNTUK ZOOM GAMBAR - TIDAK DIUBAH */
         .image-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            display: none; position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.9);
             z-index: 10000;
-            justify-content: center;
-            align-items: center;
+            justify-content: center; align-items: center;
             cursor: pointer;
-            animation: fadeIn 0.3s ease;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .image-modal.active {
-            display: flex;
-        }
-        
+        .image-modal.active { display: flex; }
         .modal-image {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            border-radius: 12px;
+            max-width: 90%; max-height: 90%;
+            object-fit: contain; border-radius: 12px;
             box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            animation: zoomIn 0.3s ease;
         }
-        
-        @keyframes zoomIn {
-            from {
-                transform: scale(0.9);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        
         .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            z-index: 10001;
+            position: absolute; top: 20px; right: 35px;
+            color: white; font-size: 40px; font-weight: bold;
+            cursor: pointer; transition: 0.3s; z-index: 10001;
         }
-        
-        .modal-close:hover {
-            color: #ccc;
-            transform: scale(1.1);
-        }
+        .modal-close:hover { color: #ccc; transform: scale(1.1); }
 
-        /* SPLASH SCREEN - TIDAK DIUBAH */
         .splash {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
             background: linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            opacity: 1;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 9999; opacity: 1;
             transition: opacity 0.6s ease-out;
             pointer-events: none;
         }
-
-        .splash.fade-out {
-            opacity: 0;
-        }
-
+        .splash.fade-out { opacity: 0; }
         .splash-logo {
-            width: 220px;
-            max-width: 60vw;
-            height: auto;
-            aspect-ratio: 1/1;
+            width: 220px; max-width: 60vw; height: auto;
             object-fit: contain;
             filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.08));
             animation: splashPulse 2s infinite alternate ease-in-out;
         }
-
         @keyframes splashPulse {
             0% { transform: scale(0.98); opacity: 0.9; }
             100% { transform: scale(1.02); opacity: 1; }
         }
 
-        /* ========== KATEGORI SECTION - HANYA DESAIN YANG DIUBAH ========== */
-        .category-section {
-            padding: 20px 0 40px;
-            background: var(--primary-white);
-        }
-
-        @media (max-width: 768px) {
-            .category-section {
-                padding: 30px 0 30px;
-            }
-        }
-
+        .category-section { padding: 20px 0 40px; background: var(--primary-white); }
+        @media (max-width: 768px) { .category-section { padding: 30px 0 30px; } }
         .section-title {
             text-align: center;
             font-size: clamp(1.6rem, 4vw, 2.2rem);
-            font-weight: 800;
-            margin-bottom: 8px;
+            font-weight: 800; margin-bottom: 8px;
             letter-spacing: -0.3px;
         }
-
         .section-subtitle {
-            text-align: center;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 24px;
+            text-align: center; color: var(--text-gray);
+            max-width: 600px; margin: 0 auto 24px;
             font-size: clamp(0.9rem, 3vw, 1rem);
         }
-
         .category-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-top: 0;
+            gap: 16px; margin-top: 0;
         }
-
         @media (min-width: 600px) {
-            .category-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
-            }
+            .category-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
         }
-
         @media (min-width: 900px) {
-            .category-grid {
-                grid-template-columns: repeat(6, 1fr);
-                gap: 18px;
-            }
+            .category-grid { grid-template-columns: repeat(6, 1fr); gap: 18px; }
         }
-
-        /* DESAIN TOMBOL KATEGORI YANG DIPERBARUI - LEBIH BAGUS DI MOBILE */
         .cat-btn {
             background: var(--primary-white);
             border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 60px;
             padding: 14px 8px;
             font-family: 'Outfit', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 0.8px;
-            color: var(--primary-black);
-            cursor: pointer;
-            transition: all 0.25s ease;
-            width: 100%;
-            text-align: center;
-            line-height: 1.3;
-            background-color: white;
+            font-weight: 700; text-transform: uppercase;
+            font-size: 0.75rem; letter-spacing: 0.8px;
+            color: var(--primary-black); cursor: pointer;
+            transition: all 0.25s ease; width: 100%;
+            text-align: center; line-height: 1.3;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
-
         .cat-btn:hover {
             transform: translateY(-3px);
             border-color: rgba(0, 0, 0, 0.25);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
-        
-        .cat-btn:active {
-            transform: scale(0.97);
-        }
-
+        .cat-btn:active { transform: scale(0.97); }
         .active-cat-indicator {
             background-color: var(--primary-black);
             color: var(--primary-white);
             border-color: var(--primary-black);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
-        
-        .active-cat-indicator:hover {
-            background-color: var(--primary-black);
-            color: white;
-        }
-
+        .active-cat-indicator:hover { background-color: var(--primary-black); color: white; }
         @media (max-width: 480px) {
-            .cat-btn {
-                font-size: 0.7rem;
-                padding: 12px 6px;
-                letter-spacing: 0.5px;
-            }
+            .cat-btn { font-size: 0.7rem; padding: 12px 6px; letter-spacing: 0.5px; }
         }
 
-        /* LIST USER SECTION - TIDAK DIUBAH */
-        .list-section {
-            padding: 20px 0 60px;
-            background: var(--accent-gray);
-        }
-
+        .list-section { padding: 20px 0 60px; background: var(--accent-gray); }
         .list-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            color: var(--primary-black);
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            font-size: 22px; font-weight: 700;
+            margin-bottom: 24px; color: var(--primary-black);
+            display: flex; align-items: center; gap: 12px;
         }
-
-        .list-title i {
-            color: var(--text-gray);
-        }
-
+        .list-title i { color: var(--text-gray); }
         .user-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: grid; grid-template-columns: 1fr;
             gap: 20px;
         }
-
         @media (min-width: 600px) {
-            .user-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 22px;
-            }
+            .user-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; }
         }
-
         @media (min-width: 900px) {
-            .user-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            .user-grid { grid-template-columns: repeat(3, 1fr); }
         }
-
         .user-item {
             background: var(--primary-white);
             border: 1px solid rgba(0, 0, 0, 0.08);
@@ -728,277 +343,150 @@
             box-shadow: var(--card-shadow);
             transform: translateY(0);
         }
-
         .user-item:hover {
             transform: translateY(-6px) scale(1.02);
             box-shadow: var(--hover-shadow);
         }
-
         .user-link-card {
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            width: 100%;
+            text-decoration: none; color: inherit;
+            display: flex; align-items: center;
+            gap: 18px; width: 100%;
         }
-
         .user-logo {
-            width: 68px;
-            height: 68px;
-            border-radius: 16px;
-            object-fit: cover;
+            width: 68px; height: 68px;
+            border-radius: 16px; object-fit: cover;
             background: var(--accent-gray);
             border: 1px solid rgba(0, 0, 0, 0.05);
-            flex-shrink: 0;
-            transition: var(--transition);
+            flex-shrink: 0; transition: var(--transition);
         }
-
-        .user-item:hover .user-logo {
-            transform: scale(1.05);
-        }
-
-        .user-info {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            flex: 1;
-        }
-
+        .user-item:hover .user-logo { transform: scale(1.05); }
+        .user-info { display: flex; flex-direction: column; gap: 6px; flex: 1; }
         .user-name-row {
-            display: flex;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 8px;
+            display: flex; align-items: baseline;
+            flex-wrap: wrap; gap: 8px;
         }
-
-        .user-name {
-            font-weight: 700;
-            font-size: 1.15rem;
-            color: var(--primary-black);
-        }
-
-        .user-username {
-            font-weight: 400;
-            font-size: 0.85rem;
-            color: var(--text-gray);
-        }
-
-        .user-bio {
-            font-weight: 400;
-            font-size: 0.9rem;
-            color: var(--text-gray);
-            line-height: 1.4;
-        }
-
+        .user-name { font-weight: 700; font-size: 1.15rem; color: var(--primary-black); }
+        .user-username { font-weight: 400; font-size: 0.85rem; color: var(--text-gray); }
+        .user-bio { font-weight: 400; font-size: 0.9rem; color: var(--text-gray); line-height: 1.4; }
         .empty-state {
-            grid-column: 1/-1;
-            text-align: center;
+            grid-column: 1/-1; text-align: center;
             padding: 50px 20px;
             background: var(--primary-white);
             border-radius: var(--border-radius);
-            color: var(--text-gray);
-            font-size: 1rem;
+            color: var(--text-gray); font-size: 1rem;
             border: 1px dashed rgba(0,0,0,0.1);
         }
+        .loading-state {
+            grid-column: 1/-1; text-align: center;
+            padding: 50px 20px;
+            color: var(--text-gray);
+        }
+        .loading-state i { font-size: 32px; margin-bottom: 12px; display: block; }
 
-        /* FOOTER - TIDAK DIUBAH */
         footer {
             background: var(--primary-black);
             color: var(--primary-white);
             padding: 70px 0 40px;
         }
-
-        @media (max-width: 768px) {
-            footer {
-                padding: 50px 0 30px;
-            }
-        }
-
+        @media (max-width: 768px) { footer { padding: 50px 0 30px; } }
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 48px;
-            margin-bottom: 50px;
+            gap: 48px; margin-bottom: 50px;
         }
-
-        @media (max-width: 768px) {
-            .footer-content {
-                gap: 32px;
-            }
-        }
-
+        @media (max-width: 768px) { .footer-content { gap: 32px; } }
         .footer-section h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            position: relative;
+            font-size: 18px; font-weight: 700;
+            margin-bottom: 20px; position: relative;
             display: inline-block;
         }
-
         .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 28px;
-            height: 2px;
+            content: ''; position: absolute;
+            bottom: -6px; left: 0;
+            width: 28px; height: 2px;
             background: var(--primary-white);
         }
-
-        .footer-links {
-            list-style: none;
-        }
-
+        .footer-links { list-style: none; }
         .footer-links li {
             margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            display: flex; align-items: center; gap: 12px;
         }
-
         .footer-links a {
             color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 15px;
+            text-decoration: none; font-size: 15px;
             transition: var(--transition);
         }
-
-        .footer-links a:hover {
-            color: var(--primary-white);
-            transform: translateX(4px);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 16px;
-            margin-top: 20px;
-        }
-
+        .footer-links a:hover { color: var(--primary-white); transform: translateX(4px); }
+        .social-links { display: flex; gap: 16px; margin-top: 20px; }
         .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--primary-white);
-            text-decoration: none;
-            transition: var(--transition);
+            border-radius: 50%; color: var(--primary-white);
+            text-decoration: none; transition: var(--transition);
         }
-
         .social-link:hover {
             background: var(--primary-white);
             color: var(--primary-black);
             transform: translateY(-4px);
         }
-
-        .x-logo {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 900;
-            font-size: 18px;
-        }
-
+        .x-logo { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 18px; }
         .featured-support {
-            margin-bottom: 48px;
-            padding-top: 20px;
+            margin-bottom: 48px; padding-top: 20px;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
         .featured-support h4 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-            letter-spacing: 0px;
-            text-transform: none;
-            color: var(--primary-white);
+            font-size: 18px; font-weight: 700;
+            margin-bottom: 20px; position: relative;
+            display: inline-block; color: var(--primary-white);
         }
         .featured-support h4::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 28px;
-            height: 2px;
+            content: ''; position: absolute;
+            bottom: -6px; left: 0;
+            width: 28px; height: 2px;
             background: var(--primary-white);
         }
         .support-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 28px;
-            align-items: center;
+            display: flex; flex-wrap: wrap;
+            gap: 28px; align-items: center;
             row-gap: 16px;
         }
         .support-link-item {
             color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            transition: 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            text-decoration: none; font-size: 15px;
+            font-weight: 500; transition: 0.2s;
+            display: inline-flex; align-items: center; gap: 6px;
         }
-        .support-link-item:hover {
-            color: white;
-            transform: translateX(3px);
-        }
-        .support-link-item i {
-            font-size: 13px;
-            opacity: 0.7;
-        }
+        .support-link-item:hover { color: white; transform: translateX(3px); }
+        .support-link-item i { font-size: 13px; opacity: 0.7; }
         @media (max-width: 600px) {
-            .support-links {
-                gap: 18px;
-                flex-direction: column;
-                align-items: flex-start;
-            }
+            .support-links { gap: 18px; flex-direction: column; align-items: flex-start; }
         }
-
         .copyright {
-            text-align: center;
-            padding-top: 30px;
+            text-align: center; padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.5);
             font-size: 14px;
         }
-
         @media (max-width: 480px) {
-            .container {
-                padding: 0 16px;
-            }
-            
-            .user-link-card {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .user-name-row {
-                justify-content: center;
-            }
-            
-            .user-logo {
-                width: 80px;
-                height: 80px;
-            }
+            .container { padding: 0 16px; }
+            .user-link-card { flex-direction: column; text-align: center; }
+            .user-name-row { justify-content: center; }
+            .user-logo { width: 80px; height: 80px; }
         }
-        
         .search-highlight {
             background-color: rgba(0,0,0,0.08);
-            font-weight: 700;
-            border-radius: 4px;
+            font-weight: 700; border-radius: 4px;
             padding: 0 2px;
         }
     </style>
 </head>
 <body>
     <div id="splash" class="splash">
-        <img src="logochonnect1.png" alt="CHONNECT logo" class="splash-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2270%22%20fill%3D%22%23333%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ECHONNECT%3C%2Ftext%3E%3C%2Fsvg%3E');">
+        <img src="logochonnect1.png" alt="CHONNECT logo" class="splash-logo"
+             onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%22%20font-size%3D%2270%22%20fill%3D%22%23333%22%20text-anchor%3D%22middle%22%3ECHONNECT%3C%2Ftext%3E%3C%2Fsvg%3E'">
     </div>
 
-    <!-- MODAL UNTUK ZOOM GAMBAR (tetap dipertahankan untuk keperluan lain jika diperlukan) -->
     <div id="imageModal" class="image-modal" onclick="closeModal()">
         <span class="modal-close" onclick="closeModal()">&times;</span>
         <img class="modal-image" id="modalImage" src="" alt="Zoomed Logo">
@@ -1009,7 +497,7 @@
             <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                 <img src="logochonnect1.png" alt="CHONNECT Logo" class="logo-img">
             </div>
-            
+
             <div class="search-wrapper">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
@@ -1017,49 +505,52 @@
                     <button class="search-clear" id="searchClearBtn"><i class="fas fa-times-circle"></i></button>
                 </div>
             </div>
-            
+
             <nav class="desktop-nav">
                 <a href="https://thekachoo.github.io/Home/" class="nav-icon-link" target="_blank" rel="noopener">
-                    <img src="logo-thekachoo.png" alt="Kachoo" class="nav-icon-img" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2220%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2226%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%3EK%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <img src="logo-thekachoo.png" alt="Kachoo" class="nav-icon-img"
+                         onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2220%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2226%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%3EK%3C%2Ftext%3E%3C%2Fsvg%3E'">
                 </a>
                 <a href="https://thekachoo.github.io/CHOBANK/" class="nav-icon-link" target="_blank" rel="noopener">
-                    <img src="chobank1.png" alt="Chobank" class="nav-icon-img" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2220%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2226%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%3EC%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <img src="chobank1.png" alt="Chobank" class="nav-icon-img"
+                         onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2220%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2226%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%3EC%3C%2Ftext%3E%3C%2Fsvg%3E'">
                 </a>
             </nav>
-            
+
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
 
-   <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-<div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" id="mobileMenuClose">
-        <i class="fas fa-times"></i>
-    </button>
-    <ul class="mobile-menu-list">
-        <!-- NEW: Registrasi menu item added before Kachoo -->
-        <li class="mobile-menu-item">
-            <a href="DaftarChonnect.html" class="mobile-menu-link">
-                <i class="fas fa-edit" style="width: 24px; text-align: center; color: black;"></i>
-                Registrasi
-            </a>
-        </li>
-        <li class="mobile-menu-item">
-            <a href="https://thekachoo.github.io/Home/" class="mobile-menu-link" target="_blank" rel="noopener">
-                <img src="thekachoologo.png" class="mobile-icon-img" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23ccc%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2216%22%20font-size%3D%228%22%20text-anchor%3D%22middle%22%3EK%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                Kachoo
-            </a>
-        </li>
-        <li class="mobile-menu-item">
-            <a href="https://thekachoo.github.io/CHOBANK/" class="mobile-menu-link" target="_blank" rel="noopener">
-                <img src="chobank1.png" class="mobile-icon-img" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23ccc%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2216%22%20font-size%3D%228%22%20text-anchor%3D%22middle%22%3EC%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                Chobank
-            </a>
-        </li>
-    </ul>
-</div>
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="mobileMenuClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="mobile-menu-list">
+            <li class="mobile-menu-item">
+                <a href="DaftarChonnect.html" class="mobile-menu-link">
+                    <i class="fas fa-edit" style="width: 24px; text-align: center;"></i>
+                    Registrasi
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="https://thekachoo.github.io/Home/" class="mobile-menu-link" target="_blank" rel="noopener">
+                    <img src="thekachoologo.png" class="mobile-icon-img"
+                         onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23ccc%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2216%22%20font-size%3D%228%22%20text-anchor%3D%22middle%22%3EK%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    Kachoo
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="https://thekachoo.github.io/CHOBANK/" class="mobile-menu-link" target="_blank" rel="noopener">
+                    <img src="chobank1.png" class="mobile-icon-img"
+                         onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23ccc%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2216%22%20font-size%3D%228%22%20text-anchor%3D%22middle%22%3EC%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    Chobank
+                </a>
+            </li>
+        </ul>
+    </div>
 
     <section class="hero">
         <div class="container hero-content">
@@ -1088,35 +579,35 @@
     <section class="list-section" id="listSection" style="display: none;">
         <div class="container">
             <div class="list-title" id="activeCategoryTitle">
-                <i class="fas fa-users"></i> 
+                <i class="fas fa-users"></i>
                 <span id="categoryNameDisplay">PILIH KATEGORI</span>
             </div>
             <div id="userListContainer" class="user-grid"></div>
         </div>
     </section>
 
-    <!-- CONTAINER PENDUKUNG - TETAP DI BAWAH KATEGORI (POSISI ASLI) -->
     <div class="container support-badge-container">
         <div class="support-label">Pihak yang mendukung fitur Chonnect</div>
         <div class="logo-strip">
             <div class="support-item" onclick="window.open('https://x.com/txtdrreizei', '_blank')">
-                <img src="SOC.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC1%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="SOC.png" alt="support logo" class="support-logo"
+                     onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC1%3C%2Ftext%3E%3C%2Fsvg%3E'">
                 <span class="logo-caption">Shout Out Confess</span>
             </div>
             <div class="support-item" onclick="window.open('https://x.com/Outer_Cosmo', '_blank')">
-                <img src="outer.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23ddd%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2260%22%20fill%3D%22%23666%22%20text-anchor%3D%22middle%22%3Eouter%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="outer.png" alt="support logo" class="support-logo">
                 <span class="logo-caption">Outer Cosmo</span>
             </div>
             <div class="support-item" onclick="window.open('https://x.com/indecentpals', '_blank')">
-                <img src="IndecentPals.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC2%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="IndecentPals.png" alt="support logo" class="support-logo">
                 <span class="logo-caption">Indecent Pals</span>
             </div>
             <div class="support-item" onclick="window.open('https://x.com/promptideas', '_blank')">
-                <img src="PromptIdeas.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC3%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="PromptIdeas.png" alt="support logo" class="support-logo">
                 <span class="logo-caption">Prompt Ideas</span>
             </div>
             <div class="support-item" onclick="window.open('https://x.com/AUroleplayID', '_blank')">
-                <img src="AURPID.png" alt="support logo" class="support-logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3EC4%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="AURPID.png" alt="support logo" class="support-logo">
                 <span class="logo-caption">AU Roleplay ID</span>
             </div>
         </div>
@@ -1131,12 +622,8 @@
                         A space dedicated to connecting base of roleplayers. This website and all its contents are created for fictional purposes. KACHOO does not receive any financial compensation from this project.
                     </p>
                     <div class="social-links">
-                        <a href="mailto:ohkachoo@gmail.com" class="social-link">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="https://twitter.com/thekachoo" target="_blank" class="social-link">
-                            <span class="x-logo">𝕏</span>
-                        </a>
+                        <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+                        <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
                     </div>
                 </div>
 
@@ -1150,22 +637,25 @@
                         <a href="https://x.com/AuRoleplayID" target="_blank" class="support-link-item"><i class="fa-brands fa-x-twitter"></i>AU Roleplay ID</a>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <ul class="footer-links">
-                        <li><span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span>
+                        <li>
+                            <span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span>
                             <a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo (Official)</a>
                         </li>
-                        <li><span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span>
+                        <li>
+                            <span class="x-logo" style="color: #000000; background: white; border-radius: 3px; padding: 2px 4px; font-size: 14px; margin-right: 8px;">𝕏</span>
                             <a href="https://twitter.com/HaiKachoo" target="_blank">@HaiKachoo (Contact Person)</a>
                         </li>
-                        <li><i class="fas fa-envelope" style="color: rgba(255,255,255,0.7);"></i>
+                        <li>
+                            <i class="fas fa-envelope" style="color: rgba(255,255,255,0.7);"></i>
                             <a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a>
                         </li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>Address</h3>
                     <ul class="footer-links">
@@ -1179,7 +669,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="copyright">
                 &copy; 2026 CHONNECT by KACHOO. All rights reserved. For Roleplay Purpose Only.
             </div>
@@ -1187,7 +677,7 @@
     </footer>
 
     <script>
-        // SPLASH
+        const API_URL = 'https://script.google.com/macros/s/AKfycbz7GGyha3q3dG3tJtfLaBphHuCGmAIIrPf7uatVVJ61GqfbMdpz08bsvqvSSV7BZZ-W/exec';
         const splash = document.getElementById('splash');
         function hideSplash() {
             splash.classList.add('fade-out');
@@ -1195,86 +685,43 @@
         }
         window.addEventListener('load', () => setTimeout(hideSplash, 1500));
 
-        // MODAL ZOOM IMAGE (tetap dipertahankan untuk keperluan lain)
         function openModal(imgSrc) {
             const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
+            document.getElementById('modalImage').src = imgSrc;
             modal.style.display = 'flex';
-            modalImg.src = imgSrc;
             document.body.style.overflow = 'hidden';
         }
-        
         function closeModal() {
-            const modal = document.getElementById('imageModal');
-            modal.style.display = 'none';
+            document.getElementById('imageModal').style.display = 'none';
             document.body.style.overflow = '';
         }
-        
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-        // MOBILE MENU
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
         const mobileMenuClose = document.getElementById('mobileMenuClose');
-        function openMobileMenu() { mobileMenu.classList.add('active'); mobileMenuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-        function closeMobileMenu() { mobileMenu.classList.remove('active'); mobileMenuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
         mobileMenuBtn.addEventListener('click', openMobileMenu);
         mobileMenuClose.addEventListener('click', closeMobileMenu);
         mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
-        // DATA USER - TIDAK DIUBAH
-        const userData = {
-            entertainment: [
-                { name: 'SHAZ', username: '@TheNightBratz', bio: 'Soloist!AU dengan face claim GISELLE (aespa), membawakan nuansa nostalgia pada setiap lirik dan lagu yang dirilis.', logo: 'SHAZ.png', category: 'entertainment' },
-                { name: 'ÉCLIV', username: '@ecliv_official', bio: 'ÉCLIV  is a five-member multinational girl group formed through a collaboration between Sky Entertainment, a South Korean entertainment agency, and Big Star Entertainment, an Indonesian music company.', logo: 'ECLIV.png', category: 'entertainment' },
-                { name: 'REVIVE', username: '@ECHOESOFREVIVE', bio: 'REVIVE is an LA based global girl group under Montague Entertainment.', logo: 'REVIVE.png', category: 'entertainment' },
-                { name: 'BEASTAR', username: '@WeBEASTAR', bio: 'BEASTAR adalah sebuah grup dibawah naungan Sky Entertainment yang debut pada 12 November 2024. Terbentuknya BEASTAR berasal dari Yudhistira Guntoro (CEO, Founder sekaligus produser dari Sky Entertainment) yang menyeleksi trainee Sky Entertainment untuk menjadi line up girl group BEASTAR.', logo: 'BEASTAR.png', category: 'entertainment' },
-                { name: 'LEO YAMADA', username: '@ROCK_YLEO', bio: '[SOLOIST&PRODUCER!AU] - Dengan rupa Yuta NCT | Seorang produser musik yang juga melebarkan sayapnya sebagai soloist. Genre musik yang diusung bertema rock.', logo: 'LEOYAMADA.png', category: 'entertainment' },
-                { name: 'FLAWSOME', username: '@FLOSAM_twt', bio: 'IDOL!AU', logo: 'FLAWSOME.png', category: 'entertainment' },
-                { name: 'IRIX', username: '@WeAreIRIX', bio: 'Kami adalah sebuah grup idol!au dari TXT (TOMORROW X TOGETHER).', logo: 'IRIX.png', category: 'entertainment' },
-                { name: 'Cadence Entertaintment', username: '@CADENCENT_', bio: 'Cadence Entertaintment merupakan agensi prestisius yang menaungi deretan model global serta aktor dan aktris berbakat. Kami berdedikasi untuk membentuk karier yang melampaui batas dan mengelevasi standar talenta di kancah dunia.', logo: 'Cadence.png', category: 'entertainment' },
-                { name: 'BP Entertainment', username: '@BPentofficial', bio: 'Agensi entertainmen aktor dan aktris', logo: 'BPent.png', category: 'entertainment' }
-            ],
-            institusi: [
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo1.png', category: 'institusi' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo2.png', category: 'institusi' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo3.png', category: 'institusi' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo4.png', category: 'institusi' },
-                { name: 'Contoh', username: '@TheKachoo', bio: 'Hanya untuk contoh', logo: 'logo5.png', category: 'institusi' }
-            ],
-            media: [
-                { name: 'The Kachoo', username: '@TheKachoo', bio: 'Media dan Berita Digital, Publikasi Buku, dan Majalah Lifestyle.', logo: 'logo-thekachoo.png', category: 'media' },
-                { name: 'Arfan Podcast', username: '@mclboro', bio: 'Arfan Podcast adalah project di bidang Media  dan Komunikasi, khususnya terkait Podcast. Arfan Podcast sendiri sudah ada sejak tahun Juni 2021', logo: 'ArfanPodcast.png', category: 'media' },
-                { name: 'Idol News', username: '@idolaunews', bio: 'Sebuah portal artikel khusus untuk rekan-rekan dunia entertainment. Memberikan berita terupdate, teraktual, dan ternetral.', logo: 'IdolNews.png', category: 'media' },
-                { name: 'Sip `n Yap Podcast', username: '@SipYapStories', bio: 'Sebuah podcast di mana kamu bisa jadi diri kamu sendiri tanpa perlu pencitraan sembari menyesap kopi atau teh hangat dan menikmati camilan kesukaan.', logo: 'SipYap.png', category: 'media' }
-           ],
-            bisnis: [
-                { name: 'Ayu Merona', username: '@by_ayumerona', bio: 'Brand makeup kecantikan, skincare, dan studio makeup.', logo: 'AYUMERONA.png', category: 'bisnis' },
-                { name: 'Helen`s Studio', username: '@helens_studio', bio: 'Established in 2022, Helen`s Studio offers nail care, nail art, enhancements, treatments, removals and add-on services. We also provide bridal/event nails and personalized consultations.', logo: 'HELENSTUDIO.png', category: 'bisnis' },
-                { name: 'Arakawa Light & Frame', username: '@Studio_Arakawa', bio: 'Studio_Arakawa adalah studio foto yang menghadirkan hasil potret berkualitas dengan konsep modern, pencahayaan profesional, dan suasana nyaman. Cocok untuk berbagai kebutuhan seperti foto pribadi, keluarga, hingga konten kreatif, dengan hasil yang estetik dan berkelas.', logo: 'Arakawa.png', category: 'bisnis' },
-                { name: 'House of Tuloux', username: '@TULOUX', bio: 'Seni & Budaya, Industri Kreatif, Galeri Seni.', logo: 'Houseoftuloux.png', category: 'bisnis' },
-                { name: 'The American Pie!', username: '@AmericanPie_HQ', bio: 'We`re American-based mini pie-only bakery selling varieties of pies. Opening soon!', logo: 'AmericanPie.png', category: 'bisnis' },
-                { name: 'RUMAH MAHESWARI', username: '@RUMAHMAHESWARI', bio: 'RUMAH MODE DAN PAKAIAN', logo: 'RUMAHMAHESWARI.png', category: 'bisnis' },
-                { name: 'Société Frontaliére', username: '@ofFrontaliere', bio: 'Société Frontalière is a Jakarta-based jazz club founded by Prabu Baskara Senopati, known for its precision-driven approach to nightlife. The establishment integrates live music, craft mixology, and a meticulously designed service system to deliver a refined and controlled guest experience. Every element—from cocktails to atmosphere—is intentionally curated to uphold a consistent standard of excellence. It stands as a destination for those who value depth, discretion, and quality.', logo: 'SocitFrontali.png', category: 'bisnis' },
-                { name: 'NEKONEKO Project', username: '@ofnekoneko', bio: 'NekoNeko Project adalah organisasi perlindungan hewan yang memadukan konsep rumah singgah (cat shelter) dan kafe kucing (cat-friendly eatery). Berfokus pada penyelamatan, sterilisasi, dan adopsi kucing jalanan, inisiatif ini juga menyediakan ruang interaksi bagi pengunjung melalui unit kafe yang menyajikan hidangan bagi manusia maupun kucing.', logo: 'NEKONEKO.png', category: 'bisnis' },
-                { name: 'Hanford Hotels and Resorts', username: '@Hanford_HnR', bio: 'A hospitality company, operates three distinct collections — Hanford Grand Hotel in leading city capitals, Hanford Hotel and Resort in premier destinations, and Hanford Eco Resort in extraordinary natural coastal landscapes.', logo: 'Hanford.png', category: 'bisnis' }
-            ],
-            keluarga: [
-                { name: 'Tjoahara Family', username: '@TJOAHARA', bio: 'Keluarga keturunan Chinese-Indonesia yang bergerak dalam berbagai bidang Entertainment khususnya multimedia dan seni tari. Keluarga Tjoahara juga terbuka untuk kerjasama promosi dan sponsor.', logo: 'TJOAHARA.png', category: 'keluarga' },
-                { name: 'HSU', username: '@TheBookOfHsu', bio: 'Hsu Family is a family who has resided in Singapore since 1897.', logo: 'HSU.png', category: 'keluarga' },
-                { name: 'Bani Koesmadilaga', username: '@K0ESMADILAGA', bio: 'Keluarga', logo: 'BaniKoesmadilaga.png', category: 'keluarga' },
-                { name: 'The Chungua', username: '@TheChungua', bio: 'The Chungua merupakan institusi yang menaungi dua keluarga: Chua (Singapore based) dan Chung (South Korea based). Keluarga ini memiliki konsentrasi di bidang politik, dengan anggota keluarga menempati posisi Perdana Menteri di kedua negara.', logo: 'TheChungua.png', category: 'keluarga' },
-                { name: 'Wang & Zhao', username: '@unspokenwz', bio: 'Berawal dari dinasti terakhir di negeri tirai bambu, Wang-Zhao merupakan keluarga besar yang bergerak di berbagai bisnis— termasuk sebagai penguasa bisnis ‘gelap’ di daratan Tiongkok, Indonesia, dan Russia.', logo: 'WangZhao.png', category: 'keluarga' },
-                { name: 'Yamada', username: '@THEYAMADAz', bio: 'Merupakan project keluarga besar YAMADA yang berfokus untuk kepentingan 𝘐𝘕 𝘊𝘏𝘈𝘙𝘈𝘊𝘛𝘌𝘙.', logo: 'YAMADA.png', category: 'keluarga' }
-            ],
-            lainnya: [
-                { name: 'BOSTAN ASWA', username: '@BOSTANASWA', bio: 'Taman Berkuda (Equestrian Park)', logo: 'BOSTANASWA.png', category: 'lainnya' }
-            ]
+        let userData = {
+            entertainment: [],
+            institusi: [],
+            media: [],
+            bisnis: [],
+            keluarga: [],
+            lainnya: []
         };
 
         const categoryNames = {
@@ -1288,56 +735,121 @@
 
         let currentCategory = null;
         let currentSearchTerm = '';
+        let dataLoaded = false;
+
         const listSection = document.getElementById('listSection');
         const userListContainer = document.getElementById('userListContainer');
         const categoryNameDisplay = document.getElementById('categoryNameDisplay');
         const searchInput = document.getElementById('globalSearchInput');
         const searchClearBtn = document.getElementById('searchClearBtn');
-        
+
+        async function loadUserData() {
+            try {
+                console.log('🔄 Loading data from CHONNECT API...');
+                const res = await fetch(API_URL + '?t=' + Date.now());
+                const data = await res.json();
+
+                if (!Array.isArray(data)) {
+                    console.warn('Response bukan array:', data);
+                    return;
+                }
+
+                // Reset
+                for (let key in userData) userData[key] = [];
+
+                data.forEach(item => {
+                    const kat = (item.kategori || '').toLowerCase().trim();
+                    if (!userData[kat]) return;
+
+                    userData[kat].push({
+                        name: item.nama,
+                        username: item.username,
+                        bio: item.keterangan,
+                        logo: item.imageUrl || 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22800%22%3E%3Crect width=%22800%22 height=%22800%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%22400%22 y=%22420%22 font-family=%22Outfit%22 font-size=%2250%22 fill=%22%23999%22 text-anchor=%22middle%22%3ELOGO%3C/text%3E%3C/svg%3E',
+                        category: kat
+                    });
+                });
+
+                dataLoaded = true;
+                console.log('CHONNECT data loaded:', data.length, 'items');
+                console.log('Per kategori:', Object.fromEntries(
+                    Object.entries(userData).map(([k, v]) => [k, v.length])
+                ));
+
+                if (currentCategory) {
+                    if (currentSearchTerm.trim()) {
+                        renderSearchResults();
+                    } else {
+                        displayUsers(userData[currentCategory] || [], categoryNames[currentCategory]);
+                    }
+                }
+
+            } catch (err) {
+                console.error('❌ Gagal load data CHONNECT:', err);
+                dataLoaded = true;
+            }
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(loadUserData, 100);
+        });
+
+        setInterval(loadUserData, 60000);
+
         function getAllUsers() {
             let all = [];
-            for (let cat in userData) {
-                all = all.concat(userData[cat]);
-            }
+            for (let cat in userData) all = all.concat(userData[cat]);
             return all;
         }
-        
+
         function renderSearchResults() {
             const term = currentSearchTerm.toLowerCase().trim();
             if (term === '') {
                 if (!currentCategory) {
                     listSection.style.display = 'none';
                     return;
-                } else {
-                    const items = userData[currentCategory] || [];
-                    displayUsers(items, categoryNames[currentCategory]);
-                    return;
                 }
+                displayUsers(userData[currentCategory] || [], categoryNames[currentCategory]);
+                return;
             }
-            
+
             const allUsers = getAllUsers();
-            const filtered = allUsers.filter(item => 
-                item.name.toLowerCase().includes(term) || 
+            const filtered = allUsers.filter(item =>
+                item.name.toLowerCase().includes(term) ||
                 item.bio.toLowerCase().includes(term) ||
                 item.username.toLowerCase().includes(term)
             );
-            
+
             displayUsers(filtered, `HASIL PENCARIAN: "${currentSearchTerm}"`);
         }
-        
+
         function displayUsers(users, title) {
             categoryNameDisplay.textContent = title;
             listSection.style.display = 'block';
-            
-            if (!users.length) {
-                userListContainer.innerHTML = `<div class="empty-state"><i class="fas fa-search" style="font-size: 48px; margin-bottom: 16px; display: block; color: #ccc;"></i><p>Tidak ada hasil yang sesuai dengan "${currentSearchTerm}"</p></div>`;
+
+            if (!dataLoaded) {
+                userListContainer.innerHTML = `
+                    <div class="loading-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        Memuat data...
+                    </div>`;
                 return;
             }
-            
+
+            if (!users.length) {
+                userListContainer.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search" style="font-size: 48px; margin-bottom: 16px; display: block; color: #ccc;"></i>
+                        <p>${currentSearchTerm ? `Tidak ada hasil untuk "${currentSearchTerm}"` : 'Belum ada data di kategori ini'}</p>
+                    </div>`;
+                return;
+            }
+
             let htmlString = '';
             users.forEach(item => {
                 const cleanUsername = item.username.startsWith('@') ? item.username.slice(1) : item.username;
-                const profileUrl = `https://x.com/${cleanUsername}`;
+                const profileUrl = cleanUsername ? `https://x.com/${cleanUsername}` : '#';
+
                 let displayName = item.name;
                 let displayBio = item.bio;
                 if (currentSearchTerm && currentSearchTerm.trim()) {
@@ -1345,12 +857,12 @@
                     displayName = item.name.replace(regex, '<span class="search-highlight">$1</span>');
                     displayBio = item.bio.replace(regex, '<span class="search-highlight">$1</span>');
                 }
-                
+
                 htmlString += `
                     <div class="user-item">
                         <a href="${profileUrl}" class="user-link-card" target="_blank" rel="noopener">
-                            <img src="${item.logo}" alt="logo" class="user-logo" 
-                                 onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%2C%20sans-serif%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3ELOGO%3C%2Ftext%3E%3C%2Fsvg%3E');">
+                            <img src="${item.logo}" alt="logo" class="user-logo"
+                                 onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%22%20font-size%3D%2250%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3ELOGO%3C%2Ftext%3E%3C%2Fsvg%3E'">
                             <div class="user-info">
                                 <div class="user-name-row">
                                     <span class="user-name">${displayName}</span>
@@ -1364,11 +876,11 @@
             });
             userListContainer.innerHTML = htmlString;
         }
-        
+
         function handleGlobalSearch() {
             currentSearchTerm = searchInput.value;
             if (searchClearBtn) searchClearBtn.style.display = currentSearchTerm ? 'block' : 'none';
-            
+
             if (currentSearchTerm.trim() !== '') {
                 document.querySelectorAll('.cat-btn').forEach(btn => {
                     btn.classList.remove('active-cat-indicator');
@@ -1383,22 +895,21 @@
                             btn.classList.remove('active-cat-indicator');
                         }
                     });
-                    const items = userData[currentCategory] || [];
-                    displayUsers(items, categoryNames[currentCategory]);
+                    displayUsers(userData[currentCategory] || [], categoryNames[currentCategory]);
                 } else {
                     listSection.style.display = 'none';
                 }
             }
         }
-        
-        window.switchCategory = function(categoryKey) {
+
+        window.switchCategory = function (categoryKey) {
             currentCategory = categoryKey;
             if (searchInput) {
                 searchInput.value = '';
                 currentSearchTerm = '';
                 if (searchClearBtn) searchClearBtn.style.display = 'none';
             }
-            
+
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 if (btn.getAttribute('data-category') === categoryKey) {
                     btn.classList.add('active-cat-indicator');
@@ -1406,11 +917,14 @@
                     btn.classList.remove('active-cat-indicator');
                 }
             });
-            
-            const items = userData[categoryKey] || [];
-            displayUsers(items, categoryNames[categoryKey]);
+
+            setTimeout(() => {
+                listSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+
+            displayUsers(userData[categoryKey] || [], categoryNames[categoryKey]);
         };
-        
+
         if (searchInput) searchInput.addEventListener('input', handleGlobalSearch);
         if (searchClearBtn) {
             searchClearBtn.addEventListener('click', () => {
@@ -1419,15 +933,7 @@
                 searchInput.focus();
             });
         }
-        
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                if (!currentCategory && (!searchInput.value || searchInput.value === '')) {
-                    listSection.style.display = 'none';
-                }
-            }, 100);
-        });
-        
+
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
@@ -1438,4 +944,4 @@
         });
     </script>
 </body>
-    </html>
+</html>
