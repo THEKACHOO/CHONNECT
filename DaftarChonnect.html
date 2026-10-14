@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>CHONNECT by KACHOO | Form Pendaftaran</title>
+    <title>CHONNECT by KACHOO | Registration</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -390,7 +390,7 @@
                             </button>
                             <div id="fileNameDisplay" class="file-name">Belum ada file dipilih</div>
                             <div class="drive-link-input">
-                                <input type="text" id="gdriveLink" placeholder="Atau tempel link Google Drive">
+                                <input type="text" id="gdriveLink" placeholder="Atau tempel link Google Drive (dari FILE, bukan folder)">
                             </div>
                             <div class="small-note">Ukuran gambar disarankan 800x800px, format PNG</div>
                         </div>
@@ -535,6 +535,7 @@
         const keterangan = document.getElementById('keterangan').value.trim();
         const gdriveLink = document.getElementById('gdriveLink').value.trim();
 
+        // Validasi link Drive
         if (gdriveLink) {
             if (!gdriveLink.match(/[-\w]{25,}/)) {
                 showNotif('Link Google Drive tidak valid', 'error');
@@ -583,3 +584,30 @@
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: new URLSearchParams(payload)
             });
+
+            showNotif('Pendaftaran berhasil dikirim! Data akan muncul di direktori CHONNECT.', 'success');
+
+            form.reset();
+            fileInput.value = '';
+            fileNameSpan.innerText = 'Belum ada file dipilih';
+            document.getElementById('gdriveLink').value = '';
+            radioOptions.forEach(o => o.classList.remove('selected'));
+
+        } catch (err) {
+            showNotif('❌ Gagal mengirim. Coba lagi atau hubungi @HaiKachoo', 'error');
+            console.error(err);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Kirim Pendaftaran <i class="fas fa-arrow-right"></i>';
+        }
+    });
+
+    function showNotif(msg, type) {
+        notificationDiv.innerHTML = msg;
+        notificationDiv.className = `notification ${type}`;
+        notificationDiv.style.display = 'block';
+        setTimeout(() => { notificationDiv.style.display = 'none'; }, 6000);
+    }
+</script>
+</body>
+</html>
