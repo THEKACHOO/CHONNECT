@@ -141,13 +141,30 @@
             border: 1px dashed rgba(0,0,0,0.3);
             border-radius: 20px; padding: 18px;
             text-align: center; background: #FEFEFE;
+            position: relative;
+            transition: var(--transition);
+        }
+        .image-upload-area.dragover {
+            border-color: var(--primary-black);
+            background: #F0F0F5;
+            border-style: solid;
+            transform: scale(1.01);
+        }
+        .image-upload-area.dragover .file-input-label {
+            background: #333;
+        }
+        .drag-hint {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            margin-top: 6px;
+            font-style: italic;
         }
         .file-input-label {
             display: inline-block;
             background: var(--primary-black); color: white;
             padding: 10px 20px; border-radius: 40px;
             font-weight: 500; cursor: pointer;
-            font-size: 0.85rem; margin-bottom: 12px;
+            font-size: 0.85rem; margin-bottom: 8px;
         }
         .file-name { font-size: 0.8rem; color: var(--text-gray); margin-top: 8px; }
         .drive-link-input { margin-top: 16px; padding-top: 12px; border-top: 1px solid #eee; }
@@ -389,16 +406,17 @@
                             <label>Input Gambar</label>
                             <i class="fas fa-info-circle info-icon" data-tooltip="gambarTooltip"></i>
                         </div>
-                        <div class="image-upload-area">
+                        <div class="image-upload-area" id="dropZone">
                             <input type="file" id="gambarFile" accept="image/png" style="display:none;">
                             <button type="button" class="file-input-label" id="uploadBtn">
                                 <i class="fas fa-upload"></i> Pilih file PNG
                             </button>
+                            <div class="drag-hint">atau seret & lepas file ke sini</div>
                             <div id="fileNameDisplay" class="file-name">Belum ada file dipilih</div>
                             <div class="drive-link-input">
                                 <input type="text" id="gdriveLink" placeholder="Atau tempel link Google Drive">
                             </div>
-                            <div class="small-note">Ukuran gambar disarankan 800x800px dengan format PNG</div>
+                            <div class="small-note">Ukuran gambar disarankan 800x800px, format PNG</div>
                         </div>
                     </div>
 
@@ -500,17 +518,57 @@
     const fileInput = document.getElementById('gambarFile');
     const uploadBtn = document.getElementById('uploadBtn');
     const fileNameSpan = document.getElementById('fileNameDisplay');
+    const dropZone = document.getElementById('dropZone');
+
+    function createFileList(file) {
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        return dt.files;
+    }
+
+    function handleFile(file) {
+        if (!file) return;
+        if (file.type === 'image/png') {
+            fileInput.files = createFileList(file);
+            fileNameSpan.innerText = file.name;
+        } else {
+            alert('Hanya file PNG yang diperbolehkan');
+            fileInput.value = '';
+            fileNameSpan.innerText = 'Belum ada file dipilih';
+        }
+    }
+
     uploadBtn.addEventListener('click', () => fileInput.click());
+
     fileInput.addEventListener('change', function () {
         if (this.files.length) {
-            const file = this.files[0];
-            if (file.type === 'image/png') fileNameSpan.innerText = file.name;
-            else {
-                alert('Hanya file PNG yang diperbolehkan');
-                fileInput.value = '';
-                fileNameSpan.innerText = 'Belum ada file dipilih';
-            }
-        } else fileNameSpan.innerText = 'Belum ada file dipilih';
+            handleFile(this.files[0]);
+        } else {
+            fileNameSpan.innerText = 'Belum ada file dipilih';
+        }
+    });
+
+    ['dragenter', 'dragover'].forEach(evt => {
+        dropZone.addEventListener(evt, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.add('dragover');
+        });
+    });
+
+    ['dragleave', 'drop'].forEach(evt => {
+        dropZone.addEventListener(evt, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.remove('dragover');
+        });
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            handleFile(files[0]);
+        }
     });
 
     const form = document.getElementById('registrationForm');
@@ -544,7 +602,7 @@
                 return;
             }
             if (gdriveLink.includes('/folders/')) {
-                showNotif('Link folder tidak bisa dipakai. Mohon ambil link dari file gambarnya.', 'error');
+                showNotif('Link folder tidak bisa dipakai. Ambil link dari file gambarnya.', 'error');
                 return;
             }
         }
@@ -563,7 +621,7 @@
         } else if (gdriveLink) {
             imageData = gdriveLink;
         } else {
-            showNotif('Harap unggah gambar atau berikan link Google Drive dengan akses publik', 'error');
+            showNotif('Harap unggah gambar PNG atau berikan link Google Drive publik', 'error');
             return;
         }
 
@@ -587,7 +645,7 @@
                 body: new URLSearchParams(payload)
             });
 
-            showNotif('Pendaftaran berhasil dikirim! Cek di website utama CHONNECT untuk updatenya ya!', 'success');
+            showNotif('Pendaftaran berhasil dikirim! Data akan muncul di direktori CHONNECT.', 'success');
 
             form.reset();
             fileInput.value = '';
