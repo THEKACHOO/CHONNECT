@@ -43,7 +43,7 @@
         }
         .header-content { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
         .logo-container { display: flex; align-items: center; cursor: pointer; flex-shrink: 0; }
-        .logo-img { height: 44px; width: auto; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)); }
+        .logo-img { height: 44px; width: auto; }
 
         .search-wrapper { flex: 1; max-width: 280px; position: relative; }
         .search-box {
@@ -76,50 +76,43 @@
         }
         .search-clear:hover { color: var(--primary-black); }
 
-        .desktop-nav { display: flex; gap: 12px; flex-shrink: 0; align-items: center; }
-        .nav-icon-link {
+        .menu-toggle-btn {
             display: flex; align-items: center; justify-content: center;
-            width: 40px; height: 40px;
+            width: 44px; height: 44px;
             background: var(--accent-gray);
-            border-radius: 40px;
-            transition: var(--transition);
             border: 1px solid rgba(0, 0, 0, 0.08);
-            text-decoration: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            flex-shrink: 0;
+            color: var(--primary-black);
+            font-size: 18px;
         }
-        .nav-icon-link:hover {
+        .menu-toggle-btn:hover {
             background: var(--primary-black);
+            color: var(--primary-white);
+            border-color: var(--primary-black);
             transform: translateY(-2px);
             box-shadow: var(--card-shadow);
-            border-color: var(--primary-black);
         }
-        .nav-icon-img { width: 24px; height: 24px; object-fit: contain; transition: filter 0.2s; }
-        .nav-icon-link:hover .nav-icon-img { filter: brightness(0) invert(1); }
 
         @media (max-width: 768px) {
-            .desktop-nav { display: none; }
-            .search-wrapper { max-width: 200px; }
+            .search-wrapper { max-width: 180px; }
             .search-box { padding: 5px 10px; }
             .search-input { font-size: 12px; }
             .search-input::placeholder { font-size: 11px; }
             .logo-img { height: 38px; }
+            .menu-toggle-btn { width: 40px; height: 40px; font-size: 16px; }
         }
         @media (max-width: 480px) {
-            .search-wrapper { max-width: 160px; }
+            .search-wrapper { max-width: 140px; }
             .search-box i { font-size: 11px; margin-right: 4px; }
+            .menu-toggle-btn { width: 38px; height: 38px; font-size: 15px; }
         }
-
-        .mobile-menu-btn {
-            display: none; background: none; border: none;
-            font-size: 22px; color: var(--primary-black);
-            cursor: pointer; padding: 6px; border-radius: 8px;
-            transition: var(--transition); flex-shrink: 0;
-        }
-        @media (max-width: 768px) { .mobile-menu-btn { display: block; } }
-        .mobile-menu-btn:hover { background: rgba(0, 0, 0, 0.05); }
 
         .mobile-menu {
-            position: fixed; top: 0; right: -300px;
-            width: 280px; height: 100vh;
+            position: fixed; top: 0; right: -320px;
+            width: 300px; height: 100vh;
             background: var(--primary-white);
             box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
             padding: 80px 24px 24px;
@@ -138,9 +131,14 @@
             position: absolute; top: 24px; right: 24px;
             background: none; border: none;
             font-size: 24px; color: var(--primary-black); cursor: pointer;
+            width: 36px; height: 36px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
         }
+        .mobile-menu-close:hover { background: rgba(0,0,0,0.05); }
         .mobile-menu-list { list-style: none; }
-        .mobile-menu-item { margin-bottom: 16px; }
+        .mobile-menu-item { margin-bottom: 14px; }
         .mobile-menu-link {
             display: flex; padding: 16px;
             background: var(--accent-gray);
@@ -181,11 +179,20 @@
             margin: 0 auto 30px; line-height: 1.7;
         }
 
-        .support-badge-container { margin-top: 20px; text-align: center; animation: fadeInUp 0.8s ease-out 0.2s both; }
+        .support-badge-container {
+            margin-top: 20px;
+            margin-bottom: 60px;
+            padding: 40px 0 60px;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        @media (max-width: 768px) {
+            .support-badge-container { margin-bottom: 40px; padding: 30px 0 40px; }
+        }
         .support-label {
             font-size: 0.75rem; text-transform: uppercase;
             letter-spacing: 1px; font-weight: 600;
-            color: var(--text-gray); margin-bottom: 12px;
+            color: var(--text-gray); margin-bottom: 16px;
             display: inline-block;
             background: rgba(0,0,0,0.03);
             padding: 4px 12px; border-radius: 40px;
@@ -203,11 +210,9 @@
             transition: var(--transition);
             cursor: pointer;
             background: transparent;
-            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.08));
         }
         .support-logo:hover {
             transform: scale(1.08);
-            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.12));
         }
         .logo-caption {
             text-align: center; font-size: 10px;
@@ -255,7 +260,6 @@
         .splash-logo {
             width: 220px; max-width: 60vw; height: auto;
             object-fit: contain;
-            filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.08));
             animation: splashPulse 2s infinite alternate ease-in-out;
         }
         @keyframes splashPulse {
@@ -506,18 +510,7 @@
                 </div>
             </div>
 
-            <nav class="desktop-nav">
-                <a href="https://thekachoo.github.io/Home/" class="nav-icon-link" target="_blank" rel="noopener">
-                    <img src="logo-thekachoo.png" alt="Kachoo" class="nav-icon-img"
-                         onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2220%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2226%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%3EK%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                </a>
-                <a href="https://thekachoo.github.io/CHOBANK/" class="nav-icon-link" target="_blank" rel="noopener">
-                    <img src="chobank1.png" alt="Chobank" class="nav-icon-img"
-                         onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2220%22%20r%3D%2220%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2226%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%3EC%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                </a>
-            </nav>
-
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="menu-toggle-btn" id="mobileMenuBtn" aria-label="Menu">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
@@ -525,7 +518,7 @@
 
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-close" id="mobileMenuClose">
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close">
             <i class="fas fa-times"></i>
         </button>
         <ul class="mobile-menu-list">
@@ -537,9 +530,9 @@
             </li>
             <li class="mobile-menu-item">
                 <a href="https://thekachoo.github.io/Home/" class="mobile-menu-link" target="_blank" rel="noopener">
-                    <img src="thekachoologo.png" class="mobile-icon-img"
+                    <img src="logo-thekachoo.png" class="mobile-icon-img"
                          onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23ccc%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2216%22%20font-size%3D%228%22%20text-anchor%3D%22middle%22%3EK%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                    Kachoo
+                    The Kachoo
                 </a>
             </li>
             <li class="mobile-menu-item">
@@ -547,6 +540,18 @@
                     <img src="chobank1.png" class="mobile-icon-img"
                          onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23ccc%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2216%22%20font-size%3D%228%22%20text-anchor%3D%22middle%22%3EC%3C%2Ftext%3E%3C%2Fsvg%3E'">
                     Chobank
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="https://thekachoo.github.io/CHOSONG/" class="mobile-menu-link" target="_blank" rel="noopener">
+                    <i class="fas fa-music" style="width: 24px; text-align: center;"></i>
+                    Chosong
+                </a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="https://thekachoo.github.io/CHODATE/" class="mobile-menu-link" target="_blank" rel="noopener">
+                    <i class="fas fa-heart" style="width: 24px; text-align: center;"></i>
+                    Chodate
                 </a>
             </li>
         </ul>
@@ -751,10 +756,14 @@
 
                 if (!Array.isArray(data)) {
                     console.warn('Response bukan array:', data);
+                    console.warn('ERROR');
+                    dataLoaded = true;
+                    if (currentCategory) {
+                        displayUsers([], categoryNames[currentCategory]);
+                    }
                     return;
                 }
 
-                // Reset
                 for (let key in userData) userData[key] = [];
 
                 data.forEach(item => {
@@ -771,8 +780,8 @@
                 });
 
                 dataLoaded = true;
-                console.log('CHONNECT data loaded:', data.length, 'items');
-                console.log('Per kategori:', Object.fromEntries(
+                console.log('✅ CHONNECT data loaded:', data.length, 'items');
+                console.log('📊 Per kategori:', Object.fromEntries(
                     Object.entries(userData).map(([k, v]) => [k, v.length])
                 ));
 
