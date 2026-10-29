@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Style/header-footer.css">
     <style>
         :root {
             --primary-black: #000000;
@@ -28,19 +29,6 @@
             overflow-x: hidden;
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-        header {
-            background-color: rgba(255, 255, 255, 0.98);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            padding: 16px 0;
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-        .header-content { display: flex; justify-content: center; align-items: center; }
-        .logo-container { display: flex; align-items: center; cursor: pointer; }
-        .logo-img { height: 48px; width: auto; }
-        @media (max-width: 768px) { .logo-img { height: 42px; } }
 
         .hero { padding: 110px 0 30px; background: linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%); text-align: center; }
         @media (max-width: 768px) { .hero { padding: 100px 0 24px; } }
@@ -208,40 +196,7 @@
         }
         .logo-caption { font-size: 10px; font-weight: 500; color: var(--text-gray); margin-top: 6px; }
 
-        footer { background: var(--primary-black); color: var(--primary-white); padding: 50px 0 30px; }
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px; margin-bottom: 40px;
-        }
-        .footer-section h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 18px; position: relative; display: inline-block; }
-        .footer-section h3::after {
-            content: ''; position: absolute;
-            bottom: -6px; left: 0;
-            width: 28px; height: 2px;
-            background: var(--primary-white);
-        }
-        .footer-section p { color: rgba(255,255,255,0.7); font-size: 0.85rem; line-height: 1.5; margin-top: 12px; }
-        .footer-links { list-style: none; }
-        .footer-links li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-        .footer-links a { color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.85rem; transition: 0.2s; }
-        .footer-links a:hover { color: white; }
-        .social-links { display: flex; gap: 14px; margin-top: 16px; }
-        .social-link {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 38px; height: 38px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%; color: white;
-            text-decoration: none; transition: 0.2s;
-        }
-        .x-logo { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 1rem; }
-        .copyright {
-            text-align: center; padding-top: 28px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.75rem; color: rgba(255,255,255,0.5);
-        }
         @media (max-width: 768px) {
-            .footer-content { grid-template-columns: 1fr; gap: 32px; text-align: left; }
             .form-body { padding: 20px; }
             .form-header { padding: 20px; }
             .contact-info { font-size: 0.75rem; }
@@ -278,13 +233,7 @@
     <img class="modal-image" id="modalImage" alt="">
 </div>
 
-<header>
-    <div class="container header-content">
-        <div class="logo-container" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-            <img src="logochonnect1.png" alt="CHONNECT" class="logo-img">
-        </div>
-    </div>
-</header>
+<div id="header-placeholder"></div>
 
 <section class="hero">
     <div class="container hero-content">
@@ -420,36 +369,8 @@
         <div class="support-item"><img src="AURPID.png" class="support-logo" onclick="openModal(this.src)"><span class="logo-caption">AU Roleplay ID</span></div>
     </div>
 </div>
-
-<footer>
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>CHONNECT</h3>
-                <p>Roleplay database by KACHOO. Connecting roleplayers across platforms.</p>
-                <div class="social-links">
-                    <a href="mailto:ohkachoo@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
-                    <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <ul class="footer-links">
-                    <li><span class="x-logo" style="background:white; color:black; padding:2px 6px; border-radius:6px; font-size:12px;">𝕏</span> <a href="https://twitter.com/TheKachoo" target="_blank">@TheKachoo (Official)</a></li>
-                    <li><i class="fas fa-envelope"></i> <a href="mailto:ohkachoo@gmail.com">ohkachoo@gmail.com</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Address</h3>
-                <ul class="footer-links">
-                    <li><i class="fas fa-map-marker-alt"></i> Jenderal Sudirman Avenue, South Jakarta, Indonesia</li>
-                </ul>
-            </div>
-        </div>
-        <div class="copyright">&copy; 2026 CHONNECT by KACHOO. All rights reserved. For Roleplay Purpose Only.</div>
-    </div>
-</footer>
-
+<div id="footer-placeholder"></div>
+<script src="header-footer.js"></script>
 <script>
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwAwHDXjaloHicZRBNuxrOMkHpqUiwclTYWn02X9oBbm0L3_LjY8xgt0DlbmW-yRdAb/exec';
     const splashDiv = document.getElementById('splash');
