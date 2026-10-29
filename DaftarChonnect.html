@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHONNECT by KACHOO | Registration</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,8 +30,14 @@
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-        .hero { padding: 110px 0 30px; background: linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%); text-align: center; }
-        @media (max-width: 768px) { .hero { padding: 100px 0 24px; } }
+        .hero {
+            padding: 110px 0 30px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%);
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .hero { padding: calc(70px + 24px) 0 24px; }
+        }
         .hero h1 {
             font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 800;
@@ -123,9 +129,7 @@
             border-style: solid;
             transform: scale(1.01);
         }
-        .image-upload-area.dragover .file-input-label {
-            background: #333;
-        }
+        .image-upload-area.dragover .file-input-label { background: #333; }
         .drag-hint {
             font-size: 0.75rem;
             color: var(--text-gray);
@@ -138,6 +142,7 @@
             padding: 10px 20px; border-radius: 40px;
             font-weight: 500; cursor: pointer;
             font-size: 0.85rem; margin-bottom: 8px;
+            border: none;
         }
         .file-name { font-size: 0.8rem; color: var(--text-gray); margin-top: 8px; }
         .drive-link-input { margin-top: 16px; padding-top: 12px; border-top: 1px solid #eee; }
@@ -178,10 +183,7 @@
             background: var(--primary-white);
         }
         @media (max-width: 768px) {
-            .support-badge-container {
-                margin-bottom: 40px;
-                padding: 30px 0 40px;
-            }
+            .support-badge-container { margin-bottom: 40px; padding: 30px 0 40px; }
         }
         .support-label {
             font-size: 0.75rem; text-transform: uppercase;
@@ -211,28 +213,16 @@
         }
         .modal-image { max-width: 90%; max-height: 90%; }
         .modal-close { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; cursor: pointer; }
-        .splash {
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: white;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.6s;
-        }
-        .splash.fade-out { opacity: 0; pointer-events: none; }
-        .splash-logo { width: 220px; max-width: 60vw; object-fit: contain; }
     </style>
 </head>
 <body>
-<div id="splash" class="splash">
-    <img src="logochonnect1.png" alt="CHONNECT" class="splash-logo"
-         onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20fill%3D%22%23f0f0f0%22%2F%3E%3Ctext%20x%3D%22400%22%20y%3D%22420%22%20font-family%3D%22Outfit%22%20font-size%3D%2270%22%20fill%3D%22%23333%22%20text-anchor%3D%22middle%22%3ECHONNECT%3C%2Ftext%3E%3C%2Fsvg%3E'">
-</div>
+
 <div id="imageModal" class="image-modal" onclick="closeModal()">
     <span class="modal-close">&times;</span>
     <img class="modal-image" id="modalImage" alt="">
 </div>
 
+<!-- ===== PLACEHOLDER HEADER ===== -->
 <div id="header-placeholder"></div>
 
 <section class="hero">
@@ -370,14 +360,9 @@
     </div>
 </div>
 <div id="footer-placeholder"></div>
-<script src="header-footer.js"></script>
+<script src="Style/header-footer.js"></script>
 <script>
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwAwHDXjaloHicZRBNuxrOMkHpqUiwclTYWn02X9oBbm0L3_LjY8xgt0DlbmW-yRdAb/exec';
-    const splashDiv = document.getElementById('splash');
-    window.addEventListener('load', () => setTimeout(() => {
-        splashDiv.classList.add('fade-out');
-        setTimeout(() => splashDiv.style.display = 'none', 600);
-    }, 1500));
 
     function openModal(src) {
         const modal = document.getElementById('imageModal');
