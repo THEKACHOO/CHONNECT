@@ -7,13 +7,10 @@ const HEADER_HTML = `
         </div>
     </header>
 `;
-
 const FOOTER_HTML = `
     <footer>
         <div class="container">
             <div class="footer-content">
-
-                <!-- Kolom 1: CHONNECT -->
                 <div class="footer-section">
                     <h3>CHONNECT</h3>
                     <p style="color: rgba(255,255,255,0.7); margin-top: 16px; max-width: 300px;">
@@ -24,8 +21,6 @@ const FOOTER_HTML = `
                         <a href="https://twitter.com/thekachoo" target="_blank" class="social-link"><span class="x-logo">𝕏</span></a>
                     </div>
                 </div>
-
-                <!-- Kolom 2: Support By -->
                 <div class="featured-support">
                     <h4>Support By</h4>
                     <div class="support-links">
@@ -36,8 +31,6 @@ const FOOTER_HTML = `
                         <a href="https://x.com/AuRoleplayID" target="_blank" class="support-link-item"><i class="fa-brands fa-x-twitter"></i>AU Roleplay ID</a>
                     </div>
                 </div>
-
-                <!-- Kolom 3: Contact -->
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <ul class="footer-links">
@@ -79,14 +72,27 @@ const FOOTER_HTML = `
     </footer>
 `;
 
-document.addEventListener('DOMContentLoaded', function () {
-    const headerPlaceholder = document.getElementById('header-placeholder');
-    const footerPlaceholder = document.getElementById('footer-placeholder');
+(function () {
+    function inject() {
+        const headerPlaceholder = document.getElementById('header-placeholder');
+        const footerPlaceholder = document.getElementById('footer-placeholder');
 
-    if (headerPlaceholder) {
-        headerPlaceholder.innerHTML = HEADER_HTML;
+        if (headerPlaceholder) {
+            headerPlaceholder.innerHTML = HEADER_HTML;
+        } else {
+            console.warn('⚠️ #header-placeholder tidak ditemukan');
+        }
+
+        if (footerPlaceholder) {
+            footerPlaceholder.innerHTML = FOOTER_HTML;
+        } else {
+            console.warn('⚠️ #footer-placeholder tidak ditemukan');
+        }
     }
-    if (footerPlaceholder) {
-        footerPlaceholder.innerHTML = FOOTER_HTML;
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', inject);
+    } else {
+        inject();
     }
-});
+})();
