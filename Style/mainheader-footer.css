@@ -356,7 +356,6 @@ header {
 
 .modal-close:hover { color: #ccc; transform: scale(1.1); }
 
-/* ===== FOOTER ===== */
 footer {
     background: var(--primary-black);
     color: var(--primary-white);
@@ -475,10 +474,9 @@ footer {
 
 .support-links {
     display: flex;
-    flex-wrap: wrap;
-    gap: 28px;
-    align-items: center;
-    row-gap: 16px;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
 }
 
 .support-link-item {
